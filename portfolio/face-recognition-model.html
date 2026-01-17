@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition Model - Aljawharah Alsubaie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1d3a 0%, #0a0e27 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 60px 40px;
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(138, 94, 255, 0.1);
+            border: 1px solid rgba(138, 94, 255, 0.3);
+            border-radius: 24px;
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: rgba(138, 94, 255, 0.2);
+            transform: translateX(-4px);
+        }
+        
+        .project-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .project-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .project-title {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+        
+        .project-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .project-tags {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        
+        .tag {
+            padding: 8px 20px;
+            background: rgba(138, 94, 255, 0.15);
+            border: 1px solid rgba(138, 94, 255, 0.3);
+            border-radius: 20px;
+            font-size: 13px;
+            color: #a78bfa;
+            font-weight: 600;
+        }
+        
+        .content-section {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a1d3a 100%);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(138, 94, 255, 0.2);
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-icon { font-size: 32px; }
+        
+        .section-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 32px 24px;
+            background: rgba(138, 94, 255, 0.05);
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(138, 94, 255, 0.4);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+        }
+        
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .method-card {
+            background: rgba(138, 94, 255, 0.05);
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            border-radius: 16px;
+            padding: 28px;
+        }
+        
+        .method-card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #a78bfa;
+            margin-bottom: 12px;
+        }
+        
+        .method-card p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        .method-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 12px;
+        }
+        
+        .method-card li {
+            padding: 6px 0;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+        
+        .method-card li::before {
+            content: '→';
+            color: #8b5cf6;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .results-table {
+            width: 100%;
+            margin-top: 24px;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .results-table th,
+        .results-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(138, 94, 255, 0.2);
+        }
+        
+        .results-table th {
+            background: rgba(138, 94, 255, 0.15);
+            color: #a78bfa;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .results-table td {
+            background: rgba(138, 94, 255, 0.05);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+        }
+        
+        .results-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .highlight-box {
+            background: rgba(139, 92, 246, 0.08);
+            border-left: 4px solid #8b5cf6;
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+        }
+        
+        .highlight-box h4 {
+            color: #a78bfa;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .highlight-box p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 40px 20px; }
+            .project-title { font-size: 36px; }
+            .section-title { font-size: 24px; }
+            .methodology-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="munir.html" class="back-button">← Back to Munir Project</a>
+        
+        <header class="project-header">
+            <div class="project-icon">👤</div>
+            <h1 class="project-title">Face Recognition Model</h1>
+            <p class="project-subtitle">
+                High-accuracy face recognition system for assistive technology combining ArcFace embeddings with Support Vector Machine classification, achieving 97.98% test accuracy on VGGFace2 dataset.
+            </p>
+            <div class="project-tags">
+                <span class="tag">ArcFace</span>
+                <span class="tag">ResNet-100</span>
+                <span class="tag">SVM</span>
+                <span class="tag">VGGFace2</span>
+                <span class="tag">InsightFace</span>
+                <span class="tag">Python</span>
+            </div>
+        </header>
+
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">📊</span>
+                Model Performance
+            </h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">97.98%</div>
+                    <div class="stat-label">Test Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98.14%</div>
+                    <div class="stat-label">Precision</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">97.97%</div>
+                    <div class="stat-label">F1-Score</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">32,400</div>
+                    <div class="stat-label">Training Images</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">540</div>
+                    <div class="stat-label">Unique Individuals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">512D</div>
+                    <div class="stat-label">Feature Vector</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">🎯</span>
+                Project Overview
+            </h2>
+            <p class="section-description">
+                Face recognition capabilities enable visually impaired individuals to identify familiar people in their environment, enhancing social interaction and independence. This system utilizes InsightFace's ArcFace model with ResNet-100 backbone to generate 512-dimensional L2-normalized face embeddings, followed by classification using Support Vector Machine (SVM) with linear kernel.
+            </p>
+            <p class="section-description">
+                The dataset comprises 32,400 facial images from VGGFace2, representing 540 unique individuals with 60 images per person, capturing diverse variations in pose, age, illumination, and ethnicity. Through systematic preprocessing including face detection, alignment, and standardization to 224×224 RGB format, the dataset was split into 80% training (25,920 images) and 20% testing (6,480 images).
+            </p>
+            
+            <div class="highlight-box">
+                <h4>Key Achievement</h4>
+                <p>The proposed SVM-Linear classifier achieved 97.98% test accuracy with 98.14% precision and 97.97% F1-score, demonstrating exceptional generalization with test performance exceeding cross-validation expectations by 0.18%.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">🔬</span>
+                Methodology
+            </h2>
+            
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <h4>Dataset Preparation</h4>
+                    <p>VGGFace2 dataset with systematic collection pipeline:</p>
+                    <ul>
+                        <li>540 unique identities selected</li>
+                        <li>60 images per person for balance</li>
+                        <li>Duplicate prevention using set-based deduplication</li>
+                        <li>RGB color space standardization</li>
+                        <li>224×224 pixel unified resizing</li>
+                        <li>JPEG format with 95% quality</li>
+                    </ul>
+                </div>
+                
+                <div class="method-card">
+                    <h4>Feature Extraction</h4>
+                    <p>InsightFace ArcFace model (buffalo_l) with three-stage pipeline:</p>
+                    <ul>
+                        <li>SCRFD face detection</li>
+                        <li>Landmark-based face alignment (112×112)</li>
+                        <li>ResNet-100 embedding extraction</li>
+                        <li>512-dimensional L2-normalized vectors</li>
+                        <li>Cosine similarity for comparison</li>
+                    </ul>
+                </div>
+                
+                <div class="method-card">
+                    <h4>Classification</h4>
+                    <p>SVM with linear kernel configuration:</p>
+                    <ul>
+                        <li>LinearSVC with L2 regularization</li>
+                        <li>C=1.0 regularization parameter</li>
+                        <li>Maximum 2000 iterations</li>
+                        <li>5-fold stratified cross-validation</li>
+                        <li>80-20 train-test split</li>
+                    </ul>
+                </div>
+                
+                <div class="method-card">
+                    <h4>Evaluation Metrics</h4>
+                    <p>Comprehensive performance assessment:</p>
+                    <ul>
+                        <li>Accuracy: 97.98%</li>
+                        <li>Precision: 98.14%</li>
+                        <li>Recall: 97.98%</li>
+                        <li>F1-Score: 97.97%</li>
+                        <li>Train-Test Gap: 2.00%</li>
+                        <li>CV-Test Gap: -0.18%</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">📈</span>
+                Experimental Results
+            </h2>
+            
+            <h3 style="color: #a78bfa; font-size: 20px; margin-bottom: 16px;">Cross-Validation Performance</h3>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>CV Mean</th>
+                        <th>CV Std</th>
+                        <th>Train Accuracy</th>
+                        <th>Time (s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SVM (Linear)</strong></td>
+                        <td>97.80%</td>
+                        <td>±0.13%</td>
+                        <td>99.98%</td>
+                        <td>449.64</td>
+                    </tr>
+                    <tr>
+                        <td>SVM (RBF)</td>
+                        <td>97.07%</td>
+                        <td>±0.18%</td>
+                        <td>99.97%</td>
+                        <td>1104.74</td>
+                    </tr>
+                    <tr>
+                        <td>Logistic Regression</td>
+                        <td>97.31%</td>
+                        <td>±0.13%</td>
+                        <td>98.41%</td>
+                        <td>31.11</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3 style="color: #a78bfa; font-size: 20px; margin: 32px 0 16px;">Test Set Performance</h3>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Accuracy</th>
+                        <th>Precision</th>
+                        <th>Recall</th>
+                        <th>F1-Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SVM (Linear)</strong></td>
+                        <td>97.98%</td>
+                        <td>98.14%</td>
+                        <td>97.98%</td>
+                        <td>97.97%</td>
+                    </tr>
+                    <tr>
+                        <td>SVM (RBF)</td>
+                        <td>97.13%</td>
+                        <td>99.47%</td>
+                        <td>97.13%</td>
+                        <td>98.09%</td>
+                    </tr>
+                    <tr>
+                        <td>Logistic Regression</td>
+                        <td>97.65%</td>
+                        <td>97.87%</td>
+                        <td>97.65%</td>
+                        <td>97.66%</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="highlight-box">
+                <h4>Exceptional Generalization</h4>
+                <p>The CV-Test gap of -0.18% indicates the model actually performs slightly better on the completely unseen test set than during cross-validation. This remarkable result suggests that cross-validation provided a conservative estimate of model performance, and the model generalizes exceptionally well to new data without any signs of overfitting.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">🔍</span>
+                Technical Implementation
+            </h2>
+            
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <h4>ArcFace Architecture</h4>
+                    <p>Additive Angular Margin Loss optimizing geodesic distance in normalized hypersphere:</p>
+                    <ul>
+                        <li>ResNet-100 backbone (100 layers)</li>
+                        <li>Pre-trained on large-scale datasets</li>
+                        <li>Angular margin penalty (m)</li>
+                        <li>Feature scale (s) normalization</li>
+                        <li>State-of-the-art on LFW (99.83%)</li>
+                    </ul>
+                </div>
+                
+                <div class="method-card">
+                    <h4>VGGFace2 Dataset</h4>
+                    <p>Large-scale face recognition benchmark with extensive variations:</p>
+                    <ul>
+                        <li>Diverse pose angles (0° to 90°)</li>
+                        <li>Multiple age ranges</li>
+                        <li>Various illumination conditions</li>
+                        <li>Different ethnicities</li>
+                        <li>Professional curation</li>
+                        <li>Minimal label noise</li>
+                    </ul>
+                </div>
+                
+                <div class="method-card">
+                    <h4>Preprocessing Pipeline</h4>
+                    <p>Six-step systematic process ensuring data quality:</p>
+                    <ul>
+                        <li>Step 1: Duplicate Prevention</li>
+                        <li>Step 2: Image Collection (60 per person)</li>
+                        <li>Step 3: Corruption Detection</li>
+                        <li>Step 4: Color Space Standardization</li>
+                        <li>Step 5: Unified Resizing (224×224)</li>
+                        <li>Step 6: Format Optimization (JPEG 95%)</li>
+                    </ul>
+                </div>
+                
+                <div class="method-card">
+                    <h4>Deployment Considerations</h4>
+                    <p>Mobile-ready implementation for assistive technology:</p>
+                    <ul>
+                        <li>ONNX Runtime conversion</li>
+                        <li>50-100ms inference per face</li>
+                        <li>Encrypted local storage</li>
+                        <li>90% confidence threshold</li>
+                        <li>Arabic audio feedback</li>
+                        <li>Privacy-preserving design</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">🚀</span>
+                Future Enhancements
+            </h2>
+            
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <h4>Short-Term (3-6 months)</h4>
+                    <ul>
+                        <li>Incremental learning for new individuals</li>
+                        <li>Confidence calibration</li>
+                        <li>Face liveness detection</li>
+                        <li>Model quantization (INT8)</li>
+                        <li>Inference speed optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="method-card">
+                    <h4>Medium-Term (6-12 months)</h4>
+                    <ul>
+                        <li>Age-invariant recognition</li>
+                        <li>Multi-modal fusion (face + voice)</li>
+                        <li>Occlusion handling via augmentation</li>
+                        <li>Longitudinal performance studies</li>
+                        <li>Edge device optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="method-card">
+                    <h4>Long-Term (1-2 years)</h4>
+                    <ul>
+                        <li>Federated learning framework</li>
+                        <li>Graph neural networks for relationships</li>
+                        <li>Few-shot learning adaptation</li>
+                        <li>AR integration for spatial awareness</li>
+                        <li>Real-time scene understanding</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="munir.html" class="back-button" style="display: inline-flex;">← Back to Munir Project</a>
+        </div>
+    </div>
+</body>
+</html>

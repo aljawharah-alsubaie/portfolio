@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Differences Game - Aljawharah Alsubaie Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1d3a 0%, #0a0e27 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 60px 40px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(138, 94, 255, 0.1);
+            border: 1px solid rgba(138, 94, 255, 0.3);
+            border-radius: 24px;
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: rgba(138, 94, 255, 0.2);
+            transform: translateX(-4px);
+        }
+        
+        /* Project Header */
+        .project-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .project-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .project-title {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+        
+        .project-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 900px;
+            margin: 0 auto 24px;
+            line-height: 1.8;
+        }
+        
+        /* Tags */
+        .project-tags {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        
+        .tag {
+            padding: 8px 20px;
+            background: rgba(138, 94, 255, 0.15);
+            border: 1px solid rgba(138, 94, 255, 0.3);
+            border-radius: 20px;
+            font-size: 13px;
+            color: #a78bfa;
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .content-section {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a1d3a 100%);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-icon {
+            font-size: 32px;
+        }
+        
+        .section-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(138, 94, 255, 0.05);
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            background: rgba(138, 94, 255, 0.1);
+            transform: translateY(-4px);
+        }
+        
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+        
+        .feature-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        /* Game Flow Section */
+        .game-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .flow-step {
+            background: rgba(138, 94, 255, 0.05);
+            border: 2px solid rgba(138, 94, 255, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+        
+        .flow-step h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #a78bfa;
+            margin-bottom: 8px;
+        }
+        
+        .flow-step p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+        
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        
+        .tech-item {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(138, 94, 255, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 20px;
+            }
+            
+            .project-title {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .features-grid,
+            .game-flow {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="index.html" class="back-button">
+            ← Back to Portfolio
+        </a>
+    
+        <!-- Project Header -->
+        <header class="project-header">
+            <div class="project-icon">🎮</div>
+            <h1 class="project-title">Find Differences Game</h1>
+            <p class="project-subtitle">
+                A multiplayer networked game where players compete in real-time to spot differences between two similar images. The game features server-client architecture with socket programming, waiting room management, live scoring system, and multiple game rounds with increasing difficulty.
+            </p>
+            <div class="project-tags">
+                <span class="tag">Java</span>
+                <span class="tag">Socket Programming</span>
+                <span class="tag">Networking</span>
+                <span class="tag">Multi-threading</span>
+                <span class="tag">Java Swing</span>
+                <span class="tag">Client-Server</span>
+            </div>
+        </header>
+        
+        <!-- Game Overview Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">📖</span>
+                Game Overview
+            </h2>
+            <p class="section-description">
+                Find Differences is an interactive multiplayer game built with Java networking concepts. Players connect to a central server, enter a waiting room, and compete to identify differences between two nearly identical images. The game demonstrates real-time communication, concurrent user handling, and synchronized gameplay across multiple clients.
+            </p>
+            <p class="section-description">
+                The server manages up to 4 players simultaneously, displaying two kitchen scene images with subtle differences such as missing objects, color changes, repositioned items, and altered details. Players carefully examine both images and submit their answer - the total number of differences they discovered. Correct answers earn points, and the player with the highest score wins!
+            </p>
+        </section>
+        
+        <!-- Game Features Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">✨</span>
+                Key Features
+            </h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🌐</span>
+                    <h3 class="feature-title">Client-Server Architecture</h3>
+                    <p class="feature-description">
+                        Robust networking implementation using Java Sockets for real-time bidirectional communication between server and multiple clients.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">👥</span>
+                    <h3 class="feature-title">Waiting Room System</h3>
+                    <p class="feature-description">
+                        Players join a waiting room (max 4 players) before game starts. Live player list updates and countdown timer for game initialization.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Multi-threading</h3>
+                    <p class="feature-description">
+                        Each client connection handled by separate threads, enabling simultaneous player interactions without blocking.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3 class="feature-title">Real-time Scoring</h3>
+                    <p class="feature-description">
+                        Live score tracking system with instant feedback on correct/incorrect answers and final leaderboard display.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎨</span>
+                    <h3 class="feature-title">Multiple Game Rounds</h3>
+                    <p class="feature-description">
+                        Progressive difficulty across three stages with different point values (5, 10, 15 points) and varying numbers of differences.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🖼️</span>
+                    <h3 class="feature-title">GUI with Java Swing</h3>
+                    <p class="feature-description">
+                        Intuitive graphical interface with custom-designed frames for connection, waiting room, gameplay, and results screens.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Game Flow Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">🎮</span>
+                How to Play
+            </h2>
+            
+            <div class="game-flow">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <h4>Connect to Server</h4>
+                    <p>Enter your name and connect to the game server (localhost:9090)</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <h4>Join Waiting Room</h4>
+                    <p>Click "Play" to enter waiting room. See connected players in real-time.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <h4>Game Starts</h4>
+                    <p>When 2-4 players ready, countdown begins and game launches automatically.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <h4>Find Differences</h4>
+                    <p>Compare two images carefully and identify all the differences you can spot.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">5</div>
+                    <h4>Submit Answer</h4>
+                    <p>Enter the total number of differences and click Submit to check your answer.</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">6</div>
+                    <h4>Win & Celebrate</h4>
+                    <p>Earn points for correct answers! Highest score after 3 rounds wins the game.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Technical Implementation Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">💻</span>
+                Technical Implementation
+            </h2>
+            <p class="section-description">
+                The game leverages Java's networking capabilities to create a scalable multiplayer experience with clean separation of concerns.
+            </p>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #a78bfa;">Server Architecture</h3>
+                <p class="section-description">
+                    The server acts as the central coordinator, managing client connections, maintaining player lists, synchronizing game state, and broadcasting updates. It uses <strong>ServerSocket</strong> to listen on port 9090 and spawns a new <strong>NewClient</strong> thread for each connection. The server tracks two key lists: connected clients (all users) and active players (those in waiting room/game).
+                </p>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #a78bfa;">Client Architecture</h3>
+                <p class="section-description">
+                    Clients connect using <strong>Socket</strong> to establish communication channels (BufferedReader for input, PrintWriter for output). The <strong>ServerConnection</strong> class runs in a separate thread to continuously listen for server messages without blocking the UI. Multiple GUI frames handle different game states: FirstFrame (connection), WaitingRoom (lobby), game (gameplay), and Last (results).
+                </p>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #a78bfa;">Communication Protocol</h3>
+                <p class="section-description">
+                    Server and clients exchange messages using a custom text-based protocol. Key messages include player names, "tryToJoinRoom" requests, "isNotFull"/"isFull" responses, player list updates, and game state changes. All communication is text-based over TCP sockets, ensuring reliable, ordered delivery of game data.
+                </p>
+            </div>
+            
+            <div class="tech-stack">
+                <div class="tech-item">Java SE</div>
+                <div class="tech-item">Socket Programming</div>
+                <div class="tech-item">Java Swing</div>
+                <div class="tech-item">Multi-threading</div>
+                <div class="tech-item">BufferedReader/PrintWriter</div>
+                <div class="tech-item">NetBeans IDE</div>
+            </div>
+        </section>
+        
+        <!-- Live Demo Video Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">🎬</span>
+                Live Demo Video
+            </h2>
+            <p class="section-description">
+                Watch the complete gameplay demonstration showcasing all features from connection to winner announcement.
+            </p>
+            
+            <div style="margin-top: 30px;">
+                <div style="width: 100%; max-width: 900px; margin: 0 auto; background: linear-gradient(135deg, #2a234a 0%, #1a1d3a 100%); border-radius: 24px; border: 2px solid rgba(138, 94, 255, 0.3); overflow: hidden;">
+                    <!-- Video Player -->
+                    <video 
+                        style="width: 100%; height: auto; display: block;"
+                        controls
+                        preload="metadata">
+                        <source src="Network_project_Demo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+                <div style="margin-top: 24px; text-align: center;">
+                    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.6); line-height: 1.6;">
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Learning Outcomes Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">🎓</span>
+                Learning Outcomes
+            </h2>
+            
+            <div style="margin-top: 20px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #a78bfa;">Technical Skills Developed</h3>
+                <ul style="color: rgba(255, 255, 255, 0.8); line-height: 2; margin-left: 24px;">
+                    <li><strong>Network Programming:</strong> Implemented TCP socket communication for client-server architecture</li>
+                    <li><strong>Concurrent Programming:</strong> Managed multiple client threads simultaneously with proper synchronization</li>
+                    <li><strong>Event-Driven Design:</strong> Built responsive GUI applications using Java Swing event handling</li>
+                    <li><strong>Protocol Design:</strong> Created custom text-based communication protocol for game state management</li>
+                    <li><strong>Resource Management:</strong> Properly handled socket cleanup, thread lifecycle, and connection pooling</li>
+                </ul>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #a78bfa;">Challenges Overcome</h3>
+                <ul style="color: rgba(255, 255, 255, 0.8); line-height: 2; margin-left: 24px;">
+                    <li>Synchronizing game state across multiple clients without race conditions</li>
+                    <li>Handling unexpected client disconnections gracefully</li>
+                    <li>Managing waiting room capacity and player list updates in real-time</li>
+                    <li>Ensuring UI responsiveness while maintaining network communication</li>
+                    <li>Debugging multi-threaded applications with concurrent execution flows</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Back to Portfolio -->
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="back-button" style="display: inline-flex;">
+                ← Back to Portfolio
+            </a>
+        </div>
+    </div>
+</body>
+</html>

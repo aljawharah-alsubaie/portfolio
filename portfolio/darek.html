@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darek - Property Rental Platform | Aljawharah Alsubaie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1d3a 0%, #0a0e27 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 60px 40px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(138, 94, 255, 0.1);
+            border: 1px solid rgba(138, 94, 255, 0.3);
+            border-radius: 24px;
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: rgba(138, 94, 255, 0.2);
+            transform: translateX(-4px);
+        }
+        
+        /* Header */
+        .project-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .project-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .project-title {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+        
+        .project-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Tags */
+        .project-tags {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        
+        .tag {
+            padding: 8px 20px;
+            background: rgba(138, 94, 255, 0.15);
+            border: 1px solid rgba(138, 94, 255, 0.3);
+            border-radius: 20px;
+            font-size: 13px;
+            color: #a78bfa;
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .content-section {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a1d3a 100%);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-icon {
+            font-size: 32px;
+        }
+        
+        .section-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        /* Screenshot Grid */
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .screenshot-item {
+            background: linear-gradient(135deg, #4a3a7a 0%, #2a234a 100%);
+            border-radius: 16px;
+            padding: 20px;
+            border: 2px solid rgba(138, 94, 255, 0.15);
+            transition: all 0.4s ease;
+        }
+        
+        .screenshot-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(138, 94, 255, 0.4);
+            box-shadow: 0 12px 40px rgba(138, 94, 255, 0.3);
+        }
+        
+        .screenshot-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #5a4a8a 0%, #3a2a5a 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .screenshot-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .screenshot-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        
+        .screenshot-description {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(138, 94, 255, 0.05);
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            background: rgba(138, 94, 255, 0.1);
+            transform: translateY(-4px);
+        }
+        
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+        
+        .feature-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        
+        .tech-item {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(138, 94, 255, 0.3);
+        }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 24px;
+            background: rgba(138, 94, 255, 0.05);
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            border-radius: 16px;
+        }
+        
+        .stat-number {
+            font-size: 40px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 20px;
+            }
+            
+            .project-title {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .content-section {
+                padding: 28px;
+            }
+            
+            .screenshot-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="index.html" class="back-button">
+            ← Back to Portfolio
+        </a>
+        
+        <!-- Project Header -->
+        <header class="project-header">
+            <div class="project-icon">🏠</div>
+            <h1 class="project-title">Darek Platform</h1>
+            <p class="project-subtitle">
+                A comprehensive property rental web platform enabling users to browse, book, and manage rental properties across villas, apartments, and chalets with seamless user experience.
+            </p>
+            <div class="project-tags">
+                <span class="tag">Frontend Development</span>
+                <span class="tag">HTML/CSS/JavaScript</span>
+                <span class="tag">Responsive Design</span>
+                <span class="tag">Accessibility</span>
+                <span class="tag">Team Collaboration</span>
+            </div>
+        </header>
+        
+        <!-- Overview Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">📖</span>
+                Project Overview
+            </h2>
+            <p class="section-description">
+                Darek is a user-centric web application designed to revolutionize the property rental experience in Saudi Arabia. The platform provides a unified marketplace where users can discover, evaluate, and book various types of properties including luxury villas, modern apartments, and coastal chalets. The system addresses the fragmented rental market by offering a streamlined, accessible interface for both renters and property owners.
+            </p>
+            <p class="section-description">
+                Developed as part of the IT312 Web Applications Engineering course, Darek demonstrates proficiency in modern web development practices including responsive design, client-side interactivity, and accessibility standards. The platform features a complete booking workflow from property discovery through cart management to reservation confirmation, enhanced by promotional offers and community-driven reviews.
+            </p>
+        </section>
+        
+        <!-- Key Features Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">✨</span>
+                Key Features
+            </h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3 class="feature-title">Advanced Property Search</h3>
+                    <p class="feature-description">
+                        Intuitive category-based browsing system allowing users to filter properties by type (villa, apartment, chalet), view detailed specifications, pricing, and availability in real-time.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🛒</span>
+                    <h3 class="feature-title">Smart Shopping Cart</h3>
+                    <p class="feature-description">
+                        Multi-property booking management with date selection, automatic pricing calculation, and order summary. Includes intelligent recommendations for similar properties.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3 class="feature-title">Seller Dashboard</h3>
+                    <p class="feature-description">
+                        Comprehensive property management interface for owners to add listings, manage availability, edit promotional offers, and track booking performance.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⭐</span>
+                    <h3 class="feature-title">Review & Rating System</h3>
+                    <p class="feature-description">
+                        Interactive customer feedback system with star ratings, detailed reviews, and visual testimonials. Features hover tooltips displaying complete review details.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎁</span>
+                    <h3 class="feature-title">Dynamic Promotions</h3>
+                    <p class="feature-description">
+                        Eye-catching promotional slider showcasing seasonal discounts, family packages, and last-minute deals. Expandable interface revealing additional offers on demand.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">👤</span>
+                    <h3 class="feature-title">User Profile Management</h3>
+                    <p class="feature-description">
+                        Personalized dashboard displaying user information, complete booking history with status tracking, and quick access to product evaluation interface.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🌓</span>
+                    <h3 class="feature-title">Dark Mode Toggle</h3>
+                    <p class="feature-description">
+                        Seamless theme switching between light and dark modes with persistent user preferences, reducing eye strain during extended browsing sessions.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Pages Overview Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">📸</span>
+                Platform Pages
+            </h2>
+            <p class="section-description">
+                Explore the comprehensive page structure of the Darek platform, showcasing the complete user journey from discovery to booking confirmation.
+            </p>
+            
+            <div class="screenshot-grid">
+                <!-- Screenshot 1: Home Page -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">🏡</div>
+                    <h3 class="screenshot-title">Home Page</h3>
+                    <p class="screenshot-description">
+                        Vision statement, property type selection cards, promotional offers slider with expandable content, and customer review showcase with interactive tooltips.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 2: Category Page -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">🏘️</div>
+                    <h3 class="screenshot-title">Category Pages</h3>
+                    <p class="screenshot-description">
+                        Filterable property listings organized by villa, apartment, or chalet categories. Features star ratings, pricing details, and quick booking buttons with sorting functionality.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 3: User Page -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">👤</div>
+                    <h3 class="screenshot-title">User Profile</h3>
+                    <p class="screenshot-description">
+                        Personal information display including name, date of birth, phone number, and region. Quick navigation to cart, booking history, and product evaluation sections.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 4: Cart Page -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">🛒</div>
+                    <h3 class="screenshot-title">Shopping Cart</h3>
+                    <p class="screenshot-description">
+                        Multi-item booking interface with property thumbnails, date range selection, dynamic pricing calculation, and order summary with payment breakdown. Includes recommended properties carousel.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 5: Booking History -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">📅</div>
+                    <h3 class="screenshot-title">Booking History</h3>
+                    <p class="screenshot-description">
+                        Comprehensive view of all reservations with status filters (upcoming, completed, cancelled). Each booking displays property image, booking ID, dates, and management actions.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 6: Product Evaluation -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">⭐</div>
+                    <h3 class="screenshot-title">Product Evaluation</h3>
+                    <p class="screenshot-description">
+                        Detailed review submission form with star rating selection, experience description textarea, and order history reference. Enables customers to share feedback on completed bookings.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 7: Seller Dashboard -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">📊</div>
+                    <h3 class="screenshot-title">Seller's Dashboard</h3>
+                    <p class="screenshot-description">
+                        Property owner interface displaying all listed properties with quick actions. Features dedicated sections for adding new properties and managing promotional offers.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 8: Add Product -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">➕</div>
+                    <h3 class="screenshot-title">Add Product Page</h3>
+                    <p class="screenshot-description">
+                        Comprehensive property listing form with fields for name, image upload, pricing, category selection, quantity management, and detailed description with validation.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 9: Edit Offers -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">🎁</div>
+                    <h3 class="screenshot-title">Edit Offers Page</h3>
+                    <p class="screenshot-description">
+                        Promotional management interface displaying all active offers with edit/delete functionality. Includes form for creating new promotions with image upload and description fields.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Technical Implementation Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">💻</span>
+                Technical Implementation
+            </h2>
+            <p class="section-description">
+                Darek was built using modern frontend technologies and best practices to ensure optimal performance, maintainability, and accessibility across all devices and browsers.
+            </p>
+            
+            <div class="tech-stack">
+                <div class="tech-item">HTML5</div>
+                <div class="tech-item">CSS3</div>
+                <div class="tech-item">JavaScript</div>
+                <div class="tech-item">Responsive Design</div>
+                <div class="tech-item">Git & GitHub</div>
+            </div>
+            
+            <div style="margin-top: 40px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #a78bfa;">Key Technical Features</h3>
+                <p class="section-description">
+                    <strong>Dynamic Content Loading:</strong> JavaScript-powered content management system that loads property listings, user bookings, and reviews dynamically without page refreshes. Implemented efficient DOM manipulation techniques for optimal performance.
+                </p>
+                <p class="section-description">
+                    <strong>Local Storage Integration:</strong> Persistent data management for shopping cart items, user preferences (dark mode), and booking information. Ensures seamless user experience across sessions without requiring backend database.
+                </p>
+                <p class="section-description">
+                    <strong>Responsive Grid Layouts:</strong> Mobile-first approach using CSS Grid and Flexbox for adaptive layouts that maintain usability across desktop, tablet, and mobile viewports. Breakpoints optimized for common device sizes.
+                </p>
+            </div>
+        </section>
+
+        <!-- Conclusion Section -->
+        <section class="content-section" style="text-align: center; border: 2px solid rgba(138, 94, 255, 0.3);">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="justify-content: center;">
+                    <span class="section-icon">💜</span>
+                    Project Reflection
+                </h2>
+                <p class="section-description" style="font-size: 18px;">
+                    Darek represents a comprehensive exploration of frontend web development principles, from responsive design and accessibility to user experience optimization and team collaboration. The project strengthened my technical skills in HTML, CSS, and JavaScript while teaching valuable lessons in UI/UX design, cross-browser compatibility, and code organization.
+                </p>
+                <p class="section-description" style="font-size: 18px; margin-bottom: 0;">
+                    Through this experience, I gained practical insights into building user-centric web applications, implementing accessibility standards, and working effectively in a collaborative development environment. The project demonstrates my ability to create polished, functional web interfaces that prioritize both aesthetics and usability.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Back to Portfolio -->
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="back-button" style="display: inline-flex;">
+                ← Back to Portfolio
+            </a>
+        </div>
+    </div>
+</body>
+</html>
