@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehar - Workshop Booking Platform | Aljawharah Alsubaie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1d3a 0%, #0a0e27 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 60px 40px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(138, 94, 255, 0.1);
+            border: 1px solid rgba(138, 94, 255, 0.3);
+            border-radius: 24px;
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: rgba(138, 94, 255, 0.2);
+            transform: translateX(-4px);
+        }
+        
+        /* Header */
+        .project-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .project-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .project-title {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+        
+        .project-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Tags */
+        .project-tags {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        
+        .tag {
+            padding: 8px 20px;
+            background: rgba(138, 94, 255, 0.15);
+            border: 1px solid rgba(138, 94, 255, 0.3);
+            border-radius: 20px;
+            font-size: 13px;
+            color: #a78bfa;
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .content-section {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a1d3a 100%);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-icon {
+            font-size: 32px;
+        }
+        
+        .section-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        /* Screenshot Grid */
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .screenshot-item {
+            background: linear-gradient(135deg, #4a3a7a 0%, #2a234a 100%);
+            border-radius: 16px;
+            padding: 20px;
+            border: 2px solid rgba(138, 94, 255, 0.15);
+            transition: all 0.4s ease;
+        }
+        
+        .screenshot-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(138, 94, 255, 0.4);
+            box-shadow: 0 12px 40px rgba(138, 94, 255, 0.3);
+        }
+        
+        .screenshot-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #5a4a8a 0%, #3a2a5a 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .screenshot-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .screenshot-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        
+        .screenshot-description {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(138, 94, 255, 0.05);
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            background: rgba(138, 94, 255, 0.1);
+            transform: translateY(-4px);
+        }
+        
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+        
+        .feature-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        
+        .tech-item {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(138, 94, 255, 0.3);
+        }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 24px;
+            background: rgba(138, 94, 255, 0.05);
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            border-radius: 16px;
+        }
+        
+        .stat-number {
+            font-size: 40px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 20px;
+            }
+            
+            .project-title {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .content-section {
+                padding: 28px;
+            }
+            
+            .screenshot-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="index.html" class="back-button">
+            ← Back to Portfolio
+        </a>
+        
+        <!-- Project Header -->
+        <header class="project-header">
+            <div class="project-icon">🎨</div>
+            <h1 class="project-title">Mehar Platform</h1>
+            <p class="project-subtitle">
+                A comprehensive workshop booking platform connecting passionate learners with authentic Saudi experiences in arts, cooking, and adventure.
+            </p>
+            <div class="project-tags">
+                <span class="tag">Full-Stack Development</span>
+                <span class="tag">PHP & MySQL</span>
+                <span class="tag">E-Commerce</span>
+                <span class="tag">Agile Methodology</span>
+                <span class="tag">Vision 2030</span>
+            </div>
+        </header>
+        
+        <!-- Overview Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">📖</span>
+                Project Overview
+            </h2>
+            <p class="section-description">
+                Mehar is a user-friendly web platform designed to revolutionize how individuals discover and book workshops in Saudi Arabia. The platform addresses the fragmented landscape of workshop discovery by providing a centralized system where users can explore categorized activities, manage bookings seamlessly, and engage with a vibrant community of learners.
+            </p>
+            <p class="section-description">
+                Built as part of the IT320 Software Engineering course, Mehar aligns with Vision 2030's goals by enhancing quality of life through accessible cultural activities and supporting SMEs by providing them a platform to showcase their services. The platform bridges the gap between workshop organizers and participants, making authentic local experiences easily accessible to both residents and tourists.
+            </p>
+
+        </section>
+        
+        <!-- Key Features Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">✨</span>
+                Key Features
+            </h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3 class="feature-title">Personalized Recommendations</h3>
+                    <p class="feature-description">
+                        Smart survey system that analyzes user interests, skill levels, and preferences to recommend perfectly matched workshops, saving time and enhancing discovery.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📅</span>
+                    <h3 class="feature-title">Flexible Booking Management</h3>
+                    <p class="feature-description">
+                        Complete control over reservations - book, modify, or cancel workshops with ease. Choose between online, in-person, or hybrid formats based on your preferences.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3 class="feature-title">Advanced Search & Filters</h3>
+                    <p class="feature-description">
+                        Powerful filtering by category (Art, Cooking, Adventure), location, date, and price. Find your perfect workshop in seconds with intuitive search functionality.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⭐</span>
+                    <h3 class="feature-title">Review & Rating System</h3>
+                    <p class="feature-description">
+                        Share your experience through detailed reviews and star ratings. Edit or delete your feedback anytime, helping others make informed decisions.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🌟</span>
+                    <h3 class="feature-title">Interactive Explore Page</h3>
+                    <p class="feature-description">
+                        Community-driven content where users share workshop experiences through posts with images and captions. Like and engage with others' journeys.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">💜</span>
+                    <h3 class="feature-title">Wishlist Feature</h3>
+                    <p class="feature-description">
+                        Save interesting workshops to your personal wishlist for easy access later. Keep track of experiences you want to try without committing to booking immediately.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Screenshots Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">📸</span>
+                Platform Screenshots
+            </h2>
+            <p class="section-description">
+                Explore the user interface and key functionalities of the Mehar platform through these screenshots showcasing the seamless user experience.
+            </p>
+            
+            <div class="screenshot-grid">
+                <!-- Screenshot 1: Home Page -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">🏠</div>
+                    <h3 class="screenshot-title">Home Page</h3>
+                    <p class="screenshot-description">
+                        Welcome page featuring workshop highlights, categories, and easy navigation to all platform features.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 2: Sign Up -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">📝</div>
+                    <h3 class="screenshot-title">Sign Up / Registration</h3>
+                    <p class="screenshot-description">
+                        Simple and secure account creation with email validation and password requirements.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 3: Login -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">🔐</div>
+                    <h3 class="screenshot-title">Login Page</h3>
+                    <p class="screenshot-description">
+                        Clean login interface with error handling and session management for secure access.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 4: Category Page -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">🎨</div>
+                    <h3 class="screenshot-title">Category Exploration</h3>
+                    <p class="screenshot-description">
+                        Browse workshops by category - Art, Cooking, and Adventure with visual cards and quick details.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 5: Workshop Details -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">📋</div>
+                    <h3 class="screenshot-title">Workshop Details & Booking</h3>
+                    <p class="screenshot-description">
+                        Comprehensive workshop information including description, schedule, pricing, and booking options.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 6: Filter -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">🔍</div>
+                    <h3 class="screenshot-title">Search Filters</h3>
+                    <p class="screenshot-description">
+                        Advanced filtering system by location, date, price, and category for precise workshop discovery.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 7: Profile -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">👤</div>
+                    <h3 class="screenshot-title">User Profile</h3>
+                    <p class="screenshot-description">
+                        Personal dashboard displaying user information, bookings history, and shared experiences.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 8: My Bookings -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">📅</div>
+                    <h3 class="screenshot-title">My Bookings</h3>
+                    <p class="screenshot-description">
+                        Manage all workshop reservations - view upcoming, completed bookings, and modify/cancel as needed.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 9: Explore Page -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">🌟</div>
+                    <h3 class="screenshot-title">Explore Community</h3>
+                    <p class="screenshot-description">
+                        Discover user-generated content, workshop experiences, and engage with the community through posts and likes.
+                    </p>
+                </div>
+                
+                <!-- Screenshot 10: Survey -->
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">📊</div>
+                    <h3 class="screenshot-title">Personalized Survey</h3>
+                    <p class="screenshot-description">
+                        Interactive questionnaire that captures user preferences to deliver tailored workshop recommendations.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Technical Stack Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">💻</span>
+                Technical Stack
+            </h2>
+            <p class="section-description">
+                Mehar was built using modern web technologies and industry-standard development practices to ensure scalability, security, and optimal performance.
+            </p>
+            
+            <div class="tech-stack">
+                <div class="tech-item">HTML5</div>
+                <div class="tech-item">CSS3</div>
+                <div class="tech-item">JavaScript</div>
+                <div class="tech-item">PHP</div>
+                <div class="tech-item">MySQL</div>
+                <div class="tech-item">Git & GitHub</div>
+                <div class="tech-item">Jira</div>
+                <div class="tech-item">Agile/Scrum</div>
+            </div>
+            
+            <div style="margin-top: 40px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #a78bfa;">Architecture</h3>
+                <p class="section-description">
+                    <strong>Client-Server Architecture:</strong> The platform follows a traditional client-server model with clear separation of concerns. The frontend (HTML/CSS/JavaScript) handles user interactions and presentation, while the backend (PHP) manages business logic, authentication, and database operations. This architecture provides scalability, maintainability, and enhanced security for user data.
+                </p>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #a78bfa;">Database Design</h3>
+                <p class="section-description">
+                    The MySQL database implements a normalized relational schema with 9 core entities including Users, Workshops, Bookings, Reviews, Posts, Likes, Favorites, Workshop_Schedule, and Previous_Works. The design ensures data integrity through proper foreign key relationships and supports complex queries for features like personalized recommendations and community interactions.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Impact & Alignment Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">🎯</span>
+                Impact & Vision 2030 Alignment
+            </h2>
+            <p class="section-description">
+                Mehar directly contributes to Saudi Vision 2030 by enhancing quality of life through accessible leisure and cultural activities. The platform supports small and medium enterprises (SMEs) by providing workshop organizers with a digital showcase for their services, expanding their reach to both local residents and international tourists.
+            </p>
+            <p class="section-description">
+                By simplifying the discovery of authentic Saudi experiences - from traditional crafts to modern pursuits - Mehar encourages cultural exchange and allows users to immerse themselves in the rich traditions and contemporary attractions of the Kingdom. The platform bridges the gap between passionate learners and skilled instructors, fostering a vibrant community of continuous learning and cultural appreciation.
+            </p>
+        </section>
+        
+        <!-- Future Enhancements Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">🚀</span>
+                Future Enhancements
+            </h2>
+            <p class="section-description">
+                While Mehar successfully delivers its core functionality, several exciting features are planned for future iterations:
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">💳</span>
+                    <h3 class="feature-title">Payment Gateway Integration</h3>
+                    <p class="feature-description">
+                        Direct online payment processing for workshop bookings, enabling seamless transactions and revenue generation for organizers.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <h3 class="feature-title">Mobile Applications</h3>
+                    <p class="feature-description">
+                        Native Android and iOS apps to enhance accessibility and user engagement with push notifications and offline features.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h3 class="feature-title">AI-Powered Recommendations</h3>
+                    <p class="feature-description">
+                        Advanced machine learning algorithms to provide even more accurate personalized recommendations based on user behavior and preferences.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3 class="feature-title">Organizer Dashboard</h3>
+                    <p class="feature-description">
+                        Dedicated portal for workshop organizers to manage their offerings, track bookings, and analyze performance metrics.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Conclusion Section -->
+        <section class="content-section" style="text-align: center; border: 2px solid rgba(138, 94, 255, 0.3);">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="justify-content: center;">
+                    <span class="section-icon">💜</span>
+                    Project Reflection
+                </h2>
+                <p class="section-description" style="font-size: 18px;">
+                    Mehar represents a comprehensive full-stack development journey from concept to deployment. Through Agile methodology, user-centered design, and iterative testing, we created a platform that not only solves real user problems but also contributes to Saudi Vision 2030's cultural and economic goals.
+                </p>
+                <p class="section-description" style="font-size: 18px; margin-bottom: 0;">
+                    This project strengthened my technical skills in web development, database design, and project management while deepening my understanding of how technology can create meaningful social impact by connecting communities and preserving cultural heritage.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Back to Portfolio -->
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="back-button" style="display: inline-flex;">
+                ← Back to Portfolio
+            </a>
+        </div>
+    </div>
+</body>
+</html>

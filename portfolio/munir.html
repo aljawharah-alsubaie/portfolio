@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munir APP - Aljawharah Alsubaie Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1d3a 0%, #0a0e27 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 60px 40px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(138, 94, 255, 0.1);
+            border: 1px solid rgba(138, 94, 255, 0.3);
+            border-radius: 24px;
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: rgba(138, 94, 255, 0.2);
+            transform: translateX(-4px);
+        }
+        
+        /* Project Header */
+        .project-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .project-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .project-title {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+        
+        .project-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 900px;
+            margin: 0 auto 24px;
+            line-height: 1.8;
+        }
+        
+        /* Tags */
+        .project-tags {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        
+        .tag {
+            padding: 8px 20px;
+            background: rgba(138, 94, 255, 0.15);
+            border: 1px solid rgba(138, 94, 255, 0.3);
+            border-radius: 20px;
+            font-size: 13px;
+            color: #a78bfa;
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .content-section {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a1d3a 100%);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-icon {
+            font-size: 32px;
+        }
+        
+        .section-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(138, 94, 255, 0.05);
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            background: rgba(138, 94, 255, 0.1);
+            transform: translateY(-4px);
+        }
+        
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+        
+        .feature-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        /* Architecture Section */
+        .architecture-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .architecture-diagram {
+            height: 500px;
+            background: linear-gradient(135deg, #2a234a 0%, #1a1d3a 100%);
+            border-radius: 24px;
+            border: 2px solid rgba(138, 94, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .architecture-diagram img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 30px;
+        }
+        
+        .architecture-details {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .detail-card {
+            background: rgba(138, 94, 255, 0.08);
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            border-radius: 20px;
+            padding: 28px;
+        }
+        
+        .detail-card h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #a78bfa;
+        }
+        
+        .detail-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .detail-card li {
+            padding: 8px 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .detail-card li::before {
+            content: '✓';
+            color: #8b5cf6;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+        
+        /* Screenshots Gallery */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .screenshot-item {
+            height: 450px;
+            background: linear-gradient(135deg, #2a234a 0%, #1a1d3a 100%);
+            border-radius: 24px;
+            border: 2px solid rgba(138, 94, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .screenshot-item:hover {
+            border-color: rgba(138, 94, 255, 0.5);
+            transform: scale(1.05);
+        }
+        
+        .screenshot-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .screenshot-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            border: 1px solid rgba(138, 94, 255, 0.3);
+        }
+        
+        /* Impact Section */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 30px;
+        }
+        
+        .impact-card {
+            background: linear-gradient(135deg, rgba(138, 94, 255, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+            border: 2px solid rgba(138, 94, 255, 0.3);
+            border-radius: 24px;
+            padding: 40px 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .impact-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(138, 94, 255, 0.6);
+            box-shadow: 0 16px 48px rgba(138, 94, 255, 0.3);
+        }
+        
+        .impact-number {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        
+        .impact-label {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        
+        .impact-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 8px;
+        }
+        
+        /* Accessibility Section */
+        .accessibility-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 30px;
+        }
+        
+        .accessibility-item {
+            display: flex;
+            align-items: start;
+            gap: 20px;
+        }
+        
+        .accessibility-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+        
+        .accessibility-text h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+        
+        .accessibility-text p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Future Vision */
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 30px;
+        }
+        
+        .future-card {
+            background: rgba(138, 94, 255, 0.05);
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .future-card:hover {
+            background: rgba(138, 94, 255, 0.1);
+            border-color: rgba(138, 94, 255, 0.4);
+            transform: translateY(-6px);
+        }
+        
+        .future-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .future-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #a78bfa;
+        }
+        
+        .future-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .architecture-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .screenshots-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 20px;
+            }
+            
+            .project-title {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .features-grid,
+            .accessibility-grid,
+            .impact-grid,
+            .future-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="index.html" class="back-button">
+            ← Back to Portfolio
+        </a>
+    
+        <!-- Project Header -->
+        <header class="project-header">
+            <div class="project-icon">📱</div>
+            <h1 class="project-title">Munir APP</h1>
+            <p class="project-subtitle">
+                Munir — Empowering Vision Through AI. An intelligent assistive system that supports blind and visually impaired individuals by transforming visual information into meaningful audio feedback. It uses artificial intelligence to help users understand their surroundings, recognize people, objects, and text, and receive spoken information instantly — promoting independence and accessibility in everyday life.
+            </p>
+            <div class="project-tags">
+                <span class="tag">Flutter</span>
+                <span class="tag">Firebase</span>
+                <span class="tag">TensorFlow Lite</span>
+                <span class="tag">Python</span>
+                <span class="tag">MobileNetV2</span>
+                <span class="tag">VGGFace2</span>
+                <span class="tag">IBM Watson</span>
+            </div>
+        </header>
+
+        <!-- Features Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">✨</span>
+                Key Features
+            </h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">📖</span>
+                    <h3 class="feature-title">Text Reading</h3>
+                    <p class="feature-description">
+                        Instantly reads printed or digital text aloud using advanced OCR technology with support for Arabic and English.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">👤</span>
+                    <h3 class="feature-title">Face Recognition</h3>
+                    <p class="feature-description">
+                        Identifies familiar people with audio cues using VGGFace2 model with 97.98% accuracy.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">💵</span>
+                    <h3 class="feature-title">Currency Detection</h3>
+                    <p class="feature-description">
+                        Recognizes Saudi banknotes for safe transactions with 96.84% accuracy using MobileNetV2+SVM.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎨</span>
+                    <h3 class="feature-title">Color Identification</h3>
+                    <p class="feature-description">
+                        Helps users choose and match colors with real-time detection and audio feedback.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🚨</span>
+                    <h3 class="feature-title">Emergency Alerts</h3>
+                    <p class="feature-description">
+                        Sends live GPS location to a trusted contact in emergency situations.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⏰</span>
+                    <h3 class="feature-title">Smart Reminders</h3>
+                    <p class="feature-description">
+                        Keeps users informed about important tasks with voice-activated reminders.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Architecture -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">💻</span>
+                Technical Stack
+            </h2>
+            <p class="section-description">
+                Munir leverages cutting-edge AI/ML technologies and mobile development frameworks to deliver a seamless assistive experience for visually impaired users.
+            </p>
+            
+            <div class="architecture-content">
+                <div class="architecture-diagram">
+                    🏗️
+                    <!-- ضعي diagram النظام هنا -->
+                    <!-- <img src="architecture.png" alt="System Architecture"> -->
+                </div>
+                <div class="architecture-details">
+                    <div class="detail-card">
+                        <h4>🧠 Machine Learning Models</h4>
+                        <ul>
+                            <li>Currency Recognition: MobileNetV2 + SVM (96.84%)</li>
+                            <li>Face Recognition: VGGFace2 + SVM (97.98%)</li>
+                            <li>Transfer Learning with Fine-tuning</li>
+                            <li>TensorFlow Lite for Mobile Deployment</li>
+                        </ul>
+                    </div>
+                    <div class="detail-card">
+                        <h4>📱 Frontend Technology</h4>
+                        <ul>
+                            <li>Flutter for Cross-Platform Development</li>
+                            <li>Screen Reader Integration (TalkBack/VoiceOver)</li>
+                            <li>Voice Commands & Haptic Feedback</li>
+                            <li>High Contrast Accessible UI</li>
+                        </ul>
+                    </div>
+                    <div class="detail-card">
+                        <h4>☁️ Backend Services</h4>
+                        <ul>
+                            <li>Firebase Authentication</li>
+                            <li>Cloud Functions for Email Verification</li>
+                            <li>Real-time Database</li>
+                            <li>IBM Watson Integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots Gallery -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">📸</span>
+                App Screenshots
+            </h2>
+            <p class="section-description">
+                Explore Munir's intuitive interface and powerful features through these app screenshots.
+            </p>
+            
+            <div class="screenshots-grid">
+                <div class="screenshot-item">
+                    📖
+                    <div class="screenshot-label">Text Reading</div>
+                    <!-- <img src="text-reading.jpg" alt="Text Reading"> -->
+                </div>
+                <div class="screenshot-item">
+                    👤
+                    <div class="screenshot-label">Face Recognition</div>
+                    <!-- <img src="face-recognition.jpg" alt="Face Recognition"> -->
+                </div>
+                <div class="screenshot-item">
+                    💵
+                    <div class="screenshot-label">Currency Detection</div>
+                    <!-- <img src="currency.jpg" alt="Currency Detection"> -->
+                </div>
+                <div class="screenshot-item">
+                    🎨
+                    <div class="screenshot-label">Color Identification</div>
+                    <!-- <img src="color.jpg" alt="Color Identification"> -->
+                </div>
+                <div class="screenshot-item">
+                    🚨
+                    <div class="screenshot-label">Emergency Alerts</div>
+                    <!-- <img src="emergency.jpg" alt="Emergency Alerts"> -->
+                </div>
+                <div class="screenshot-item">
+                    ⏰
+                    <div class="screenshot-label">Smart Reminders</div>
+                    <!-- <img src="reminders.jpg" alt="Smart Reminders"> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact & Results -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">📊</span>
+                Impact & Results
+            </h2>
+            
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-number">97.98%</div>
+                    <div class="impact-label">Face Recognition</div>
+                    <div class="impact-description">Accuracy Rate</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">96.84%</div>
+                    <div class="impact-label">Currency Detection</div>
+                    <div class="impact-description">Accuracy Rate</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">6</div>
+                    <div class="impact-label">Core Features</div>
+                    <div class="impact-description">Integrated Services</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accessibility Features -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">♿</span>
+                Accessibility First
+            </h2>
+            <p class="section-description">
+                Munir is designed from the ground up with accessibility as the core principle, ensuring every feature is optimized for visually impaired users.
+            </p>
+            
+            <div class="accessibility-grid">
+                <div class="accessibility-item">
+                    <div class="accessibility-icon">🔊</div>
+                    <div class="accessibility-text">
+                        <h4>Screen Reader Compatible</h4>
+                        <p>Full integration with TalkBack and VoiceOver for seamless navigation and interaction.</p>
+                    </div>
+                </div>
+                <div class="accessibility-item">
+                    <div class="accessibility-icon">🎙️</div>
+                    <div class="accessibility-text">
+                        <h4>Voice Commands</h4>
+                        <p>Hands-free operation through natural voice interactions in Arabic and English.</p>
+                    </div>
+                </div>
+                <div class="accessibility-item">
+                    <div class="accessibility-icon">📳</div>
+                    <div class="accessibility-text">
+                        <h4>Haptic Feedback</h4>
+                        <p>Tactile responses for important actions and confirmations enhance user experience.</p>
+                    </div>
+                </div>
+                <div class="accessibility-item">
+                    <div class="accessibility-icon">🎨</div>
+                    <div class="accessibility-text">
+                        <h4>High Contrast UI</h4>
+                        <p>Optimized visual design with high contrast ratios for users with low vision.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Vision -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-icon">🚀</span>
+                Future Enhancements
+            </h2>
+            <p class="section-description">
+                Our vision for Munir extends beyond current capabilities, with exciting features planned for future iterations.
+            </p>
+            
+            <div class="future-grid">
+                <div class="future-card">
+                    <div class="future-icon">🕶️</div>
+                    <h4>Smart Glasses Integration</h4>
+                    <p>Real-time processing through wearable smart glasses for seamless hands-free experience.</p>
+                </div>
+                <div class="future-card">
+                    <div class="future-icon">🌍</div>
+                    <h4>Multi-Language Support</h4>
+                    <p>Expanding OCR and voice capabilities to support multiple languages beyond Arabic and English.</p>
+                </div>
+                <div class="future-card">
+                    <div class="future-icon">🤖</div>
+                    <h4>Advanced AI Models</h4>
+                    <p>Implementing more sophisticated object detection and scene understanding capabilities.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Back to Portfolio -->
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="back-button" style="display: inline-flex;">
+                ← Back to Portfolio
+            </a>
+        </div>
+    </div>
+</body>
+</html>

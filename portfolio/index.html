@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aljawharah Alsubaie - IT Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1d3a 0%, #0a0e27 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 60px 40px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Header Section */
+        .header {
+            display: flex;
+            align-items: start;
+            gap: 40px;
+            margin-bottom: 60px;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .profile-pic {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            padding: 4px;
+            flex-shrink: 0;
+            animation: slideInLeft 0.8s ease;
+        }
+        
+        .profile-pic-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #2a234a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .profile-pic-inner::after {
+            content: '👩‍💻';
+            font-size: 70px;
+        }
+        
+        /* يمكنك استبدال الإيموجي بصورة حقيقية */
+        .profile-pic-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .intro {
+            flex: 1;
+            animation: slideInRight 0.8s ease;
+        }
+        
+        .greeting {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
+        }
+        
+        .name {
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        
+        .title {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+        
+        .description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+        }
+        
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease 0.2s backwards;
+        }
+        
+        .nav-tab {
+            padding: 12px 28px;
+            background: transparent;
+            border: 2px solid rgba(138, 94, 255, 0.3);
+            border-radius: 24px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .nav-tab:hover {
+            border-color: rgba(138, 94, 255, 0.6);
+            background: rgba(138, 94, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .nav-tab.active {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            border-color: transparent;
+            color: #ffffff;
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
+            animation: fadeIn 1s ease 0.4s backwards;
+        }
+        
+        .project-card {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a1d3a 100%);
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid rgba(138, 94, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(138, 94, 255, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(138, 94, 255, 0.5);
+            box-shadow: 0 20px 60px rgba(138, 94, 255, 0.3);
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        
+        .project-preview {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #4a3a7a 0%, #2a234a 100%);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid rgba(138, 94, 255, 0.15);
+        }
+        
+        .project-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Placeholder for images */
+        .project-preview.placeholder::after {
+            content: attr(data-placeholder);
+            font-size: 48px;
+        }
+        
+        .project-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+            position: relative;
+        }
+        
+        .project-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .project-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(138, 94, 255, 0.15);
+            border: 1px solid rgba(138, 94, 255, 0.3);
+            border-radius: 16px;
+            font-size: 11px;
+            color: #a78bfa;
+            font-weight: 600;
+            margin-top: 12px;
+            margin-right: 6px;
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(138, 94, 255, 0.2);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(138, 94, 255, 0.1);
+            border: 1px solid rgba(138, 94, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: rgba(138, 94, 255, 0.2);
+            transform: translateY(-4px);
+            border-color: rgba(138, 94, 255, 0.5);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .title {
+                font-size: 32px;
+            }
+            
+            .description {
+                margin: 0 auto;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="profile-pic">
+                <div class="profile-pic-inner">
+                    <!-- ضعي صورتك هنا -->
+                    <!-- <img src="your-photo.jpg" alt="Aljawharah Alsubaie"> -->
+                </div>
+            </div>
+            <div class="intro">
+                <p class="greeting">Hello! I Am <span class="name">Aljawharah Alsubaie</span></p>
+                <h1 class="title">I'm an IT Student.</h1>
+                <p class="description">
+                    Information Technology graduate specializing in Cybersecurity with a strong foundation in software development, database management, and system design. Experienced in AI/ML, computer vision, and full-stack development with proven expertise in building intelligent, accessibility-focused solutions. Passionate about creating secure, user-centered digital experiences through hands-on development in Flutter, Firebase, Python, and TensorFlow for machine learning applications. Dedicated to leveraging technology to solve real-world challenges and improve lives.
+                </p>
+            </div>
+        </header>
+        
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <a href="#" class="nav-tab active">Projects</a>
+            <a href="Aljawharah_Alsubaie_CV.pdf" download class="nav-tab">Resume</a>
+        </nav>
+        
+        <!-- Projects Grid -->
+        <section class="projects-grid">
+            <!-- Munir Project -->
+            <a href="munir.html" class="project-card">
+                <div class="project-preview placeholder" data-placeholder="📱">
+                    <!-- ضعي screenshot من Munir app هنا -->
+                    <!-- <img src="munir-preview.jpg" alt="Munir App"> -->
+                </div>
+                <h3 class="project-title">Munir APP</h3>
+                <p class="project-description">
+                    AI-powered assistive system empowering vision through intelligent technology for visually impaired users.
+                </p>
+                <span class="project-tag">AI/ML</span>
+                <span class="project-tag">Flutter</span>
+                <span class="project-tag">Accessibility</span>
+            </a>
+            
+            <!-- Mehar Project -->
+            <a href="mehar.html" class="project-card">
+                <div class="project-preview placeholder" data-placeholder="🎨">
+                    <!-- ضعي screenshot من Mehar هنا -->
+                    <!-- <img src="mehar-home.jpg" alt="Mehar Platform"> -->
+                </div>
+                <h3 class="project-title">Mehar Platform</h3>
+                <p class="project-description">
+                    Full-stack workshop booking platform with personalized recommendations, interactive community features, and seamless booking management for arts, cooking, and adventure experiences.
+                </p>
+                <span class="project-tag">Full-Stack</span>
+                <span class="project-tag">PHP/MySQL</span>
+                <span class="project-tag">E-Commerce</span>
+            </a>
+            
+            <!-- Project Placeholder 3 -->
+            <a href="#" class="project-card">
+                <div class="project-preview placeholder" data-placeholder="💡">
+                    <!-- Project 3 -->
+                </div>
+                <h3 class="project-title">Coming Soon</h3>
+                <p class="project-description">
+                    More exciting projects on the way...
+                </p>
+                <span class="project-tag">TBA</span>
+            </a>
+            
+            <!-- Project Placeholder 4 -->
+            <a href="#" class="project-card">
+                <div class="project-preview placeholder" data-placeholder="🚀">
+                    <!-- Project 4 -->
+                </div>
+                <h3 class="project-title">Coming Soon</h3>
+                <p class="project-description">
+                    More exciting projects on the way...
+                </p>
+                <span class="project-tag">TBA</span>
+            </a>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="social-links">
+                <a href="#" class="social-link" title="LinkedIn">💼</a>
+                <a href="#" class="social-link" title="GitHub">💻</a>
+                <a href="#" class="social-link" title="Email">📧</a>
+            </div>
+            <p>© 2026 Aljawharah Alsubaie. Built with passion and code.</p>
+        </footer>
+    </div>
+</body>
+</html>
