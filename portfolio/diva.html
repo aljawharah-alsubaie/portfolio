@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile App Security Assessment — Aljawharah Alsubaie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg:           #09090f;
+            --surface:      #111118;
+            --surface-2:    #17171f;
+            --border:       rgba(168, 85, 247, 0.18);
+            --border-hover: rgba(168, 85, 247, 0.45);
+            --purple:       #a855f7;
+            --rose:         #f43f5e;
+            --text:         #ffffff;
+            --text-mid:     rgba(255,255,255,0.72);
+            --text-dim:     rgba(255,255,255,0.42);
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center;
+            padding: 0 60px; height: 64px;
+            background: rgba(9,9,15,0.85); backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(168,85,247,0.08);
+        }
+        .back-link {
+            display: flex; align-items: center; gap: 8px;
+            color: var(--text-dim); text-decoration: none;
+            font-size: 14px; font-weight: 500; transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--rose); }
+
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 60px; }
+
+        /* HERO */
+        .hero { text-align: center; padding: 80px 0 56px; position: relative; overflow: hidden; animation: fadeUp 0.7s ease; }
+        .hero-glow {
+            position: absolute; pointer-events: none; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(244,63,94,0.08) 0%, transparent 70%);
+            top: -100px; left: 50%; transform: translateX(-50%);
+        }
+        .hero-badge {
+            display: inline-block; padding: 6px 18px;
+            background: rgba(244,63,94,0.08); border: 1px solid rgba(244,63,94,0.22);
+            border-radius: 20px; font-size: 12px; font-weight: 600; color: #fb7185;
+            margin-bottom: 24px; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .project-title { font-size: 48px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 18px; }
+        .title-hi {
+            background: linear-gradient(135deg, #f43f5e, #fb923c);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .project-subtitle { font-size: 17px; color: var(--text-mid); max-width: 600px; margin: 0 auto 28px; line-height: 1.75; }
+        .project-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .tag {
+            padding: 6px 16px; background: rgba(244,63,94,0.07);
+            border: 1px solid rgba(244,63,94,0.2); border-radius: 20px;
+            font-size: 12px; color: #fb7185; font-weight: 600;
+        }
+
+        /* SECTIONS */
+        .section { padding: 52px 0; border-top: 1px solid rgba(168,85,247,0.08); }
+        .section-label { font-size: 11px; font-weight: 700; color: var(--rose); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .section-title { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
+        .section-text { font-size: 15px; color: var(--text-mid); line-height: 1.8; }
+
+        /* ROLE + METHODOLOGY */
+        .info-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+        .info-box {
+            border-left: 3px solid rgba(244,63,94,0.5);
+            padding: 16px 20px;
+            background: rgba(244,63,94,0.04); border-radius: 0 12px 12px 0;
+        }
+        .info-title { font-size: 11px; font-weight: 700; color: #fb7185; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+        .info-text { font-size: 14px; color: var(--text-mid); line-height: 1.65; }
+
+        /* VULNERABILITY CARDS */
+        .vuln-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
+        .vuln-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden; transition: all 0.3s;
+        }
+        .vuln-card:hover { border-color: rgba(244,63,94,0.45); transform: translateY(-4px); box-shadow: 0 14px 36px rgba(244,63,94,0.1); }
+
+        .vuln-shot {
+            aspect-ratio: 16/9;
+            background: linear-gradient(145deg, #220a10 0%, #150507 100%);
+            overflow: hidden; border-bottom: 1px solid var(--border);
+            position: relative; display: flex; align-items: center; justify-content: center;
+        }
+        .vuln-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.4s ease; cursor: zoom-in; z-index: 1; }
+        .vuln-shot::after {
+            content: '';
+            position: absolute; bottom: 9px; right: 9px; z-index: 2;
+            width: 28px; height: 28px; border-radius: 7px;
+            background: rgba(0,0,0,0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M3 3h7v2H5v5H3V3zm11 0h7v7h-2V5h-5V3zM3 14h2v5h5v2H3v-7zm16 5h-5v2h7v-7h-2v5z'/%3E%3C/svg%3E") center/14px 14px no-repeat;
+            backdrop-filter: blur(4px);
+            opacity: 1; pointer-events: none;
+        }
+
+        .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); backdrop-filter: blur(10px); align-items: center; justify-content: center; cursor: zoom-out; }
+        .lightbox.open { display: flex; }
+        .lightbox-img { max-width: 90vw; max-height: 88vh; border-radius: 14px; box-shadow: 0 32px 80px rgba(0,0,0,0.7); animation: lb-in 0.22s ease; }
+        @keyframes lb-in { from { opacity:0; transform:scale(0.93); } to { opacity:1; transform:scale(1); } }
+        .vuln-card:hover .vuln-shot img { transform: scale(1.04); }
+        .vuln-shot-label { font-size: 11px; font-weight: 500; color: rgba(244,63,94,0.3); letter-spacing: 1px; text-transform: uppercase; }
+
+        .vuln-body { padding: 18px 20px 20px; }
+        .vuln-severity {
+            display: inline-block; padding: 3px 10px; margin-bottom: 10px;
+            border-radius: 20px; font-size: 11px; font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .sev-critical { background: rgba(244,63,94,0.12); border: 1px solid rgba(244,63,94,0.25); color: #fb7185; }
+        .sev-high     { background: rgba(251,146,60,0.12); border: 1px solid rgba(251,146,60,0.25); color: #fb923c; }
+
+        .vuln-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .vuln-desc  { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
+
+        /* TECH CHIPS */
+        .tech-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+        .tech-chip {
+            padding: 8px 18px; background: var(--surface); border: 1px solid var(--border);
+            border-radius: 24px; font-size: 13px; font-weight: 500; color: var(--text-mid); transition: all 0.2s;
+        }
+        .tech-chip:hover { border-color: rgba(244,63,94,0.4); color: var(--text); background: rgba(244,63,94,0.06); }
+
+        .page-footer { text-align: center; padding: 60px 0 48px; border-top: 1px solid rgba(168,85,247,0.08); }
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 26px; background: var(--surface); border: 1px solid var(--border);
+            border-radius: 24px; color: var(--text-mid); text-decoration: none;
+            font-size: 14px; font-weight: 600; transition: all 0.2s;
+        }
+        .back-btn:hover { border-color: rgba(244,63,94,0.4); color: var(--rose); }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+            .container { padding: 0 24px; }
+            .project-title { font-size: 34px; }
+            .info-row { grid-template-columns: 1fr; }
+            .vuln-grid { grid-template-columns: 1fr; }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        /* ── SCROLL REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+    </nav>
+
+    <div class="container">
+
+        <header class="hero">
+            <div class="hero-glow"></div>
+<h1 class="project-title">
+                Mobile App<br><span class="title-hi">Security Assessment</span>
+            </h1>
+            <p class="project-subtitle">
+                Hands-on security assessment of the Diva Android application — simulating real-world attacks to uncover critical vulnerabilities and deliver actionable remediation guidance.
+            </p>
+            <div class="project-tags">
+                <span class="tag">Penetration Testing</span>
+                <span class="tag">Reverse Engineering</span>
+                <span class="tag">Android Security</span>
+                <span class="tag">OWASP</span>
+            </div>
+        </header>
+
+        <!-- ABOUT -->
+        <section class="section">
+            <p class="section-label">About</p>
+            <h2 class="section-title">What was assessed?</h2>
+            <p class="section-text">
+                DIVA (Damn Insecure and Vulnerable App) is an intentionally vulnerable Android application used for security training. This project involved conducting a full black-box security assessment — from reverse engineering the APK to dynamic runtime analysis — following the OWASP Mobile Security Testing Guide. Each vulnerability was documented with a proof of concept, severity rating, and remediation recommendation.
+            </p>
+            <div class="info-row">
+                <div class="info-box">
+                    <p class="info-title">My Role</p>
+                    <p class="info-text">Security Analyst — conducted the full assessment independently: reverse engineering, dynamic analysis, vulnerability documentation, and writing the final security report.</p>
+                </div>
+                <div class="info-box">
+                    <p class="info-title">Methodology</p>
+                    <p class="info-text">OWASP Mobile Security Testing Guide — structured phases: planning, information gathering, technical analysis, risk assessment, and documentation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- VULNERABILITIES -->
+        <section class="section">
+            <p class="section-label">Findings</p>
+            <h2 class="section-title">Vulnerabilities Identified</h2>
+            <div class="vuln-grid">
+
+                <div class="vuln-card">
+                    <div class="vuln-shot">
+                        <img src="images\diva-insecure-storage.jpg" alt="Insecure Data Storage"> 
+                        <span class="vuln-shot-label">Screenshot</span>
+                    </div>
+                    <div class="vuln-body">
+                        <span class="vuln-severity sev-critical">Critical</span>
+                        <h3 class="vuln-title">Insecure Data Storage</h3>
+                        <p class="vuln-desc">User credentials stored in SharedPreferences without encryption — exposing sensitive data to unauthorized access via ADB shell commands.</p>
+                    </div>
+                </div>
+
+                <div class="vuln-card">
+                    <div class="vuln-shot">
+                        <img src="images\diva-insecure-logging.jpg" alt="Insecure Logging"> 
+                        <span class="vuln-shot-label">Screenshot</span>
+                    </div>
+                    <div class="vuln-body">
+                        <span class="vuln-severity sev-high">High</span>
+                        <h3 class="vuln-title">Insecure Logging</h3>
+                        <p class="vuln-desc">Sensitive information — including credit card data — exposed through application logs, discoverable via JADX and CMD log extraction.</p>
+                    </div>
+                </div>
+
+                <div class="vuln-card">
+                    <div class="vuln-shot">
+                        <img src="images\diva-hardcoding.jpg" alt="Hardcoding Issues">
+                        <span class="vuln-shot-label">Screenshot</span>
+                    </div>
+                    <div class="vuln-body">
+                        <span class="vuln-severity sev-critical">Critical</span>
+                        <h3 class="vuln-title">Hardcoding Issues</h3>
+                        <p class="vuln-desc">Sensitive credentials hardcoded in the source code — retrieved through reverse engineering with JADX, granting direct unauthorized access.</p>
+                    </div>
+                </div>
+
+                <div class="vuln-card">
+                    <div class="vuln-shot">
+                        <img src="images\diva-overview.jpg" alt="Full Assessment">
+                        <span class="vuln-shot-label">Screenshot</span>
+                    </div>
+                    <div class="vuln-body">
+                        <span class="vuln-severity sev-high">Assessment Report</span>
+                        <h3 class="vuln-title">Full Security Report</h3>
+                        <p class="vuln-desc">Comprehensive report covering all findings — each with proof of concept, OWASP category mapping, severity rating, and remediation steps.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TOOLS -->
+        <section class="section">
+            <p class="section-label">Tools &amp; Skills</p>
+            <h2 class="section-title">What I Used</h2>
+            <div class="tech-chips">
+                <span class="tech-chip">JADX</span>
+                <span class="tech-chip">MobSF</span>
+                <span class="tech-chip">ADB</span>
+                <span class="tech-chip">Ghidra</span>
+                <span class="tech-chip">BlueStacks</span>
+                <span class="tech-chip">OWASP MSTG</span>
+                <span class="tech-chip">Reverse Engineering</span>
+                <span class="tech-chip">Vulnerability Assessment</span>
+                <span class="tech-chip">Penetration Testing</span>
+                <span class="tech-chip">Security Documentation</span>
+            </div>
+        </section>
+
+        <div class="page-footer">
+            <a href="index.html" class="back-btn">← Back to Portfolio</a>
+        </div>
+
+    </div>
+
+    <div class="lightbox" id="lb"><img class="lightbox-img" id="lbImg" src="" alt=""></div>
+    <script>
+        const lb = document.getElementById('lb');
+        const lbImg = document.getElementById('lbImg');
+        document.querySelectorAll('.vuln-shot img').forEach(img => {
+            img.addEventListener('click', () => { lbImg.src = img.src; lb.classList.add('open'); });
+        });
+        lb.addEventListener('click', () => lb.classList.remove('open'));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+    </script>
+    <script>
+        (function() {
+            const obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.section-label, .section-title').forEach(function(el) {
+                el.classList.add('reveal'); obs.observe(el);
+            });
+
+            document.querySelectorAll('.feature-card, .del-card, .vuln-card, .analysis-card, .stat-box, .info-box, .role-box').forEach(function(el, i) {
+                el.classList.add('reveal');
+                el.style.transitionDelay = (i % 3) * 85 + 'ms';
+                obs.observe(el);
+            });
+
+            document.querySelectorAll('.tech-chip, .skill-chip').forEach(function(el, i) {
+                el.classList.add('reveal');
+                el.style.transitionDelay = i * 38 + 'ms';
+                obs.observe(el);
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -3,676 +3,471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Recognition Model - Aljawharah Alsubaie</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Saudi Banknote Recognition — Aljawharah Alsubaie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #1a1d3a 0%, #0a0e27 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            padding: 60px 40px;
-            line-height: 1.6;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg:           #09090f;
+            --surface:      #111118;
+            --surface-2:    #17171f;
+            --border:       rgba(16, 185, 129, 0.18);
+            --border-hover: rgba(16, 185, 129, 0.5);
+            --emerald:      #10b981;
+            --text:         #ffffff;
+            --text-mid:     rgba(255,255,255,0.72);
+            --text-dim:     rgba(255,255,255,0.42);
         }
-        
-        .container { max-width: 1200px; margin: 0 auto; }
-        
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: rgba(138, 94, 255, 0.1);
-            border: 1px solid rgba(138, 94, 255, 0.3);
-            border-radius: 24px;
-            color: #a78bfa;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 40px;
-            transition: all 0.3s ease;
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center;
+            padding: 0 60px; height: 64px;
+            background: rgba(9,9,15,0.85); backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(16,185,129,0.08);
         }
-        
-        .back-button:hover {
-            background: rgba(138, 94, 255, 0.2);
-            transform: translateX(-4px);
+        .back-link {
+            display: flex; align-items: center; gap: 8px;
+            color: var(--text-dim); text-decoration: none;
+            font-size: 14px; font-weight: 500; transition: color 0.2s;
         }
-        
-        .project-header {
-            text-align: center;
-            margin-bottom: 60px;
-            animation: fadeIn 0.8s ease;
+        .back-link:hover { color: var(--emerald); }
+
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 60px; }
+
+        .hero { text-align: center; padding: 80px 0 56px; position: relative; overflow: hidden; animation: fadeUp 0.7s ease; }
+        .hero-glow {
+            position: absolute; pointer-events: none; width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(16,185,129,0.07) 0%, transparent 70%);
+            top: -120px; left: 50%; transform: translateX(-50%);
         }
-        
-        .project-icon {
-            font-size: 80px;
-            margin-bottom: 20px;
-            display: inline-block;
+        .hero-badge {
+            display: inline-block; padding: 6px 18px;
+            background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2);
+            border-radius: 20px; font-size: 12px; font-weight: 600; color: #34d399;
+            margin-bottom: 24px; letter-spacing: 1px; text-transform: uppercase;
         }
-        
-        .project-title {
-            font-size: 48px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #10b981 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 16px;
+        .project-title { font-size: 54px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.08; margin-bottom: 18px; }
+        .title-hi {
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        
-        .project-subtitle {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 900px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-        
-        .project-tags {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 24px;
-        }
-        
+        .project-subtitle { font-size: 17px; color: var(--text-mid); max-width: 640px; margin: 0 auto 28px; line-height: 1.75; }
+        .project-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
         .tag {
-            padding: 8px 20px;
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 20px;
-            font-size: 13px;
-            color: #10b981;
-            font-weight: 600;
+            padding: 6px 16px; background: rgba(16,185,129,0.08);
+            border: 1px solid rgba(16,185,129,0.2); border-radius: 20px;
+            font-size: 12px; color: #34d399; font-weight: 600;
         }
-        
-        .content-section {
-            background: linear-gradient(135deg, #2d1b4e 0%, #1a1d3a 100%);
-            border-radius: 24px;
-            padding: 40px;
-            margin-bottom: 40px;
-            border: 1px solid rgba(138, 94, 255, 0.2);
+
+        .section { padding: 52px 0; border-top: 1px solid rgba(16,185,129,0.08); }
+        .section-label { font-size: 11px; font-weight: 700; color: var(--emerald); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .section-title { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
+        .section-text { font-size: 15px; color: var(--text-mid); line-height: 1.8; }
+
+        /* PAPER CARD */
+        .paper-card {
+            margin-top: 24px;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 20px; padding: 28px 32px;
+            display: flex; flex-direction: column; gap: 14px;
+            transition: border-color 0.3s;
         }
-        
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .paper-card:hover { border-color: var(--border-hover); }
+        .paper-journal {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 12px; font-weight: 700; color: #34d399;
+            text-transform: uppercase; letter-spacing: 1.5px;
         }
-        
-        .section-icon { font-size: 32px; }
-        
-        .section-description {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            margin-bottom: 20px;
+        .paper-journal::before {
+            content: ''; display: inline-block; width: 6px; height: 6px;
+            border-radius: 50%; background: #10b981;
         }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
-            margin-top: 30px;
+        .paper-title {
+            font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.5;
         }
-        
+        .paper-meta {
+            font-size: 13px; color: var(--text-dim);
+        }
+        .paper-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 22px; align-self: flex-start;
+            background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3);
+            border-radius: 24px; color: #34d399; text-decoration: none;
+            font-size: 13px; font-weight: 700; transition: all 0.2s;
+        }
+        .paper-link:hover { background: rgba(16,185,129,0.18); border-color: rgba(16,185,129,0.6); }
+
+        /* PIPELINE */
+        .pipeline { display: flex; align-items: stretch; gap: 0; margin-top: 32px; }
+        .pipe-step {
+            flex: 1; background: var(--surface); border: 1px solid var(--border);
+            border-radius: 0; padding: 28px 20px; text-align: center;
+            transition: all 0.3s; position: relative;
+        }
+        .pipe-step:first-child { border-radius: 16px 0 0 16px; }
+        .pipe-step:last-child  { border-radius: 0 16px 16px 0; }
+        .pipe-step:not(:last-child) { border-right: none; }
+        .pipe-step:hover { background: var(--surface-2); border-color: var(--border-hover); z-index: 1; }
+        .pipe-num {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 800; margin: 0 auto 12px; color: #fff;
+        }
+        .pipe-model {
+            font-size: 11px; font-weight: 700; color: #34d399; text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 6px;
+        }
+        .pipe-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .pipe-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+
+        /* STATS */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
         .stat-card {
-            text-align: center;
-            padding: 32px 24px;
-            background: rgba(16, 185, 129, 0.05);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            border-radius: 16px;
-            transition: all 0.3s ease;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 16px; padding: 28px 16px; text-align: center; transition: all 0.3s;
         }
-        
-        .stat-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(16, 185, 129, 0.4);
+        .stat-card:hover { border-color: var(--border-hover); transform: translateY(-4px); background: var(--surface-2); }
+        .stat-num {
+            font-size: 36px; font-weight: 900; letter-spacing: -1px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 6px;
         }
-        
-        .stat-number {
-            font-size: 48px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
+        .stat-lbl { font-size: 12px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* FEATURE CARDS */
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px; }
+        .feature-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 16px; padding: 22px; transition: all 0.3s;
         }
-        
-        .stat-label {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 600;
+        .feature-card:hover { border-color: var(--border-hover); transform: translateY(-4px); background: var(--surface-2); box-shadow: 0 12px 30px rgba(16,185,129,0.1); }
+        .fc-label {
+            display: inline-block; padding: 3px 10px; margin-bottom: 10px;
+            background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.15);
+            border-radius: 20px; font-size: 11px; font-weight: 600; color: #34d399;
         }
-        
-        .methodology-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 30px;
+        .fc-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 7px; }
+        .fc-desc { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+
+        /* IMAGE FRAMES */
+        .img-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 28px auto 0; max-width: 700px; }
+        .img-frame {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden; transition: border-color 0.3s;
         }
-        
-        .method-card {
-            background: rgba(138, 94, 255, 0.05);
-            border: 1px solid rgba(138, 94, 255, 0.2);
-            border-radius: 16px;
-            padding: 28px;
+        .img-frame:hover { border-color: var(--border-hover); }
+        .img-frame-inner {
+            height: 260px; overflow: hidden; position: relative; cursor: zoom-in;
         }
-        
-        .method-card h4 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #10b981;
-            margin-bottom: 12px;
+        .img-frame-inner img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.3s; }
+        .img-frame-inner:hover img { transform: scale(1.03); }
+        .img-frame-inner::after {
+            content: '';
+            position: absolute; bottom: 7px; right: 7px; z-index: 2;
+            width: 26px; height: 26px; border-radius: 7px;
+            background: rgba(0,0,0,0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M3 3h7v2H5v5H3V3zm11 0h7v7h-2V5h-5V3zM3 14h2v5h5v2H3v-7zm16 5h-5v2h7v-7h-2v5z'/%3E%3C/svg%3E") center/12px 12px no-repeat;
+            backdrop-filter: blur(4px); pointer-events: none;
         }
-        
-        .method-card p {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
+        .img-caption {
+            padding: 12px 16px; font-size: 12px; font-weight: 600;
+            color: var(--text-dim); border-top: 1px solid var(--border);
         }
-        
-        .method-card ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 12px;
-        }
-        
-        .method-card li {
-            padding: 6px 0;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-        }
-        
-        .method-card li::before {
-            content: '→';
-            color: #10b981;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-        
-        .results-table {
-            width: 100%;
-            margin-top: 24px;
-            border-collapse: separate;
-            border-spacing: 0;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-        
-        .results-table th,
-        .results-table td {
-            padding: 16px;
-            text-align: left;
-            border-bottom: 1px solid rgba(138, 94, 255, 0.2);
-        }
-        
-        .results-table th {
-            background: rgba(16, 185, 129, 0.15);
-            color: #10b981;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .results-table td {
-            background: rgba(138, 94, 255, 0.05);
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 15px;
-        }
-        
-        .results-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .highlight-box {
-            background: rgba(16, 185, 129, 0.08);
-            border-left: 4px solid #10b981;
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none; position: fixed; inset: 0; z-index: 999;
+            background: rgba(0,0,0,0.88); align-items: center; justify-content: center;
             padding: 24px;
-            border-radius: 12px;
-            margin: 24px 0;
         }
-        
-        .highlight-box h4 {
-            color: #10b981;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 12px;
+        .lightbox.open { display: flex; }
+        .lightbox img {
+            max-width: 90vw; max-height: 88vh;
+            border-radius: 12px; box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+            object-fit: contain;
         }
-        
-        .highlight-box p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.7;
-            font-size: 15px;
+        .lightbox-close {
+            position: absolute; top: 20px; right: 24px;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            color: #fff; font-size: 20px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
         }
-        
-        .denomination-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 16px;
-            margin-top: 24px;
+        .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+        /* DENOMINATIONS */
+        .denom-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; margin-top: 24px; }
+        .denom-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 14px; padding: 18px 10px; text-align: center; transition: all 0.3s;
         }
-        
-        .denomination-card {
-            background: rgba(16, 185, 129, 0.08);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            border-radius: 12px;
-            padding: 20px 16px;
-            text-align: center;
-            transition: all 0.3s ease;
+        .denom-card:hover { border-color: var(--border-hover); transform: translateY(-4px); background: var(--surface-2); }
+        .denom-val { font-size: 22px; font-weight: 900; color: #10b981; margin-bottom: 4px; }
+        .denom-lbl { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* TECH CHIPS */
+        .tech-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+        .tech-chip {
+            padding: 8px 18px; background: var(--surface); border: 1px solid var(--border);
+            border-radius: 24px; font-size: 13px; font-weight: 500; color: var(--text-mid); transition: all 0.2s;
         }
-        
-        .denomination-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(16, 185, 129, 0.4);
+        .tech-chip:hover { border-color: var(--border-hover); color: var(--text); background: rgba(16,185,129,0.08); }
+
+        .page-footer { text-align: center; padding: 60px 0 48px; border-top: 1px solid rgba(16,185,129,0.08); }
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 26px; background: var(--surface); border: 1px solid var(--border);
+            border-radius: 24px; color: var(--text-mid); text-decoration: none;
+            font-size: 14px; font-weight: 600; transition: all 0.2s;
         }
-        
-        .denomination-card .denom-value {
-            font-size: 32px;
-            font-weight: 800;
-            color: #10b981;
-            margin-bottom: 4px;
+        .back-btn:hover { border-color: var(--border-hover); color: var(--emerald); }
+
+        @media (max-width: 1024px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .denom-grid { grid-template-columns: repeat(4, 1fr); }
         }
-        
-        .denomination-card .denom-label {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
         @media (max-width: 768px) {
-            body { padding: 40px 20px; }
-            .project-title { font-size: 36px; }
-            .section-title { font-size: 24px; }
-            .methodology-grid { grid-template-columns: 1fr; }
+            nav { padding: 0 24px; }
+            .container { padding: 0 24px; }
+            .project-title { font-size: 38px; }
+            .pipeline { flex-direction: column; }
+            .pipe-step { border-radius: 0 !important; border-right: 1px solid var(--border) !important; border-bottom: none; }
+            .pipe-step:last-child { border-radius: 0 0 16px 16px !important; border-bottom: 1px solid var(--border) !important; }
+            .pipe-step:first-child { border-radius: 16px 16px 0 0 !important; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .features-grid { grid-template-columns: 1fr; }
+            .img-row { grid-template-columns: 1fr; }
+            .denom-grid { grid-template-columns: repeat(4, 1fr); }
         }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
+
+    <nav>
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+    </nav>
+
     <div class="container">
-        <a href="munir.html" class="back-button">← Back to Munir Project</a>
-        
-        <header class="project-header">
-            <div class="project-icon">💵</div>
-            <h1 class="project-title">Currency Recognition Model</h1>
+
+        <header class="hero">
+            <div class="hero-glow"></div>
+            <h1 class="project-title">Saudi Riyal<br><span class="title-hi">Banknote Recognition</span></h1>
             <p class="project-subtitle">
-                Lightweight and accurate Saudi Riyal banknote recognition system using transfer learning with MobileNetV2 and SVM-RBF classification, achieving 96.84% test accuracy on augmented dataset of seven denominations.
+                A hybrid deep learning framework that identifies all 7 Saudi Riyal denominations in real time — published in MDPI Applied Sciences and designed for visually impaired users.
             </p>
             <div class="project-tags">
+                <span class="tag">YOLOv8</span>
                 <span class="tag">MobileNetV2</span>
-                <span class="tag">Transfer Learning</span>
                 <span class="tag">SVM-RBF</span>
-                <span class="tag">AlFloos Dataset</span>
-                <span class="tag">Data Augmentation</span>
-                <span class="tag">TensorFlow</span>
+                <span class="tag">Transfer Learning</span>
+                <span class="tag">Python</span>
+                <span class="tag">Computer Vision</span>
             </div>
         </header>
 
-        <section class="content-section">
-            <h2 class="section-title">
-                <span class="section-icon">📊</span>
-                Model Performance
-            </h2>
+        <!-- PUBLISHED PAPER -->
+        <section class="section">
+            <p class="section-label reveal">Research</p>
+            <h2 class="section-title reveal">Published Paper</h2>
+            <p class="section-text reveal">This project resulted in a peer-reviewed publication in Applied Sciences (MDPI), an international open-access journal. The paper presents the full hybrid framework, dataset, experiments, and results.</p>
+            <div class="paper-card reveal">
+                <span class="paper-journal">Applied Sciences · MDPI · June 2026</span>
+                <p class="paper-title">A Hybrid Framework for Real-Time Saudi Riyal Banknote Recognition in Assistive Applications</p>
+                <p class="paper-meta">Nora Alhammad, Aljawharah Alsubaie, Rama Alomair, Fajer Alamro, Mashael Alammar · King Saud University</p>
+                <a href="https://www.mdpi.com/2076-3417/16/12/6166" target="_blank" class="paper-link">
+                    Read Full Paper →
+                </a>
+            </div>
+        </section>
+
+        <!-- PIPELINE -->
+        <section class="section">
+            <p class="section-label reveal">Architecture</p>
+            <h2 class="section-title reveal">How It Works</h2>
+            <p class="section-text reveal">The framework chains three models together: object detection first isolates the banknote, then a feature extractor captures visual details, and finally a classifier identifies the denomination.</p>
+            <div class="pipeline reveal">
+                <div class="pipe-step">
+                    <div class="pipe-num">1</div>
+                    <div class="pipe-model">YOLOv8</div>
+                    <div class="pipe-name">Detect &amp; Crop</div>
+                    <div class="pipe-desc">Localizes the banknote in the camera frame and crops it to a tight region of interest</div>
+                </div>
+                <div class="pipe-step">
+                    <div class="pipe-num">2</div>
+                    <div class="pipe-model">MobileNetV2</div>
+                    <div class="pipe-name">Extract Features</div>
+                    <div class="pipe-desc">Frozen ImageNet backbone extracts a 1280-D feature vector from the cropped banknote</div>
+                </div>
+                <div class="pipe-step">
+                    <div class="pipe-num">3</div>
+                    <div class="pipe-model">SVM-RBF</div>
+                    <div class="pipe-name">Classify</div>
+                    <div class="pipe-desc">Support Vector Machine with RBF kernel maps the feature vector to one of 7 denominations</div>
+                </div>
+                <div class="pipe-step">
+                    <div class="pipe-num">4</div>
+                    <div class="pipe-model">Output</div>
+                    <div class="pipe-name">Announce Value</div>
+                    <div class="pipe-desc">Result is spoken aloud via the assistive app — all in under 33ms end-to-end</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESULTS -->
+        <section class="section">
+            <p class="section-label reveal">Performance</p>
+            <h2 class="section-title reveal">Key Results</h2>
+            <p class="section-text reveal">The hybrid MobileNetV2 + SVM-RBF combination outperformed standalone deep learning classifiers while running fast enough for real-time mobile use.</p>
             <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">96.84%</div>
-                    <div class="stat-label">Test Accuracy</div>
+                <div class="stat-card reveal">
+                    <div class="stat-num">98.16%</div>
+                    <div class="stat-lbl">Test Accuracy</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">96.98%</div>
-                    <div class="stat-label">Precision</div>
+                <div class="stat-card reveal">
+                    <div class="stat-num">99.39%</div>
+                    <div class="stat-lbl">Cross-Val Accuracy</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">96.87%</div>
-                    <div class="stat-label">F1-Score</div>
+                <div class="stat-card reveal">
+                    <div class="stat-num">0.9993</div>
+                    <div class="stat-lbl">Macro-Avg AUC</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">2,447</div>
-                    <div class="stat-label">Training Images</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">7</div>
-                    <div class="stat-label">Denominations</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">1280D</div>
-                    <div class="stat-label">Feature Vector</div>
+                <div class="stat-card reveal">
+                    <div class="stat-num">32.57ms</div>
+                    <div class="stat-lbl">End-to-End Latency</div>
                 </div>
             </div>
         </section>
 
-        <section class="content-section">
-            <h2 class="section-title">
-                <span class="section-icon">🎯</span>
-                Project Overview
-            </h2>
-            <p class="section-description">
-                Currency recognition remains a fundamental challenge for visually impaired individuals in achieving financial independence. This hybrid machine learning approach combines transfer learning with classical classification methods for Saudi Riyal banknote recognition.
-            </p>
-            <p class="section-description">
-                The system utilizes MobileNetV2 as a feature extractor to generate 1280-dimensional feature vectors from currency images, followed by classification using Support Vector Machine (SVM) with Radial Basis Function (RBF) kernel. The dataset comprises 1,256 Saudi banknote images across seven denominations, augmented to 2,447 training samples through systematic geometric and photometric transformations.
-            </p>
-            
-            <div class="highlight-box">
-                <h4>Lightweight & Mobile-Ready</h4>
-                <p>The lightweight architecture (~15 MB) enables real-time mobile deployment with expected inference time under 35ms after TensorFlow Lite conversion and INT8 quantization, making it ideal for assistive technology applications.</p>
-            </div>
-            
-            <h3 style="color: #10b981; font-size: 22px; margin: 32px 0 16px;">Saudi Riyal Denominations</h3>
-            <div class="denomination-grid">
-                <div class="denomination-card">
-                    <div class="denom-value">5</div>
-                    <div class="denom-label">Riyals</div>
+        <!-- IMAGES -->
+        <section class="section">
+            <p class="section-label reveal">Visuals</p>
+            <h2 class="section-title reveal">Pipeline &amp; Results</h2>
+            <div class="img-row">
+                <div class="img-frame reveal">
+                    <div class="img-frame-inner"><img src="images/currency-pipeline.jpg" alt="Detection and classification pipeline diagram"></div>
+                    <div class="img-caption">Detection → Feature Extraction → Classification pipeline</div>
                 </div>
-                <div class="denomination-card">
-                    <div class="denom-value">10</div>
-                    <div class="denom-label">Riyals</div>
-                </div>
-                <div class="denomination-card">
-                    <div class="denom-value">20</div>
-                    <div class="denom-label">Riyals</div>
-                </div>
-                <div class="denomination-card">
-                    <div class="denom-value">50</div>
-                    <div class="denom-label">Riyals</div>
-                </div>
-                <div class="denomination-card">
-                    <div class="denom-value">100</div>
-                    <div class="denom-label">Riyals</div>
-                </div>
-                <div class="denomination-card">
-                    <div class="denom-value">200</div>
-                    <div class="denom-label">Riyals</div>
-                </div>
-                <div class="denomination-card">
-                    <div class="denom-value">500</div>
-                    <div class="denom-label">Riyals</div>
+                <div class="img-frame reveal">
+                    <div class="img-frame-inner"><img src="images/currency-confusion.jpg" alt="Confusion matrix showing per-class accuracy"></div>
+                    <div class="img-caption">Confusion matrix — 98.16% test accuracy across all 7 classes</div>
                 </div>
             </div>
         </section>
 
-        <section class="content-section">
-            <h2 class="section-title">
-                <span class="section-icon">🔬</span>
-                Methodology
-            </h2>
-            
-            <div class="methodology-grid">
-                <div class="method-card">
-                    <h4>Dataset Preparation</h4>
-                    <p>AlFloos dataset with comprehensive preprocessing:</p>
-                    <ul>
-                        <li>1,256 unique Saudi banknote images</li>
-                        <li>Perceptual hashing for duplicate detection</li>
-                        <li>HEIC/HEIF format conversion</li>
-                        <li>RGB color space standardization</li>
-                        <li>70-30 train-test stratified split</li>
-                        <li>Perfect class balance maintained</li>
-                    </ul>
+        <!-- DATASET -->
+        <section class="section">
+            <p class="section-label reveal">Dataset</p>
+            <h2 class="section-title reveal">Saudi Riyal Denominations</h2>
+            <p class="section-text reveal">1,256 images across all 7 denominations — including the newly issued 20 SR note, making this the first study to cover the complete current Saudi Riyal series.</p>
+            <div class="denom-grid">
+                <div class="denom-card reveal"><div class="denom-val">5</div><div class="denom-lbl">SR</div></div>
+                <div class="denom-card reveal"><div class="denom-val">10</div><div class="denom-lbl">SR</div></div>
+                <div class="denom-card reveal"><div class="denom-val">20</div><div class="denom-lbl">SR ✦</div></div>
+                <div class="denom-card reveal"><div class="denom-val">50</div><div class="denom-lbl">SR</div></div>
+                <div class="denom-card reveal"><div class="denom-val">100</div><div class="denom-lbl">SR</div></div>
+                <div class="denom-card reveal"><div class="denom-val">200</div><div class="denom-lbl">SR</div></div>
+                <div class="denom-card reveal"><div class="denom-val">500</div><div class="denom-lbl">SR</div></div>
+            </div>
+        </section>
+
+        <!-- WHY HYBRID -->
+        <section class="section">
+            <p class="section-label reveal">Approach</p>
+            <h2 class="section-title reveal">Why a Hybrid Model?</h2>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="fc-label">Feature Extraction</div>
+                    <h3 class="fc-title">MobileNetV2 Frozen</h3>
+                    <p class="fc-desc">Pre-trained on ImageNet and kept frozen — no fine-tuning needed. Extracts rich 1280-D visual features with minimal compute.</p>
                 </div>
-                
-                <div class="method-card">
-                    <h4>Data Augmentation</h4>
-                    <p>Systematic 2.8× augmentation to 350 samples per class:</p>
-                    <ul>
-                        <li>Random rotation (±12° to ±25°)</li>
-                        <li>Horizontal/vertical flip (p=0.5)</li>
-                        <li>Color jitter (brightness/contrast)</li>
-                        <li>Random affine transformations</li>
-                        <li>Perspective transform</li>
-                        <li>Gaussian noise injection</li>
-                    </ul>
+                <div class="feature-card reveal">
+                    <div class="fc-label">Classifier</div>
+                    <h3 class="fc-title">SVM over Softmax</h3>
+                    <p class="fc-desc">SVM-RBF handles small datasets better than a fully trained CNN classifier, reducing overfitting on our 1,256-image set.</p>
                 </div>
-                
-                <div class="method-card">
-                    <h4>Transfer Learning</h4>
-                    <p>MobileNetV2 pre-trained on ImageNet:</p>
-                    <ul>
-                        <li>224×224 input resolution</li>
-                        <li>ImageNet normalization</li>
-                        <li>1280-dimensional features</li>
-                        <li>Frozen backbone (feature extractor)</li>
-                        <li>Efficient for mobile deployment</li>
-                        <li>~15 MB model size</li>
-                    </ul>
-                </div>
-                
-                <div class="method-card">
-                    <h4>Classification</h4>
-                    <p>SVM with RBF kernel configuration:</p>
-                    <ul>
-                        <li>C=10.0 regularization parameter</li>
-                        <li>gamma='scale' (auto-computed)</li>
-                        <li>5-fold stratified cross-validation</li>
-                        <li>99.67% CV accuracy</li>
-                        <li>Minimal overfitting (3.16% gap)</li>
-                    </ul>
+                <div class="feature-card reveal">
+                    <div class="fc-label">Localization</div>
+                    <h3 class="fc-title">YOLOv8 RoI Crop</h3>
+                    <p class="fc-desc">Detecting and cropping the note before classification removes background noise and makes the model robust to real-world conditions.</p>
                 </div>
             </div>
         </section>
 
-        <section class="content-section">
-            <h2 class="section-title">
-                <span class="section-icon">📈</span>
-                Experimental Results
-            </h2>
-            
-            <h3 style="color: #10b981; font-size: 20px; margin-bottom: 16px;">Cross-Validation Performance</h3>
-            <table class="results-table">
-                <thead>
-                    <tr>
-                        <th>Model</th>
-                        <th>CV Mean</th>
-                        <th>CV Std</th>
-                        <th>Train Accuracy</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>SVM (RBF)</strong></td>
-                        <td>99.67%</td>
-                        <td>±0.21%</td>
-                        <td>100.00%</td>
-                    </tr>
-                    <tr>
-                        <td>SVM (Linear)</td>
-                        <td>99.43%</td>
-                        <td>±0.27%</td>
-                        <td>100.00%</td>
-                    </tr>
-                    <tr>
-                        <td>Logistic Regression</td>
-                        <td>99.39%</td>
-                        <td>±0.18%</td>
-                        <td>100.00%</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h3 style="color: #10b981; font-size: 20px; margin: 32px 0 16px;">Test Set Performance</h3>
-            <table class="results-table">
-                <thead>
-                    <tr>
-                        <th>Model</th>
-                        <th>Accuracy</th>
-                        <th>Precision</th>
-                        <th>Recall</th>
-                        <th>F1-Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>SVM (RBF)</strong></td>
-                        <td>96.84%</td>
-                        <td>96.98%</td>
-                        <td>96.84%</td>
-                        <td>96.87%</td>
-                    </tr>
-                    <tr>
-                        <td>Logistic Regression</td>
-                        <td>96.05%</td>
-                        <td>96.23%</td>
-                        <td>96.05%</td>
-                        <td>96.07%</td>
-                    </tr>
-                    <tr>
-                        <td>SVM (Linear)</td>
-                        <td>95.26%</td>
-                        <td>95.29%</td>
-                        <td>95.26%</td>
-                        <td>95.25%</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h3 style="color: #10b981; font-size: 20px; margin: 32px 0 16px;">Per-Class Performance (SVM-RBF)</h3>
-            <table class="results-table">
-                <thead>
-                    <tr>
-                        <th>Denomination</th>
-                        <th>Precision</th>
-                        <th>Recall</th>
-                        <th>F1-Score</th>
-                        <th>Support</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>10 SR</td>
-                        <td>98.2%</td>
-                        <td>98.2%</td>
-                        <td>98.2%</td>
-                        <td>56</td>
-                    </tr>
-                    <tr>
-                        <td>50 SR</td>
-                        <td>100.0%</td>
-                        <td>96.4%</td>
-                        <td>98.2%</td>
-                        <td>55</td>
-                    </tr>
-                    <tr>
-                        <td>5 SR</td>
-                        <td>100.0%</td>
-                        <td>96.4%</td>
-                        <td>98.2%</td>
-                        <td>55</td>
-                    </tr>
-                    <tr>
-                        <td>20 SR</td>
-                        <td>97.9%</td>
-                        <td>97.9%</td>
-                        <td>97.9%</td>
-                        <td>48</td>
-                    </tr>
-                    <tr>
-                        <td>500 SR</td>
-                        <td>98.1%</td>
-                        <td>94.5%</td>
-                        <td>96.3%</td>
-                        <td>55</td>
-                    </tr>
-                    <tr>
-                        <td>200 SR</td>
-                        <td>94.6%</td>
-                        <td>96.4%</td>
-                        <td>95.5%</td>
-                        <td>55</td>
-                    </tr>
-                    <tr>
-                        <td>100 SR</td>
-                        <td>90.2%</td>
-                        <td>98.2%</td>
-                        <td>94.0%</td>
-                        <td>56</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="highlight-box">
-                <h4>Generalization Analysis</h4>
-                <p>Train-Test gap of only 3.16% demonstrates excellent generalization with minimal overfitting. The CV-Test gap of 2.83% indicates stable performance when evaluating on original (unaugmented) test images after training on augmented data.</p>
+        <!-- TECH STACK -->
+        <section class="section">
+            <p class="section-label reveal">Built With</p>
+            <h2 class="section-title reveal">Tech Stack</h2>
+            <div class="tech-chips">
+                <span class="tech-chip">Python</span>
+                <span class="tech-chip">YOLOv8</span>
+                <span class="tech-chip">MobileNetV2</span>
+                <span class="tech-chip">TensorFlow / Keras</span>
+                <span class="tech-chip">scikit-learn</span>
+                <span class="tech-chip">SVM-RBF</span>
+                <span class="tech-chip">Transfer Learning</span>
+                <span class="tech-chip">Data Augmentation</span>
+                <span class="tech-chip">Google Colab</span>
             </div>
         </section>
 
-        <section class="content-section">
-            <h2 class="section-title">
-                <span class="section-icon">🔍</span>
-                Technical Implementation
-            </h2>
-            
-            <div class="methodology-grid">
-                <div class="method-card">
-                    <h4>MobileNetV2 Architecture</h4>
-                    <p>Efficient neural network design for mobile deployment:</p>
-                    <ul>
-                        <li>Inverted residual structures</li>
-                        <li>Linear bottleneck layers</li>
-                        <li>300M multiply-add operations</li>
-                        <li>3.4M parameters</li>
-                        <li>72.0% ImageNet top-1 accuracy</li>
-                        <li>Ideal for edge devices</li>
-                    </ul>
-                </div>
-                
-                <div class="method-card">
-                    <h4>AlFloos Dataset</h4>
-                    <p>Comprehensive Saudi currency image collection:</p>
-                    <ul>
-                        <li>Real-world capture conditions</li>
-                        <li>Varied lighting (indoor/outdoor)</li>
-                        <li>Multiple orientations</li>
-                        <li>Different backgrounds</li>
-                        <li>Manual 20 SR collection</li>
-                        <li>Polymer vs cotton analysis</li>
-                    </ul>
-                </div>
-                
-                <div class="method-card">
-                    <h4>Preprocessing Pipeline</h4>
-                    <p>Four-stage systematic cleaning and validation:</p>
-                    <ul>
-                        <li>Duplicate detection (pHash 92% threshold)</li>
-                        <li>Corrupt file removal</li>
-                        <li>Format conversion (HEIC→JPEG)</li>
-                        <li>Color space standardization (RGB)</li>
-                        <li>Filename conflict resolution</li>
-                        <li>Zero processing errors</li>
-                    </ul>
-                </div>
-                
-                <div class="method-card">
-                    <h4>Deployment Optimization</h4>
-                    <p>Mobile-ready implementation strategies:</p>
-                    <ul>
-                        <li>TensorFlow Lite conversion (14→5 MB)</li>
-                        <li>INT8 quantization (5→2 MB)</li>
-                        <li>3-5× inference speedup</li>
-                        <li>Target: <35ms total inference</li>
-                        <li>85-90% confidence thresholds</li>
-                        <li>Arabic audio feedback</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="munir.html" class="back-button" style="display: inline-flex;">← Back to Munir Project</a>
+        <div class="page-footer">
+            <a href="index.html" class="back-btn">← Back to Portfolio</a>
         </div>
+
     </div>
+
+    <div class="lightbox" id="lb">
+        <button class="lightbox-close" id="lbClose">✕</button>
+        <img id="lbImg" src="" alt="">
+    </div>
+
+    <script>
+        (function() {
+            const obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(function(el) {
+                obs.observe(el);
+            });
+
+            document.querySelectorAll('.stat-card, .denom-card, .feature-card').forEach(function(el, i) {
+                el.style.transitionDelay = (i % 4) * 70 + 'ms';
+            });
+
+            document.querySelectorAll('.tech-chip').forEach(function(el, i) {
+                el.classList.add('reveal');
+                el.style.transitionDelay = i * 38 + 'ms';
+                obs.observe(el);
+            });
+
+            var lb = document.getElementById('lb');
+            var lbImg = document.getElementById('lbImg');
+            document.querySelectorAll('.img-frame-inner img').forEach(function(img) {
+                img.addEventListener('click', function() { lbImg.src = img.src; lb.classList.add('open'); });
+            });
+            document.getElementById('lbClose').addEventListener('click', function() { lb.classList.remove('open'); });
+            lb.addEventListener('click', function(e) { if (e.target === lb) lb.classList.remove('open'); });
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') lb.classList.remove('open'); });
+        })();
+    </script>
 </body>
 </html>

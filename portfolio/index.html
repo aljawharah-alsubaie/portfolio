@@ -3,464 +3,1266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aljawharah Alsubaie - IT Portfolio</title>
+    <title>Aljawharah Alsubaie — Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg:           #09090f;
+            --surface:      #111118;
+            --surface-2:    #17171f;
+            --border:       rgba(168, 85, 247, 0.18);
+            --border-hover: rgba(168, 85, 247, 0.55);
+            --purple:       #a855f7;
+            --purple-dark:  #7c3aed;
+            --magenta:      #d946ef;
+            --text:         #ffffff;
+            --text-mid:     rgba(255,255,255,0.72);
+            --text-dim:     rgba(255,255,255,0.42);
         }
-        
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #1a1d3a 0%, #0a0e27 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            padding: 60px 40px;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
         }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: flex-end;
+            padding: 0 60px; height: 66px;
+            background: rgba(9,9,15,0.82);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(168,85,247,0.08);
         }
-        
-        /* Header Section */
-        .header {
-            display: flex;
-            align-items: start;
-            gap: 40px;
-            margin-bottom: 60px;
-            animation: fadeIn 0.8s ease;
+
+        .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+        .nav-links a {
+            color: var(--text-dim); text-decoration: none;
+            font-size: 14px; font-weight: 500; transition: color 0.2s;
         }
-        
-        .profile-pic {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-            padding: 4px;
-            flex-shrink: 0;
-            animation: slideInLeft 0.8s ease;
+        .nav-links a:hover { color: var(--text); }
+
+        .nav-cta {
+            padding: 9px 22px;
+            background: var(--purple) !important;
+            color: #fff !important;
+            border-radius: 24px; font-weight: 600 !important;
+            transition: opacity 0.2s, transform 0.2s !important;
         }
-        
-        .profile-pic-inner {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: #2a234a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .profile-pic-inner::after {
-            content: '👩‍💻';
-            font-size: 70px;
-        }
-        
-        /* يمكنك استبدال الإيموجي بصورة حقيقية */
-        .profile-pic-inner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .intro {
-            flex: 1;
-            animation: slideInRight 0.8s ease;
-        }
-        
-        .greeting {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 8px;
-        }
-        
-        .name {
-            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-        }
-        
-        .title {
-            font-size: 38px;
-            font-weight: 800;
-            margin-bottom: 16px;
-            color: #ffffff;
-        }
-        
-        .description {
-            font-size: 16px;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 600px;
-        }
-        
-        /* Navigation Tabs */
-        .nav-tabs {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 50px;
-            animation: fadeIn 1s ease 0.2s backwards;
-        }
-        
-        .nav-tab {
-            padding: 12px 28px;
-            background: transparent;
-            border: 2px solid rgba(138, 94, 255, 0.3);
-            border-radius: 24px;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        
-        .nav-tab:hover {
-            border-color: rgba(138, 94, 255, 0.6);
-            background: rgba(138, 94, 255, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        .nav-tab.active {
-            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
-            border-color: transparent;
-            color: #ffffff;
-        }
-        
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 28px;
-            animation: fadeIn 1s ease 0.4s backwards;
-        }
-        
-        .project-card {
-            background: linear-gradient(135deg, #2d1b4e 0%, #1a1d3a 100%);
-            border-radius: 24px;
-            padding: 24px;
-            border: 1px solid rgba(138, 94, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            display: block;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .project-card::before {
-            content: '';
+        .nav-cta:hover { opacity: 0.87 !important; transform: translateY(-1px) !important; }
+
+        /* ── PARTICLES ── */
+        #particles {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(138, 94, 255, 0.1) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            inset: 0; z-index: 0;
+            pointer-events: none;
         }
-        
-        .project-card:hover {
-            transform: translateY(-12px);
-            border-color: rgba(138, 94, 255, 0.5);
-            box-shadow: 0 20px 60px rgba(138, 94, 255, 0.3);
-        }
-        
-        .project-card:hover::before {
-            opacity: 1;
-        }
-        
-        .project-preview {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #4a3a7a 0%, #2a234a 100%);
-            border-radius: 16px;
-            margin-bottom: 20px;
-            display: flex;
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: grid; grid-template-columns: 1fr 1fr;
             align-items: center;
-            justify-content: center;
+            padding: 130px 60px 80px;
+            position: relative; overflow: hidden;
+        }
+
+        .glow-a {
+            position: absolute; pointer-events: none;
+            width: 720px; height: 720px;
+            background: radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%);
+            top: -200px; right: -80px;
+        }
+        .glow-b {
+            position: absolute; pointer-events: none;
+            width: 420px; height: 420px;
+            background: radial-gradient(circle, rgba(217,70,239,0.07) 0%, transparent 70%);
+            bottom: 60px; left: 40px;
+        }
+
+        .hero-text { position: relative; z-index: 1; animation: fadeUp 0.8s ease; }
+
+        .hero-greeting {
+            font-size: 14px; font-weight: 600; color: var(--purple);
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;
+        }
+
+        .hero-name {
+            font-size: 68px; font-weight: 900; line-height: 1.04;
+            letter-spacing: -2.5px; margin-bottom: 16px;
+        }
+        .hero-name .hi {
+            background: linear-gradient(135deg, var(--purple), var(--magenta));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline { font-size: 20px; font-weight: 600; color: var(--text-mid); margin-bottom: 14px; }
+
+        .hero-bio {
+            font-size: 15px; color: var(--text-dim); max-width: 460px;
+            line-height: 1.8; margin-bottom: 40px;
+        }
+
+        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 13px 26px; background: var(--purple); color: #fff;
+            border-radius: 12px; font-size: 15px; font-weight: 600;
+            text-decoration: none; transition: all 0.3s;
+        }
+        .btn-primary:hover { background: var(--purple-dark); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(168,85,247,0.35); }
+
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 13px 26px; background: transparent; color: var(--text);
+            border: 1px solid rgba(255,255,255,0.13); border-radius: 12px;
+            font-size: 15px; font-weight: 600; text-decoration: none; transition: all 0.3s;
+        }
+        .btn-secondary:hover { border-color: rgba(168,85,247,0.5); background: rgba(168,85,247,0.08); transform: translateY(-2px); }
+
+        /* Hero visual */
+        .hero-visual {
+            display: flex; align-items: center; justify-content: center;
+            position: relative; z-index: 1;
+            animation: fadeUp 0.8s ease 0.15s both;
+        }
+
+        .avatar-ring {
+            width: 270px; height: 270px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple), var(--magenta));
+            padding: 3px;
+        }
+        .avatar-inner {
+            width: 100%; height: 100%; border-radius: 50%;
+            background: var(--surface); display: flex;
+            align-items: center; justify-content: center;
+            font-size: 78px; overflow: hidden;
+        }
+        .avatar-inner img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ── PROJECTS ── */
+        .projects { padding: 100px 60px; }
+
+        .section-eyebrow {
+            font-size: 11px; font-weight: 700; color: var(--purple);
+            text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 10px;
+        }
+        .section-heading { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 48px; }
+
+        .projects-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+        }
+
+        /* ── PROJECT CARD: image outside, details on hover ── */
+        .project-card {
+            position: relative; border-radius: 20px; overflow: hidden;
+            border: 1px solid var(--border); display: block;
+            text-decoration: none; height: 380px; cursor: pointer;
+            transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+        }
+        .project-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-7px);
+            box-shadow: 0 22px 56px rgba(168,85,247,0.22);
+        }
+
+        /* Cover (image or styled placeholder) */
+        .card-cover {
+            width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.42s ease;
+            position: relative; overflow: hidden;
+        }
+        .project-card:hover .card-cover { transform: scale(1.05); }
+        .card-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .card-empty { width: 100%; height: 100%; }
+
+        /* ── DEVICE FRAMES ── */
+        @keyframes float-ph-l {
+            0%,100% { transform: translateX(-84px) rotate(-20deg) translateY(0px); }
+            50%      { transform: translateX(-84px) rotate(-20deg) translateY(-9px); }
+        }
+        @keyframes float-ph-c {
+            0%,100% { transform: translateX(0) translateY(-3px); }
+            50%      { transform: translateX(0) translateY(5px); }
+        }
+        @keyframes float-ph-r {
+            0%,100% { transform: translateX(84px) rotate(20deg) translateY(-2px); }
+            50%      { transform: translateX(84px) rotate(20deg) translateY(6px); }
+        }
+        @keyframes float-br-back {
+            0%,100% { transform: translate(-36px,-22px) scale(0.88) translateY(0); }
+            50%      { transform: translate(-36px,-22px) scale(0.88) translateY(-9px); }
+        }
+        @keyframes float-br-front {
+            0%,100% { transform: translate(28px,18px) translateY(0); }
+            50%      { transform: translate(28px,18px) translateY(-10px); }
+        }
+
+        .devices-scene {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            transform: translateY(-18px);
+        }
+
+        /* ── Phone — iPhone-style ── */
+        .dev-phone { width: 118px; position: absolute; }
+        .dev-phone-shell {
+            background: linear-gradient(145deg, #2c2c2c 0%, #0d0d0d 60%, #1c1c1c 100%);
+            border-radius: 36px;
+            padding: 5px;
+            box-shadow:
+                0 0 0 1.5px rgba(255,255,255,0.12),
+                inset 0 1px 0 rgba(255,255,255,0.08),
+                0 32px 72px rgba(0,0,0,0.92);
+        }
+        .dev-phone-inner {
+            border-radius: 31px;
             overflow: hidden;
             position: relative;
-            border: 2px solid rgba(138, 94, 255, 0.15);
+            background: #050505;
         }
-        
-        .project-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .dev-phone-screen { width: 100%; aspect-ratio: 9/19.5; background: #050508; display: block; overflow: hidden; }
+        .dev-phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+        .dev-phone-notch {
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 36%; height: 22px;
+            background: #0d0d0d; border-radius: 0 0 16px 16px;
+            z-index: 5;
         }
-        
-        /* Placeholder for images */
-        .project-preview.placeholder::after {
-            content: attr(data-placeholder);
-            font-size: 48px;
+        .dev-phone-bar {
+            position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%);
+            width: 34%; height: 4px;
+            background: rgba(255,255,255,0.3); border-radius: 2px;
+            z-index: 5;
         }
-        
-        .project-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #ffffff;
+        .dev-phone-left   { z-index: 1; opacity: 0.7; width: 100px; animation: float-ph-l 3.6s ease-in-out infinite; }
+        .dev-phone-center { z-index: 3;              animation: float-ph-c 3.6s ease-in-out infinite 0.45s; }
+        .dev-phone-right  { z-index: 1; opacity: 0.7; width: 100px; animation: float-ph-r 3.6s ease-in-out infinite 0.9s; }
+
+        /* ── Browser Window (2 per card) ── */
+        .dev-browser {
+            width: 210px; position: absolute;
+            border-radius: 9px; overflow: hidden;
+            border: 1.5px solid rgba(255,255,255,0.22);
+            box-shadow: 0 24px 56px rgba(0,0,0,0.72);
+            display: flex; flex-direction: column;
+        }
+        .dev-browser-chrome {
+            background: linear-gradient(to bottom, #2c2c48, #222240);
+            padding: 8px 11px;
+            display: flex; align-items: center; gap: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            flex-shrink: 0;
+        }
+        .dev-browser-dots { display: flex; gap: 5px; align-items: center; }
+        .dev-browser-dot  { width: 8px; height: 8px; border-radius: 50%; }
+        .dot-r { background: #ff5f57; }
+        .dot-y { background: #ffbd2e; }
+        .dot-g { background: #28ca41; }
+        .dev-browser-bar  { flex: 1; background: rgba(255,255,255,0.07); border-radius: 4px; height: 14px; }
+        .dev-browser-screen { aspect-ratio: 4/3; background: #05050a; overflow: hidden; }
+        .dev-browser-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+        .dev-browser-back  { z-index: 1; opacity: 0.74; animation: float-br-back  3.8s ease-in-out infinite; }
+        .dev-browser-front { z-index: 2;               animation: float-br-front 3.8s ease-in-out infinite 0.7s; }
+
+        /* Per-card cover colors */
+        .c-purple  .card-cover { background: linear-gradient(145deg, #2a1545 0%, #130d22 100%); }
+        .c-blue    .card-cover { background: linear-gradient(145deg, #0e1f45 0%, #090f22 100%); }
+        .c-emerald .card-cover { background: linear-gradient(145deg, #0c2520 0%, #071410 100%); }
+        .c-amber   .card-cover { background: linear-gradient(145deg, #2a1c08 0%, #160e04 100%); }
+        .c-cyan    .card-cover { background: linear-gradient(145deg, #082535 0%, #041210 100%); }
+        .c-teal    .card-cover { background: linear-gradient(145deg, #082520 0%, #041210 100%); }
+        .c-indigo  .card-cover { background: linear-gradient(145deg, #1a1635 0%, #0d0b22 100%); }
+        .c-rose    .card-cover { background: linear-gradient(145deg, #2a0e14 0%, #180609 100%); }
+        .c-orange  .card-cover { background: linear-gradient(145deg, #2a1508 0%, #180b04 100%); }
+
+        /* Name bar – always visible, hidden on hover */
+        .card-bar {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 44px 20px 18px;
+            background: linear-gradient(to top, rgba(9,9,15,0.97) 0%, transparent 100%);
+            display: flex; align-items: flex-end; justify-content: space-between;
+            transition: opacity 0.3s ease;
+        }
+        .project-card:hover .card-bar { opacity: 0; }
+
+        .card-bar-name { font-size: 17px; font-weight: 700; color: #fff; }
+
+        /* Hover overlay */
+        .card-hover {
+            position: absolute; inset: 0;
+            background: rgba(9,9,15,0.93);
+            padding: 26px; display: flex; flex-direction: column;
+            justify-content: center; gap: 9px;
+            opacity: 0; transform: translateY(14px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            pointer-events: none;
+        }
+        .project-card:hover .card-hover { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+        .ch-title { font-size: 19px; font-weight: 700; color: #fff; }
+        .ch-desc  { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
+
+        .ch-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .ch-tag {
+            padding: 3px 10px;
+            background: rgba(168,85,247,0.13);
+            border: 1px solid rgba(168,85,247,0.22);
+            border-radius: 20px; font-size: 11px; color: #c084fc; font-weight: 600;
+        }
+
+        .ch-cta {
+            display: inline-flex; align-items: center; gap: 6px;
+            margin-top: 4px; padding: 8px 18px;
+            background: var(--purple); color: #fff; border-radius: 20px;
+            font-size: 12px; font-weight: 700; width: fit-content;
+            transition: opacity 0.2s;
+        }
+        .ch-cta:hover { opacity: 0.85; }
+
+        /* ── SKILLS ── */
+        .skills {
+            padding: 80px 60px;
+            border-top: 1px solid rgba(168,85,247,0.08);
+        }
+        .skills-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+        .skill-chip {
+            padding: 9px 18px; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 32px;
+            font-size: 13px; font-weight: 500; color: var(--text-mid);
+            transition: all 0.2s; cursor: default;
+        }
+        .skill-chip:hover { border-color: var(--border-hover); color: var(--text); background: rgba(168,85,247,0.08); }
+
+        /* ── CERTIFICATIONS ── */
+        .certifications {
+            padding: 80px 60px;
+            border-top: 1px solid rgba(168,85,247,0.08);
+        }
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 28px;
+        }
+        .cert-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px 22px 20px;
+            display: flex; flex-direction: column; gap: 10px;
+            transition: all 0.3s;
+        }
+        .cert-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(168,85,247,0.1);
+        }
+        .cert-issuer {
+            font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--purple);
+        }
+        .cert-name {
+            font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.4;
+        }
+        .cert-date {
+            font-size: 12px; color: var(--text-dim); margin-top: auto;
+        }
+        .cert-img {
+            aspect-ratio: 16/9;
+            background: var(--surface-2);
+            border: 1.5px dashed rgba(168,85,247,0.12);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            margin-top: 4px;
+        }
+        .cert-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; cursor: zoom-in; transition: transform 0.4s ease; }
+        .cert-card:hover .cert-img img { transform: scale(1.04); }
+        .cert-img::after {
+            content: '';
+            position: absolute; bottom: 7px; right: 7px; z-index: 2;
+            width: 26px; height: 26px; border-radius: 7px;
+            background: rgba(0,0,0,0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M3 3h7v2H5v5H3V3zm11 0h7v7h-2V5h-5V3zM3 14h2v5h5v2H3v-7zm16 5h-5v2h7v-7h-2v5z'/%3E%3C/svg%3E") center/12px 12px no-repeat;
+            backdrop-filter: blur(4px);
+            pointer-events: none;
+        }
+
+        /* ── ACHIEVEMENTS ── */
+        .achievements {
+            padding: 80px 60px;
+            border-top: 1px solid rgba(168,85,247,0.08);
+        }
+        .ach-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 28px;
+        }
+        .ach-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px 16px 14px;
+            display: flex; flex-direction: column; gap: 10px;
+            transition: all 0.3s;
+        }
+        .ach-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(168,85,247,0.1);
+        }
+        .ach-card-top { display: flex; align-items: center; gap: 9px; }
+        .ach-icon {
+            width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .ach-icon svg { width: 14px; height: 14px; }
+        .ach-type {
+            font-size: 10px; font-weight: 700; padding: 3px 9px;
+            border-radius: 20px; letter-spacing: 0.5px;
+        }
+        .type-pub   { background: rgba(99,102,241,0.1);  border: 1px solid rgba(99,102,241,0.22);  color: #818cf8; }
+        .type-conf  { background: rgba(20,184,166,0.1);  border: 1px solid rgba(20,184,166,0.22);  color: #2dd4bf; }
+        .type-exhib { background: rgba(20,184,166,0.1);  border: 1px solid rgba(20,184,166,0.22);  color: #2dd4bf; }
+        .type-award { background: rgba(245,158,11,0.1);  border: 1px solid rgba(245,158,11,0.22);  color: #fbbf24; }
+        .type-grant { background: rgba(245,158,11,0.1);  border: 1px solid rgba(245,158,11,0.22);  color: #fbbf24; }
+
+        .ach-title {
+            font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.45; flex: 1;
+        }
+        .ach-link {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 11px; font-weight: 600; color: #818cf8;
+            text-decoration: none; padding: 4px 10px;
+            background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2);
+            border-radius: 20px; width: fit-content;
+            transition: all 0.2s;
+        }
+        .ach-link:hover { background: rgba(99,102,241,0.16); border-color: rgba(99,102,241,0.4); }
+        .ach-link svg { width: 10px; height: 10px; }
+        .ach-meta {
+            font-size: 11px; color: var(--text-dim); display: flex; align-items: center; gap: 5px; flex-wrap: wrap;
+        }
+        .ach-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-dim); flex-shrink: 0; }
+        .ach-img {
+            aspect-ratio: 16/7;
+            background: var(--surface-2);
+            border: 1.5px dashed rgba(168,85,247,0.12);
+            border-radius: 10px;
+            overflow: hidden;
             position: relative;
         }
-        
-        .project-description {
-            font-size: 14px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.7);
+        .ach-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; cursor: zoom-in; transition: transform 0.4s ease; }
+        .ach-card:hover .ach-img img { transform: scale(1.04); }
+        .ach-img::after {
+            content: '';
+            position: absolute; bottom: 7px; right: 7px; z-index: 2;
+            width: 26px; height: 26px; border-radius: 7px;
+            background: rgba(0,0,0,0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M3 3h7v2H5v5H3V3zm11 0h7v7h-2V5h-5V3zM3 14h2v5h5v2H3v-7zm16 5h-5v2h7v-7h-2v5z'/%3E%3C/svg%3E") center/12px 12px no-repeat;
+            backdrop-filter: blur(4px);
+            pointer-events: none;
         }
-        
-        .project-tag {
-            display: inline-block;
-            padding: 6px 14px;
-            background: rgba(138, 94, 255, 0.15);
-            border: 1px solid rgba(138, 94, 255, 0.3);
-            border-radius: 16px;
-            font-size: 11px;
-            color: #a78bfa;
-            font-weight: 600;
-            margin-top: 12px;
-            margin-right: 6px;
+
+        @media (max-width: 1024px) {
+            .certs-grid { grid-template-columns: repeat(2, 1fr); }
+            .ach-grid   { grid-template-columns: repeat(2, 1fr); }
         }
-        
-        /* Footer */
-        .footer {
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(138, 94, 255, 0.2);
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        
-        .social-link {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(138, 94, 255, 0.1);
-            border: 1px solid rgba(138, 94, 255, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #a78bfa;
-            text-decoration: none;
-            font-size: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            background: rgba(138, 94, 255, 0.2);
-            transform: translateY(-4px);
-            border-color: rgba(138, 94, 255, 0.5);
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        /* Responsive */
         @media (max-width: 768px) {
-            body {
-                padding: 40px 20px;
+            .certifications, .achievements { padding: 60px 24px; }
+            .certs-grid { grid-template-columns: 1fr; }
+            .ach-grid   { grid-template-columns: 1fr; }
+        }
+
+        /* ── ACH LIGHTBOX ── */
+        .ach-lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); backdrop-filter: blur(10px); align-items: center; justify-content: center; cursor: zoom-out; }
+        .ach-lightbox.open { display: flex; }
+        .ach-lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 14px; box-shadow: 0 32px 80px rgba(0,0,0,0.7); animation: ach-lb-in 0.22s ease; }
+        @keyframes ach-lb-in { from { opacity:0; transform:scale(0.93); } to { opacity:1; transform:scale(1); } }
+
+        /* ── SCROLL REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-28px);
+            transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+        }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 48px 60px;
+            border-top: 1px solid rgba(168,85,247,0.08);
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 20px;
+        }
+        .footer-copy { font-size: 14px; color: var(--text-dim); }
+        .social-links { display: flex; gap: 10px; }
+        .social-link {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: var(--surface); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 700; color: var(--text-mid);
+            text-decoration: none; letter-spacing: 0.5px; transition: all 0.25s;
+        }
+        .social-link:hover { border-color: var(--border-hover); background: rgba(168,85,247,0.1); transform: translateY(-3px); }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1100px) {
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; justify-content: center; }
+            .nav-links li:not(:last-child) { display: none; }
+            .hero {
+                grid-template-columns: 1fr; padding: 100px 24px 60px;
+                row-gap: 24px; text-align: center;
             }
-            
-            .header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+            .hero-visual { order: -1; justify-content: center; }
+            .avatar-ring { width: 150px; height: 150px; }
+            .avatar-inner { font-size: 48px; }
+            .hero-bio { max-width: 100%; }
+            .hero-actions { justify-content: center; }
+            .hero-name { font-size: 44px; letter-spacing: -1.5px; }
+            .projects { padding: 80px 24px; }
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .section-heading { font-size: 30px; }
+            .project-card { height: 260px; }
+            .skills { padding: 60px 24px; }
+            footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+
+            /* Shrink device frames on mobile */
+            .dev-phone { width: 54px; }
+            .dev-phone-left, .dev-phone-right { width: 44px; }
+            .dev-phone-shell { border-radius: 17px; padding: 3px; }
+            .dev-phone-inner { border-radius: 15px; }
+            .dev-phone-notch { height: 11px; width: 38%; border-radius: 0 0 8px 8px; }
+            .dev-phone-bar { bottom: 3px; height: 3px; width: 32%; }
+            .dev-browser { width: 100px; }
+            .dev-browser-chrome { padding: 5px 6px; gap: 4px; }
+            .dev-browser-dot { width: 5px; height: 5px; }
+            .dev-browser-bar { height: 9px; }
+
+            @keyframes float-ph-l {
+                0%,100% { transform: translateX(-38px) rotate(-20deg) translateY(0); }
+                50%      { transform: translateX(-38px) rotate(-20deg) translateY(-6px); }
             }
-            
-            .profile-pic {
-                width: 120px;
-                height: 120px;
+            @keyframes float-ph-r {
+                0%,100% { transform: translateX(38px) rotate(20deg) translateY(-2px); }
+                50%      { transform: translateX(38px) rotate(20deg) translateY(4px); }
             }
-            
-            .title {
-                font-size: 32px;
+            @keyframes float-br-back {
+                0%,100% { transform: translate(-17px,-12px) scale(0.88) translateY(0); }
+                50%      { transform: translate(-17px,-12px) scale(0.88) translateY(-6px); }
             }
-            
-            .description {
-                margin: 0 auto;
-            }
-            
-            .nav-tabs {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
+            @keyframes float-br-front {
+                0%,100% { transform: translate(13px,10px) translateY(0); }
+                50%      { transform: translate(13px,10px) translateY(-6px); }
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header Section -->
-        <header class="header">
-            <div class="profile-pic">
-                <div class="profile-pic-inner">
-                    <!-- ضعي صورتك هنا -->
-                    <!-- <img src="your-photo.jpg" alt="Aljawharah Alsubaie"> -->
+
+    <!-- NAV -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="https://www.linkedin.com/in/aljawharah-alsubaie-a8b898307" target="_blank">LinkedIn</a></li>
+            <li><a href="Aljawharah_Alsubaie_CV.pdf" download class="nav-cta">Resume ↓</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <canvas id="particles"></canvas>
+        <div class="glow-a"></div>
+        <div class="glow-b"></div>
+
+        <div class="hero-text">
+            <p class="hero-greeting">Hello, I'm</p>
+            <h1 class="hero-name">
+                Aljawharah<br>
+                <span class="hi">Alsubaie</span>
+            </h1>
+            <p class="hero-tagline">AI Developer &amp; IT Graduate</p>
+            <p class="hero-bio">
+                IT graduate with experience across AI/ML, computer vision, full-stack development, and cybersecurity — building secure, user-centered digital solutions with Flutter, Firebase, and Python.
+            </p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn-primary">View My Work →</a>
+                <a href="Aljawharah_Alsubaie_CV.pdf" download class="btn-secondary">Download CV</a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="avatar-ring">
+                <div class="avatar-inner">
+                    <!-- Replace emoji with: <img src="your-photo.jpg" alt="Aljawharah"> -->
+                    👩‍💻
                 </div>
             </div>
-            <div class="intro">
-                <p class="greeting">Hello! I Am <span class="name">Aljawharah Alsubaie</span></p>
-                <h1 class="title">I'm an IT Student.</h1>
-                <p class="description">
-                    Information Technology graduate specializing in Cybersecurity with a strong foundation in software development, database management, and system design. Experienced in AI/ML, computer vision, and full-stack development with proven expertise in building intelligent, accessibility-focused solutions. Passionate about creating secure, user-centered digital experiences through hands-on development in Flutter, Firebase, Python, and TensorFlow for machine learning applications. Dedicated to leveraging technology to solve real-world challenges and improve lives.
-                </p>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects" id="projects">
+        <p class="section-eyebrow">My Work</p>
+        <h2 class="section-heading">Projects</h2>
+
+        <div class="projects-grid">
+
+            <!-- Munir -->
+            <a href="munir.html" class="project-card c-purple">
+                <div class="card-cover">
+                    <div class="devices-scene">
+                        <div class="dev-phone dev-phone-left"><div class="dev-phone-shell"><div class="dev-phone-inner"><div class="dev-phone-screen"><img src="images/munir-left.jpg" alt="Munir feature screen"></div><div class="dev-phone-notch"></div><div class="dev-phone-bar"></div></div></div></div>
+                        <div class="dev-phone dev-phone-right"><div class="dev-phone-shell"><div class="dev-phone-inner"><div class="dev-phone-screen"><img src="images/munir-right.jpg" alt="Munir feature screen"></div><div class="dev-phone-notch"></div><div class="dev-phone-bar"></div></div></div></div>
+                        <div class="dev-phone dev-phone-center"><div class="dev-phone-shell"><div class="dev-phone-inner"><div class="dev-phone-screen"><img src="images/munir-center.jpg" alt="Munir home screen"></div><div class="dev-phone-notch"></div><div class="dev-phone-bar"></div></div></div></div>
+                    </div>
+                </div>
+                <div class="card-bar">
+                    <span class="card-bar-name">Munir APP</span>
+                </div>
+                <div class="card-hover">
+                    <h3 class="ch-title">Munir APP</h3>
+                    <p class="ch-desc">AI-powered assistive app for visually impaired users — recognizes faces, reads text, identifies currency, and speaks it all aloud.</p>
+                    <div class="ch-tags">
+                        <span class="ch-tag">AI/ML</span>
+                        <span class="ch-tag">Flutter</span>
+                        <span class="ch-tag">Firebase</span>
+                        <span class="ch-tag">Accessibility</span>
+                    </div>
+                    <span class="ch-cta">View Project →</span>
+                </div>
+            </a>
+
+            <!-- Face Recognition -->
+            <a href="face-recognition-model.html" class="project-card c-blue">
+                <div class="card-cover">
+                    <div class="devices-scene">
+                        <div class="dev-browser dev-browser-back">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/face-comparison.jpg" alt="Model Comparison Chart"></div>
+                        </div>
+                        <div class="dev-browser dev-browser-front">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/face-roc.jpg" alt="ROC Curve"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-bar">
+                    <span class="card-bar-name">Face Recognition Model</span>
+                </div>
+                <div class="card-hover">
+                    <h3 class="ch-title">Face Recognition Model</h3>
+                    <p class="ch-desc">Custom-trained model using ArcFace + SVM, achieving 97.98% accuracy on 32,400 images — built for real-world assistive use.</p>
+                    <div class="ch-tags">
+                        <span class="ch-tag">Deep Learning</span>
+                        <span class="ch-tag">ArcFace</span>
+                        <span class="ch-tag">Python</span>
+                    </div>
+                    <span class="ch-cta">View Project →</span>
+                </div>
+            </a>
+
+            <!-- Currency -->
+            <a href="currency-recognition-model.html" class="project-card c-emerald">
+                <div class="card-cover">
+                    <div class="devices-scene">
+                        <div class="dev-browser dev-browser-back">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/currency-confusion.jpg" alt="Confusion Matrix"></div>
+                        </div>
+                        <div class="dev-browser dev-browser-front">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/currency-paper.jpg" alt="Published Paper"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-bar">
+                    <span class="card-bar-name">Saudi Currency Recognition</span>
+                </div>
+                <div class="card-hover">
+                    <h3 class="ch-title">Saudi Currency Recognition</h3>
+                    <p class="ch-desc">Published hybrid framework (YOLOv8 + MobileNetV2 + SVM-RBF) achieving 98.16% accuracy across all 7 Saudi Riyal denominations in 32.57ms.</p>
+                    <div class="ch-tags">
+                        <span class="ch-tag">Transfer Learning</span>
+                        <span class="ch-tag">MobileNetV2</span>
+                        <span class="ch-tag">Mobile ML</span>
+                    </div>
+                    <span class="ch-cta">View Project →</span>
+                </div>
+            </a>
+
+            <!-- Mehar -->
+            <a href="mehar.html" class="project-card c-amber">
+                <div class="card-cover">
+                    <div class="devices-scene">
+                        <div class="dev-browser dev-browser-back">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/mehar-search.jpg" alt="Mehar Search"></div>
+                        </div>
+                        <div class="dev-browser dev-browser-front">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/mehar-homepage.jpg" alt="Mehar Homepage"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-bar">
+                    <span class="card-bar-name">Mehar Platform</span>
+                </div>
+                <div class="card-hover">
+                    <h3 class="ch-title">Mehar Platform</h3>
+                    <p class="ch-desc">Full-stack workshop booking platform with personalized recommendations, community features, and booking management for arts &amp; experiences.</p>
+                    <div class="ch-tags">
+                        <span class="ch-tag">Full-Stack</span>
+                        <span class="ch-tag">PHP / MySQL</span>
+                        <span class="ch-tag">E-Commerce</span>
+                    </div>
+                    <span class="ch-cta">View Project →</span>
+                </div>
+            </a>
+
+            <!-- Game -->
+            <a href="game.html" class="project-card c-cyan">
+                <div class="card-cover">
+                    <div class="devices-scene">
+                        <div class="dev-browser dev-browser-back">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/network2.png" alt="Game Screen 2"></div>
+                        </div>
+                        <div class="dev-browser dev-browser-front">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/network1.png" alt="Game Screen 1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-bar">
+                    <span class="card-bar-name">Find Differences Game</span>
+                </div>
+                <div class="card-hover">
+                    <h3 class="ch-title">Find Differences Game</h3>
+                    <p class="ch-desc">Real-time multiplayer networked game with Java sockets, waiting room system, and live scoring — up to 4 players simultaneously.</p>
+                    <div class="ch-tags">
+                        <span class="ch-tag">Java</span>
+                        <span class="ch-tag">Networking</span>
+                        <span class="ch-tag">Socket Programming</span>
+                    </div>
+                    <span class="ch-cta">View Project →</span>
+                </div>
+            </a>
+
+            <!-- Dreamverse -->
+            <a href="dreamverse.html" class="project-card c-indigo">
+                <div class="card-cover">
+                    <div class="devices-scene">
+                        <div class="dev-browser dev-browser-back">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/dreamverse-gantt.jpg" alt="Dreamverse Gantt"></div>
+                        </div>
+                        <div class="dev-browser dev-browser-front">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/dreamverse-wbs.jpg" alt="Dreamverse WBS"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-bar">
+                    <span class="card-bar-name">Dreamverse</span>
+                </div>
+                <div class="card-hover">
+                    <h3 class="ch-title">Dreamverse</h3>
+                    <p class="ch-desc">IT Project Management plan for a conceptual AI-driven smart sleep capsule — full WBS, Gantt charts, network diagrams, and task scheduling.</p>
+                    <div class="ch-tags">
+                        <span class="ch-tag">Project Management</span>
+                        <span class="ch-tag">AI Concept</span>
+                    </div>
+                    <span class="ch-cta">View Project →</span>
+                </div>
+            </a>
+
+            <!-- Diva Security -->
+            <a href="diva.html" class="project-card c-rose">
+                <div class="card-cover">
+                    <div class="devices-scene">
+                        <div class="dev-browser dev-browser-back">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/diva-overview.jpg" alt="Diva Overview"></div>
+                        </div>
+                        <div class="dev-browser dev-browser-front">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/diva-insecure-storage.jpg" alt="Diva Storage"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-bar">
+                    <span class="card-bar-name">Mobile App Security Assessment</span>
+                </div>
+                <div class="card-hover">
+                    <h3 class="ch-title">Mobile App Security Assessment</h3>
+                    <p class="ch-desc">Hands-on penetration test of the Diva Android app — reverse engineering, vulnerability analysis, and security reporting using JADX, MobSF, ADB, and Ghidra.</p>
+                    <div class="ch-tags">
+                        <span class="ch-tag">Cybersecurity</span>
+                        <span class="ch-tag">Penetration Testing</span>
+                        <span class="ch-tag">OWASP</span>
+                    </div>
+                    <span class="ch-cta">View Project →</span>
+                </div>
+            </a>
+
+            <!-- Heart Attack Risk Prediction -->
+            <a href="heart-attack.html" class="project-card c-orange">
+                <div class="card-cover">
+                    <div class="devices-scene">
+                        <div class="dev-browser dev-browser-back">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/heart-visualization.jpg" alt="Heart Visualization"></div>
+                        </div>
+                        <div class="dev-browser dev-browser-front">
+                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
+                            <div class="dev-browser-screen"><img src="images/heart-clustering.jpg" alt="Heart Clustering"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-bar">
+                    <span class="card-bar-name">Heart Attack Risk Prediction</span>
+                </div>
+                <div class="card-hover">
+                    <h3 class="ch-title">Heart Attack Risk Prediction</h3>
+                    <p class="ch-desc">Data mining project using K-means clustering and classification to predict heart attack risk from medical and lifestyle data.</p>
+                    <div class="ch-tags">
+                        <span class="ch-tag">Data Mining</span>
+                        <span class="ch-tag">K-means</span>
+                        <span class="ch-tag">Python</span>
+                    </div>
+                    <span class="ch-cta">View Project →</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section class="achievements" id="achievements">
+        <p class="section-eyebrow">Highlights</p>
+        <h2 class="section-heading">Achievements &amp; Publications</h2>
+        <div class="ach-grid">
+
+            <!-- ── ROW 1: No images (Publications + Grant) ── -->
+
+            <!-- Publication 1 -->
+            <div class="ach-card">
+                <div class="ach-card-top">
+                    <div class="ach-icon" style="background:rgba(99,102,241,0.08);border-color:rgba(99,102,241,0.22);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <span class="ach-type type-pub">Publication</span>
+                </div>
+                <p class="ach-title">Munir: A Multimodal Smart-Glass System for Enhancing HCI and Accessibility for Visually Impaired Individuals</p>
+                <div class="ach-meta">
+                    <span>Sensors, MDPI</span><span class="ach-meta-dot"></span><span>Published 2026</span>
+                </div>
+                <a class="ach-link" href="#" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    View Paper
+                </a>
             </div>
-        </header>
-        
-        <!-- Navigation Tabs -->
-        <nav class="nav-tabs">
-            <a href="#" class="nav-tab active">Projects</a>
-            <a href="Aljawharah_Alsubaie_CV.pdf" download class="nav-tab">Resume</a>
-        </nav>
-        
-        <!-- Projects Grid -->
-        <section class="projects-grid">
-            <!-- Munir Project -->
-            <a href="munir.html" class="project-card">
-                <div class="project-preview placeholder" data-placeholder="📱">
-                    <!-- ضعي screenshot من Munir app هنا -->
-                    <!-- <img src="munir-preview.jpg" alt="Munir App"> -->
+
+            <!-- Publication 2 -->
+            <div class="ach-card">
+                <div class="ach-card-top">
+                    <div class="ach-icon" style="background:rgba(99,102,241,0.08);border-color:rgba(99,102,241,0.22);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <span class="ach-type type-pub">Publication</span>
                 </div>
-                <h3 class="project-title">Munir APP</h3>
-                <p class="project-description">
-                    AI-powered assistive system empowering vision through intelligent technology for visually impaired users with custom-trained ML models.
-                </p>
-                <span class="project-tag">AI/ML</span>
-                <span class="project-tag">Flutter</span>
-                <span class="project-tag">Accessibility</span>
-            </a>
-            
-            <!-- Face Recognition Model -->
-            <a href="face-recognition-model.html" class="project-card">
-                <div class="project-preview placeholder" data-placeholder="👤">
-                    <!-- ضعي visualization من الـ model هنا -->
-                    <!-- <img src="face-model-viz.jpg" alt="Face Recognition Model"> -->
+                <p class="ach-title">A Hybrid Framework for Real-Time Saudi Riyal Banknote Recognition in Assistive Applications</p>
+                <div class="ach-meta">
+                    <span>Applied Sciences, MDPI</span><span class="ach-meta-dot"></span><span>Published 2026</span>
                 </div>
-                <h3 class="project-title">Face Recognition Model</h3>
-                <p class="project-description">
-                    High-accuracy face recognition using ArcFace embeddings with SVM achieving 97.98% accuracy on 32,400 images from VGGFace2 dataset. IEEE-documented research for assistive technology.
-                </p>
-                <span class="project-tag">Deep Learning</span>
-                <span class="project-tag">ArcFace</span>
-                <span class="project-tag">SVM</span>
-            </a>
-            
-            <!-- Currency Recognition Model -->
-            <a href="currency-recognition-model.html" class="project-card">
-                <div class="project-preview placeholder" data-placeholder="💵">
-                    <!-- ضعي visualization من الـ model هنا -->
-                    <!-- <img src="currency-model-viz.jpg" alt="Currency Recognition Model"> -->
-                </div>
-                <h3 class="project-title">Saudi Currency Recognition</h3>
-                <p class="project-description">
-                    Lightweight MobileNetV2 transfer learning model with SVM-RBF achieving 96.84% accuracy on Saudi Riyal banknotes. Mobile-optimized for real-time inference under 35ms.
-                </p>
-                <span class="project-tag">Transfer Learning</span>
-                <span class="project-tag">MobileNetV2</span>
-                <span class="project-tag">Mobile ML</span>
-            </a>
-            
-            <!-- Mehar Project -->
-            <a href="mehar.html" class="project-card">
-                <div class="project-preview placeholder" data-placeholder="🎨">
-                    <!-- ضعي screenshot من Mehar هنا -->
-                    <!-- <img src="mehar-home.jpg" alt="Mehar Platform"> -->
-                </div>
-                <h3 class="project-title">Mehar Platform</h3>
-                <p class="project-description">
-                    Full-stack workshop booking platform with personalized recommendations, interactive community features, and seamless booking management for arts, cooking, and adventure experiences.
-                </p>
-                <span class="project-tag">Full-Stack</span>
-                <span class="project-tag">PHP/MySQL</span>
-                <span class="project-tag">E-Commerce</span>
-            </a>
-            
-            <!-- Find Differences Game Project -->
-            <a href="game.html" class="project-card">
-                <div class="project-preview placeholder" data-placeholder="🎮">
-                    <!-- ضعي screenshot من اللعبة هنا -->
-                    <!-- <img src="game-screenshot.jpg" alt="Find Differences Game"> -->
-                </div>
-                <h3 class="project-title">Find Differences Game</h3>
-                <p class="project-description">
-                    Multiplayer networked game where players compete to find differences between two images. Real-time server-client communication with waiting room system and live scoring.
-                </p>
-                <span class="project-tag">Java</span>
-                <span class="project-tag">Networking</span>
-                <span class="project-tag">Socket Programming</span>
-            </a>
-            
-            <!-- Darek Project -->
-            <a href="darek.html" class="project-card">
-                <div class="project-preview placeholder" data-placeholder="🏠">
-                    <!-- ضعي screenshot من Darek هنا -->
-                    <!-- <img src="darek-home.jpg" alt="Darek Platform"> -->
-                </div>
-                <h3 class="project-title">Darek Platform</h3>
-                <p class="project-description">
-                    Comprehensive property rental web platform featuring villas, apartments, and chalets with advanced search, booking management, seller dashboard, and accessibility features.
-                </p>
-                <span class="project-tag">HTML/CSS/JS</span>
-                <span class="project-tag">Responsive Design</span>
-                <span class="project-tag">Accessibility</span>
-            </a>
-        </section>
-        
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/aljawharah-alsubaie-a8b898307" class="social-link" title="LinkedIn">💼</a>
-                <a href="https://github.com/aljawharah-alsubaie/projects.git" class="social-link" title="GitHub">💻</a>
-                <a href="/cdn-cgi/l/email-protection#9afbf6f0fbedf2fbe8fbfbe9abdafdf7fbf3f6b4f9f5f7" class="social-link" title="Email">📧</a>
+                <a class="ach-link" href="https://www.mdpi.com/2076-3417/16/12/6166" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    View Paper
+                </a>
             </div>
-            <p>© 2026 Aljawharah Alsubaie. Built with passion and code.</p>
+
+            <!-- Grant -->
+            <div class="ach-card">
+                <div class="ach-card-top">
+                    <div class="ach-icon" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.22);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <span class="ach-type type-grant">Grant</span>
+                </div>
+                <p class="ach-title">Institutional Funding — AI Fundamentals Course Development</p>
+                <div class="ach-meta">
+                    <span>IT 426</span><span class="ach-meta-dot"></span><span>King Saud University</span>
+                </div>
+            </div>
+
+            <!-- ── ROW 2: With images (Conference, Exhibition, Award) ── -->
+
+            <!-- Conference -->
+            <div class="ach-card">
+                <div class="ach-card-top">
+                    <div class="ach-icon" style="background:rgba(20,184,166,0.08);border-color:rgba(20,184,166,0.22);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <span class="ach-type type-conf">Conference</span>
+                </div>
+                <p class="ach-title">ICAN Conference — Munir Project Showcase</p>
+                <div class="ach-meta">
+                    <span>In collaboration with IBM</span><span class="ach-meta-dot"></span><span>January 2026</span>
+                </div>
+                <div class="ach-img"><img src="images/ican-conference.jpg" alt="ICAN Conference"></div>
+            </div>
+
+            <!-- Exhibition -->
+            <div class="ach-card">
+                <div class="ach-card-top">
+                    <div class="ach-icon" style="background:rgba(20,184,166,0.08);border-color:rgba(20,184,166,0.22);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                    </div>
+                    <span class="ach-type type-exhib">Exhibition</span>
+                </div>
+                <p class="ach-title">Tamkeen Exhibition — Munir Project Showcase</p>
+                <div class="ach-meta">
+                    <span>In collaboration with IBM</span><span class="ach-meta-dot"></span><span>January 2026</span>
+                </div>
+                <div class="ach-img"><img src="images/tamkeen-exhibition.jpg" alt="Tamkeen Exhibition"></div>
+            </div>
+
+            <!-- Award — Outstanding Competition -->
+            <div class="ach-card">
+                <div class="ach-card-top">
+                    <div class="ach-icon" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.22);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                    </div>
+                    <span class="ach-type type-award">Award</span>
+                </div>
+                <p class="ach-title">Winner — Outstanding Academic Projects Competition (5th Edition)</p>
+                <div class="ach-meta">
+                    <span>Mehar Project</span><span class="ach-meta-dot"></span><span>King Saud University</span>
+                </div>
+                <div class="ach-img"><img src="images/outstanding-award.jpg" alt="Outstanding Projects Award"></div>
+            </div>
+
+            <!-- ── ROW 3: With images (KSU Awards) ── -->
+
+            <!-- Award — IT Fair 2024 -->
+            <div class="ach-card">
+                <div class="ach-card-top">
+                    <div class="ach-icon" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.22);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                    </div>
+                    <span class="ach-type type-award">Award</span>
+                </div>
+                <p class="ach-title">Winner — Web Applications Engineering Course</p>
+                <div class="ach-meta">
+                    <span>IT Fair 2024</span><span class="ach-meta-dot"></span><span>King Saud University</span>
+                </div>
+                <div class="ach-img"><img src="images/itfair-2024.jpg" alt="IT Fair 2024 Award"></div>
+            </div>
+
+            <!-- Award — First ITers Day 2024 -->
+            <div class="ach-card">
+                <div class="ach-card-top">
+                    <div class="ach-icon" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.22);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                    </div>
+                    <span class="ach-type type-award">Award</span>
+                </div>
+                <p class="ach-title">Winner — User Experience Design Course</p>
+                <div class="ach-meta">
+                    <span>ITers Day 2024</span><span class="ach-meta-dot"></span><span>King Saud University</span>
+                </div>
+                <div class="ach-img"><img src="images/iters-day-2024.jpg" alt="First ITers Day Award"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="certifications" id="certifications">
+        <p class="section-eyebrow">Credentials</p>
+        <h2 class="section-heading">Certifications</h2>
+        <div class="certs-grid">
+
+            <!-- IBM SkillsBuild -->
+            <div class="cert-card">
+                <div class="cert-issuer">IBM SkillsBuild</div>
+                <p class="cert-name">Artificial Intelligence Fundamentals with Capstone Project</p>
+                <p class="cert-date">Issued July 2025</p>
+                <a href="https://www.credly.com/badges/8c4dc92c-3b5d-42a1-b273-8c9ba04592f7/linked_in_profile" target="_blank" class="ach-link" style="margin-top:4px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    View Badge
+                </a>
+                <div class="cert-img"><img src="images/cert-ibm.jpg" alt="IBM Certificate"></div>
+            </div>
+
+            <!-- Udemy -->
+            <div class="cert-card">
+                <div class="cert-issuer">Udemy</div>
+                <p class="cert-name">Projects in Machine Learning: Beginner To Professional</p>
+                <p class="cert-date">Issued November 2025 · 15.5 hours</p>
+                <div class="cert-img"><img src="images/cert-udemy.jpg" alt="Udemy Certificate"></div>
+            </div>
+
+            <!-- SDAIA -->
+            <div class="cert-card">
+                <div class="cert-issuer">SDAIA — Saudi Data & AI Authority</div>
+                <p class="cert-name">Exploring Generative AI Use Cases</p>
+                <p class="cert-date">Issued January 2026</p>
+                <div class="cert-img"><img src="images/cert-sdaia.jpg" alt="SDAIA Certificate"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="skills" id="skills">
+        <p class="section-eyebrow">Tech Stack</p>
+        <h2 class="section-heading">Skills</h2>
+        <div class="skills-chips">
+            <!-- Languages & Frameworks -->
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">Java</span>
+            <span class="skill-chip">PHP</span>
+            <span class="skill-chip">HTML / CSS / JS</span>
+            <span class="skill-chip">Flutter</span>
+            <span class="skill-chip">Java Swing</span>
+            <!-- AI & ML -->
+            <span class="skill-chip">Machine Learning</span>
+            <span class="skill-chip">Deep Learning</span>
+            <span class="skill-chip">Computer Vision</span>
+            <span class="skill-chip">TensorFlow / Keras</span>
+            <span class="skill-chip">Transfer Learning</span>
+            <span class="skill-chip">MobileNetV2</span>
+            <span class="skill-chip">Data Mining</span>
+            <span class="skill-chip">Generative AI</span>
+            <span class="skill-chip">Pandas</span>
+            <span class="skill-chip">NumPy</span>
+            <span class="skill-chip">Matplotlib</span>
+            <!-- Data & Backend -->
+            <span class="skill-chip">MySQL</span>
+            <span class="skill-chip">Firebase</span>
+            <span class="skill-chip">REST APIs</span>
+            <span class="skill-chip">Socket Programming</span>
+            <!-- Cybersecurity -->
+            <span class="skill-chip">Penetration Testing</span>
+            <span class="skill-chip">Reverse Engineering</span>
+            <span class="skill-chip">Android Security</span>
+            <span class="skill-chip">OWASP MSTG</span>
+            <span class="skill-chip">JADX / MobSF</span>
+            <!-- Design & PM -->
+            <span class="skill-chip">UI/UX Design</span>
+            <span class="skill-chip">Figma</span>
+            <span class="skill-chip">Project Management</span>
+            <span class="skill-chip">Agile / Scrum</span>
+            <span class="skill-chip">Jira</span>
+            <!-- Tools -->
+            <span class="skill-chip">Git</span>
+            <span class="skill-chip">Linux</span>
+            <span class="skill-chip">Google Colab</span>
+        </div>
+    </section>
+
+    <div class="ach-lightbox" id="achLb"><img id="achLbImg" src="" alt=""></div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="footer-copy">© 2026 Aljawharah Alsubaie</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/aljawharah-alsubaie-a8b898307" target="_blank" class="social-link" title="LinkedIn">in</a>
+            <a href="https://github.com/aljawharah-alsubaie" target="_blank" class="social-link" title="GitHub">gh</a>
+            <a href="mailto:aljawharaas1@gmail.com" class="social-link" title="Email">@</a>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null };
+
+        function resize() {
+            const hero = canvas.parentElement;
+            canvas.width  = hero.offsetWidth;
+            canvas.height = hero.offsetHeight;
+        }
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x  = Math.random() * canvas.width;
+                this.y  = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.35;
+                this.vy = (Math.random() - 0.5) * 0.35;
+                this.r  = Math.random() * 1.2 + 0.4;
+            }
+            update() {
+                // gentle drift
+                this.x += this.vx;
+                this.y += this.vy;
+                // wrap around edges
+                if (this.x < -20) this.x = canvas.width + 20;
+                if (this.x > canvas.width + 20)  this.x = -20;
+                if (this.y < -20) this.y = canvas.height + 20;
+                if (this.y > canvas.height + 20) this.y = -20;
+                // mouse repulsion
+                if (mouse.x !== null) {
+                    const dx   = this.x - mouse.x;
+                    const dy   = this.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 110 && dist > 0) {
+                        const force = (110 - dist) / 110;
+                        this.x += (dx / dist) * force * 1.8;
+                        this.y += (dy / dist) * force * 1.8;
+                    }
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(168,85,247,0.55)';
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            const count = Math.floor((canvas.width * canvas.height) / 14000);
+            for (let i = 0; i < Math.min(count, 90); i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function drawLines() {
+            const maxDist = 130;
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx   = particles[i].x - particles[j].x;
+                    const dy   = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < maxDist) {
+                        const alpha = (1 - dist / maxDist) * 0.22;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(168,85,247,${alpha})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        let raf;
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawLines();
+            particles.forEach(p => { p.update(); p.draw(); });
+            raf = requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => { resize(); init(); });
+
+        canvas.parentElement.addEventListener('mousemove', e => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+        canvas.parentElement.addEventListener('mouseleave', () => {
+            mouse.x = null; mouse.y = null;
+        });
+
+        resize();
+        init();
+        animate();
+
+        /* ── SCROLL REVEAL ── */
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        // Section headings
+        document.querySelectorAll('#projects .section-eyebrow, #projects .section-heading, #achievements .section-eyebrow, #achievements .section-heading, #certifications .section-eyebrow, #certifications .section-heading, #skills .section-eyebrow, #skills .section-heading').forEach(el => {
+            el.classList.add('reveal');
+            revealObs.observe(el);
+        });
+
+        // Project cards — stagger
+        document.querySelectorAll('.project-card').forEach((el, i) => {
+            el.classList.add('reveal');
+            el.style.transitionDelay = `${(i % 4) * 80}ms`;
+            revealObs.observe(el);
+        });
+
+        // Achievement cards — stagger
+        document.querySelectorAll('.ach-card').forEach((el, i) => {
+            el.classList.add('reveal');
+            el.style.transitionDelay = `${(i % 2) * 90}ms`;
+            revealObs.observe(el);
+        });
+
+        // Cert cards — stagger
+        document.querySelectorAll('.cert-card').forEach((el, i) => {
+            el.classList.add('reveal');
+            el.style.transitionDelay = `${i * 80}ms`;
+            revealObs.observe(el);
+        });
+
+        // Skill chips — stagger
+        document.querySelectorAll('.skill-chip').forEach((el, i) => {
+            el.classList.add('reveal');
+            el.style.transitionDelay = `${i * 40}ms`;
+            revealObs.observe(el);
+        });
+
+        // Achievement image lightbox
+        const achLb = document.getElementById('achLb');
+        const achLbImg = document.getElementById('achLbImg');
+        document.querySelectorAll('.ach-img img').forEach(img => {
+            img.addEventListener('click', () => { achLbImg.src = img.src; achLb.classList.add('open'); });
+        });
+        achLb.addEventListener('click', () => achLb.classList.remove('open'));
+        document.querySelectorAll('.cert-img img').forEach(img => {
+            img.addEventListener('click', () => { achLbImg.src = img.src; achLb.classList.add('open'); });
+        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') achLb.classList.remove('open'); });
+    </script>
+</body>
+</html>

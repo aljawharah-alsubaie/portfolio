@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Attack Risk Prediction — Aljawharah Alsubaie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg:           #09090f;
+            --surface:      #111118;
+            --surface-2:    #17171f;
+            --border:       rgba(168, 85, 247, 0.18);
+            --purple:       #a855f7;
+            --orange:       #f97316;
+            --text:         #ffffff;
+            --text-mid:     rgba(255,255,255,0.72);
+            --text-dim:     rgba(255,255,255,0.42);
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center;
+            padding: 0 60px; height: 64px;
+            background: rgba(9,9,15,0.85); backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(168,85,247,0.08);
+        }
+        .back-link {
+            display: flex; align-items: center; gap: 8px;
+            color: var(--text-dim); text-decoration: none;
+            font-size: 14px; font-weight: 500; transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--orange); }
+
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 60px; }
+
+        /* HERO */
+        .hero { text-align: center; padding: 80px 0 56px; position: relative; overflow: hidden; animation: fadeUp 0.7s ease; }
+        .hero-glow {
+            position: absolute; pointer-events: none; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+            top: -100px; left: 50%; transform: translateX(-50%);
+        }
+        .hero-badge {
+            display: inline-block; padding: 6px 18px;
+            background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.22);
+            border-radius: 20px; font-size: 12px; font-weight: 600; color: #fb923c;
+            margin-bottom: 24px; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .project-title { font-size: 48px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 18px; }
+        .title-hi {
+            background: linear-gradient(135deg, #f97316, #fbbf24);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .project-subtitle { font-size: 17px; color: var(--text-mid); max-width: 600px; margin: 0 auto 28px; line-height: 1.75; }
+        .project-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .tag {
+            padding: 6px 16px; background: rgba(249,115,22,0.07);
+            border: 1px solid rgba(249,115,22,0.2); border-radius: 20px;
+            font-size: 12px; color: #fb923c; font-weight: 600;
+        }
+
+        /* SECTIONS */
+        .section { padding: 52px 0; border-top: 1px solid rgba(168,85,247,0.08); }
+        .section-label { font-size: 11px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .section-title { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
+        .section-text { font-size: 15px; color: var(--text-mid); line-height: 1.8; }
+
+        /* ROLE BOX */
+        .role-box {
+            border-left: 3px solid rgba(249,115,22,0.5);
+            padding: 16px 20px; margin-top: 28px;
+            background: rgba(249,115,22,0.04); border-radius: 0 12px 12px 0;
+        }
+        .role-title { font-size: 11px; font-weight: 700; color: #fb923c; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+        .role-text { font-size: 14px; color: var(--text-mid); line-height: 1.65; }
+
+        /* RESULTS STATS */
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px; }
+        .stat-box {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 14px; padding: 24px 20px; text-align: center; transition: all 0.3s;
+        }
+        .stat-box:hover { border-color: rgba(249,115,22,0.4); transform: translateY(-3px); }
+        .stat-num {
+            font-size: 32px; font-weight: 900; letter-spacing: -1px; display: block; margin-bottom: 4px;
+            background: linear-gradient(135deg, #f97316, #fbbf24);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .stat-label { font-size: 12px; color: var(--text-dim); font-weight: 500; }
+
+        /* ANALYSIS CARDS — screenshot top, text below */
+        .analysis-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
+        .analysis-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden; transition: all 0.3s;
+        }
+        .analysis-card:hover { border-color: rgba(249,115,22,0.45); transform: translateY(-4px); box-shadow: 0 14px 36px rgba(249,115,22,0.1); }
+
+        .ac-shot {
+            aspect-ratio: 16/9;
+            background: linear-gradient(145deg, #1e1208 0%, #110a04 100%);
+            overflow: hidden; border-bottom: 1px solid var(--border);
+            position: relative; display: flex; align-items: center; justify-content: center;
+        }
+        .ac-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.4s ease; cursor: zoom-in; z-index: 1; }
+        .ac-shot::after {
+            content: '';
+            position: absolute; bottom: 9px; right: 9px; z-index: 2;
+            width: 28px; height: 28px; border-radius: 7px;
+            background: rgba(0,0,0,0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M3 3h7v2H5v5H3V3zm11 0h7v7h-2V5h-5V3zM3 14h2v5h5v2H3v-7zm16 5h-5v2h7v-7h-2v5z'/%3E%3C/svg%3E") center/14px 14px no-repeat;
+            backdrop-filter: blur(4px);
+            opacity: 1; pointer-events: none;
+        }
+
+        .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); backdrop-filter: blur(10px); align-items: center; justify-content: center; cursor: zoom-out; }
+        .lightbox.open { display: flex; }
+        .lightbox-img { max-width: 90vw; max-height: 88vh; border-radius: 14px; box-shadow: 0 32px 80px rgba(0,0,0,0.7); animation: lb-in 0.22s ease; }
+        @keyframes lb-in { from { opacity:0; transform:scale(0.93); } to { opacity:1; transform:scale(1); } }
+        .analysis-card:hover .ac-shot img { transform: scale(1.04); }
+        .ac-shot-label { font-size: 11px; font-weight: 500; color: rgba(249,115,22,0.3); letter-spacing: 1px; text-transform: uppercase; }
+
+        .ac-body { padding: 18px 20px 20px; }
+        .ac-badge {
+            display: inline-block; padding: 3px 10px; margin-bottom: 10px;
+            background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.2);
+            border-radius: 20px; font-size: 11px; font-weight: 600; color: #fb923c;
+        }
+        .ac-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .ac-desc { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
+
+        /* TECH CHIPS */
+        .tech-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+        .tech-chip {
+            padding: 8px 18px; background: var(--surface); border: 1px solid var(--border);
+            border-radius: 24px; font-size: 13px; font-weight: 500; color: var(--text-mid); transition: all 0.2s;
+        }
+        .tech-chip:hover { border-color: rgba(249,115,22,0.4); color: var(--text); background: rgba(249,115,22,0.06); }
+
+        .page-footer { text-align: center; padding: 60px 0 48px; border-top: 1px solid rgba(168,85,247,0.08); }
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 26px; background: var(--surface); border: 1px solid var(--border);
+            border-radius: 24px; color: var(--text-mid); text-decoration: none;
+            font-size: 14px; font-weight: 600; transition: all 0.2s;
+        }
+        .back-btn:hover { border-color: rgba(249,115,22,0.4); color: var(--orange); }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+            .container { padding: 0 24px; }
+            .project-title { font-size: 34px; }
+            .stats-row { grid-template-columns: 1fr 1fr; }
+            .analysis-grid { grid-template-columns: 1fr; }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        /* ── SCROLL REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+    </nav>
+
+    <div class="container">
+
+        <header class="hero">
+            <div class="hero-glow"></div>
+<h1 class="project-title">
+                Heart Attack<br><span class="title-hi">Risk Prediction</span>
+            </h1>
+            <p class="project-subtitle">
+                A data mining project applying K-means clustering and classification to predict heart attack risk from medical and lifestyle data — supporting early detection in healthcare.
+            </p>
+            <div class="project-tags">
+                <span class="tag">Data Mining</span>
+                <span class="tag">K-means Clustering</span>
+                <span class="tag">Classification</span>
+                <span class="tag">Python</span>
+                <span class="tag">Healthcare</span>
+            </div>
+        </header>
+
+        <!-- OVERVIEW -->
+        <section class="section">
+            <p class="section-label">Overview</p>
+            <h2 class="section-title">What was built?</h2>
+            <p class="section-text">
+                Using a dataset with medical attributes — age, cholesterol levels, blood pressure, heart rate, and diabetes status — this project applied two core data mining techniques: <strong style="color:#fb923c">classification</strong> to identify individuals at high risk of heart attack, and <strong style="color:#fb923c">K-means clustering</strong> to group patients with similar health profiles and reveal hidden patterns. The result supports data-driven decision-making for early risk detection.
+            </p>
+            <div class="role-box">
+                <p class="role-title">My Contribution</p>
+                <p class="role-text">Applied K-means clustering and classification algorithms, performed data preprocessing, built visualizations to communicate risk distribution, and contributed to the final research report.</p>
+            </div>
+        </section>
+
+        <!-- ANALYSIS -->
+        <section class="section">
+            <p class="section-label">Analysis</p>
+            <h2 class="section-title">Key Results</h2>
+            <div class="analysis-grid">
+
+                <div class="analysis-card">
+                    <div class="ac-shot">
+                        <img src="images\heart-clustering.jpg" alt="Clustering Analysis">
+                        <span class="ac-shot-label">Screenshot</span>
+                    </div>
+                    <div class="ac-body">
+                        <span class="ac-badge">K-means Clustering</span>
+                        <h3 class="ac-title">Patient Clustering Analysis</h3>
+                        <p class="ac-desc">K-means applied to group patients with similar health characteristics, revealing distinct risk clusters and shared patterns among high-risk individuals.</p>
+                    </div>
+                </div>
+
+                <div class="analysis-card">
+                    <div class="ac-shot">
+                        <img src="images\heart-visualization.jpg" alt="Data Visualization">
+                        <span class="ac-shot-label">Screenshot</span>
+                    </div>
+                    <div class="ac-body">
+                        <span class="ac-badge">Data Visualization</span>
+                        <h3 class="ac-title">Risk Distribution &amp; Demographics</h3>
+                        <p class="ac-desc">Visual analysis of heart attack risk across age groups, cholesterol levels, and lifestyle factors — making patterns interpretable for healthcare decision-making.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TOOLS -->
+        <section class="section">
+            <p class="section-label">Built With</p>
+            <h2 class="section-title">Tools &amp; Skills</h2>
+            <div class="tech-chips">
+                <span class="tech-chip">Python</span>
+                <span class="tech-chip">Google Colab</span>
+                <span class="tech-chip">K-means Clustering</span>
+                <span class="tech-chip">Classification</span>
+                <span class="tech-chip">Data Visualization</span>
+                <span class="tech-chip">Data Preprocessing</span>
+                <span class="tech-chip">Pandas</span>
+                <span class="tech-chip">Matplotlib</span>
+                <span class="tech-chip">Research &amp; Report Writing</span>
+            </div>
+        </section>
+
+        <div class="page-footer">
+            <a href="index.html" class="back-btn">← Back to Portfolio</a>
+        </div>
+
+    </div>
+
+    <div class="lightbox" id="lb"><img class="lightbox-img" id="lbImg" src="" alt=""></div>
+    <script>
+        const lb = document.getElementById('lb');
+        const lbImg = document.getElementById('lbImg');
+        document.querySelectorAll('.ac-shot img').forEach(img => {
+            img.addEventListener('click', () => { lbImg.src = img.src; lb.classList.add('open'); });
+        });
+        lb.addEventListener('click', () => lb.classList.remove('open'));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+    </script>
+    <script>
+        (function() {
+            const obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.section-label, .section-title').forEach(function(el) {
+                el.classList.add('reveal'); obs.observe(el);
+            });
+
+            document.querySelectorAll('.feature-card, .del-card, .vuln-card, .analysis-card, .stat-box, .info-box, .role-box').forEach(function(el, i) {
+                el.classList.add('reveal');
+                el.style.transitionDelay = (i % 3) * 85 + 'ms';
+                obs.observe(el);
+            });
+
+            document.querySelectorAll('.tech-chip, .skill-chip').forEach(function(el, i) {
+                el.classList.add('reveal');
+                el.style.transitionDelay = i * 38 + 'ms';
+                obs.observe(el);
+            });
+        })();
+    </script>
+</body>
+</html>
