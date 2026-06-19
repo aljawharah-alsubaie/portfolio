@@ -186,7 +186,7 @@
             nav { padding: 0 24px; }
             .container { padding: 0 24px; }
             .project-title { font-size: 38px; }
-            .glasses-frame img { height: 240px; }
+            .glasses-frame img { height: auto; }
         }
 
         @keyframes fadeUp {
@@ -228,7 +228,10 @@
             <h2 class="section-title reveal">Designed for Simplicity</h2>
             <p class="section-text reveal">Munir pairs a Flutter mobile app with the Omi Glass Dev Kit — a lightweight smart glasses platform built around the ESP32-S3 with an integrated camera, microphone, and Bluetooth 5.0. Connect once and everything runs hands-free.</p>
             <div class="glasses-frame reveal">
-                <img src="images/munir-glasses.jpg" alt="Munir Smart Glasses — Omi Glass Dev Kit">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="images/image.png">
+                    <img src="images/munir-glasses.jpg" alt="Munir Smart Glasses — Omi Glass Dev Kit">
+                </picture>
             </div>
         </section>
 
