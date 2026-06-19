@@ -354,7 +354,7 @@
         .proj-devices-wrap {
             position: relative; z-index: 2;
             height: 280px; flex-shrink: 0;
-            overflow: visible; margin-bottom: -40px;
+            overflow: visible; margin-bottom: -36px;
         }
         .proj-bg-blue    { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #1a3870 0%, #0e1f45 55%, #090f22 100%); }
         .proj-bg-emerald { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #1a4038 0%, #0c2520 55%, #071814 100%); }
@@ -363,16 +363,10 @@
         .proj-bg-indigo  { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #2a2660 0%, #1a1635 55%, #0d0b22 100%); }
         .proj-bg-rose    { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #4a1824 0%, #2a0e14 55%, #180609 100%); }
         .proj-bg-orange  { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #4a2510 0%, #2a1508 55%, #180b04 100%); }
-        .proj-devices-wrap .devices-scene { transform: translateY(-8px); }
-        .proj-devices-wrap::after {
-            content: ''; position: absolute;
-            bottom: -40px; left: 0; right: 0; height: 80px; z-index: 4;
-            background: linear-gradient(to bottom, transparent 0%, rgba(8,4,18,0.85) 100%);
-            pointer-events: none;
-        }
+        .proj-devices-wrap .devices-scene { transform: translateY(20px); }
         .proj-content {
             position: relative; z-index: 1;
-            padding: 50px 20px 22px;
+            padding: 18px 20px 22px;
             background: rgba(8,4,18,0.85);
         }
         .proj-title { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 5px; }
@@ -389,8 +383,8 @@
         .proj-card:hover .proj-cta { background: rgba(168,85,247,0.32); border-color: rgba(168,85,247,0.6); }
         @media (max-width: 768px) {
             .proj-card { grid-column: 1 / -1; }
-            .proj-devices-wrap { height: 240px; margin-bottom: -32px; }
-            .proj-content { padding: 42px 16px 18px; }
+            .proj-devices-wrap { height: 240px; margin-bottom: -28px; }
+            .proj-content { padding: 18px 16px 18px; }
             .proj-title { font-size: 15px; }
         }
 
