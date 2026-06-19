@@ -1282,7 +1282,7 @@
         });
 
         // Project cards — stagger
-        document.querySelectorAll('.project-card').forEach((el, i) => {
+        document.querySelectorAll('.project-card, .proj-card').forEach((el, i) => {
             el.classList.add('reveal');
             el.style.transitionDelay = `${(i % 4) * 80}ms`;
             revealObs.observe(el);
