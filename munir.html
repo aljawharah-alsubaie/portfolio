@@ -77,7 +77,7 @@
 
         /* FEATURE CARDS — 3D FLIP */
         .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
-        .feat-card { height: 310px; perspective: 1200px; cursor: pointer; }
+        .feat-card { height: 260px; perspective: 1200px; cursor: pointer; }
         .feat-card-inner {
             position: relative; width: 100%; height: 100%;
             transform-style: preserve-3d;
@@ -85,9 +85,9 @@
         }
         .feat-card.open .feat-card-inner { transform: rotateY(180deg); }
         .feat-front, .feat-back {
-            position: absolute; inset: 0;
+            position: absolute; inset: 0; overflow: hidden;
             backface-visibility: hidden; -webkit-backface-visibility: hidden;
-            border-radius: 18px; padding: 22px;
+            border-radius: 18px; padding: 20px;
             background: var(--surface); border: 1px solid var(--border);
             display: flex; flex-direction: column;
             transition: border-color 0.3s, box-shadow 0.3s;
@@ -96,33 +96,40 @@
         .feat-card:hover .feat-back { border-color: var(--border-hover); box-shadow: 0 8px 28px rgba(168,85,247,0.12); }
         .feat-back { transform: rotateY(180deg); background: var(--surface-2); }
         .feat-icon {
-            width: 42px; height: 42px; border-radius: 12px;
-            background: linear-gradient(135deg, rgba(168,85,247,0.25), rgba(99,102,241,0.25));
+            width: 40px; height: 40px; border-radius: 11px; flex-shrink: 0;
+            background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(99,102,241,0.2));
             border: 1px solid rgba(168,85,247,0.25);
             display: flex; align-items: center; justify-content: center;
-            font-size: 20px; margin-bottom: 14px; flex-shrink: 0;
+            margin-bottom: 12px;
         }
-        .feat-title { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 7px; }
-        .feat-brief { font-size: 13px; color: var(--text-dim); line-height: 1.55; flex: 1; }
+        .feat-icon svg { width: 18px; height: 18px; }
+        .feat-title { font-size: 14px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+        .feat-powered-front {
+            display: inline-block; margin-bottom: 7px;
+            padding: 2px 9px; border-radius: 20px;
+            background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2);
+            font-size: 9px; font-weight: 700; color: #c084fc; letter-spacing: 0.3px;
+            flex-shrink: 0; align-self: flex-start; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+        }
+        .feat-brief { font-size: 12px; color: var(--text-dim); line-height: 1.5; flex: 1; }
         .feat-tap {
             display: inline-flex; align-items: center; gap: 5px;
-            margin-top: auto; padding: 7px 14px; align-self: flex-start;
+            margin-top: 12px; padding: 6px 13px; align-self: flex-start; flex-shrink: 0;
             background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.18);
-            border-radius: 20px; font-size: 11px; font-weight: 700;
+            border-radius: 20px; font-size: 10px; font-weight: 700;
             color: #c084fc; letter-spacing: 0.5px; text-transform: uppercase;
         }
-        .feat-powered {
-            display: inline-block; margin-bottom: 9px;
-            padding: 3px 10px; border-radius: 20px;
-            background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.22);
-            font-size: 10px; font-weight: 700; color: #c084fc; letter-spacing: 0.4px;
-            flex-shrink: 0;
-        }
-        .feat-back-title { font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 10px; flex-shrink: 0; }
-        .feat-list { list-style: none; display: flex; flex-direction: column; gap: 7px; flex: 1; }
-        .feat-list li { display: flex; gap: 7px; font-size: 11.5px; color: var(--text-mid); line-height: 1.5; }
-        .feat-list li::before { content: '·'; color: var(--purple); font-size: 15px; font-weight: 900; flex-shrink: 0; line-height: 1.3; }
-        .feat-back-hint { margin-top: auto; padding-top: 10px; border-top: 1px solid rgba(168,85,247,0.1); font-size: 10px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; flex-shrink: 0; }
+        .feat-back-title { font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 8px; flex-shrink: 0; }
+        .feat-back-sub { font-size: 9px; font-weight: 700; color: #c084fc; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; flex-shrink: 0; }
+        .feat-list { list-style: none; display: flex; flex-direction: column; gap: 6px; flex: 1; overflow-y: auto; min-height: 0; }
+        .feat-list::-webkit-scrollbar { width: 3px; }
+        .feat-list::-webkit-scrollbar-track { background: transparent; }
+        .feat-list::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 2px; }
+        .feat-list li { display: flex; gap: 7px; font-size: 11px; color: var(--text-mid); line-height: 1.5; }
+        .feat-list li::before { content: '·'; color: var(--purple); font-size: 14px; font-weight: 900; flex-shrink: 0; line-height: 1.35; }
+        .feat-back-hint { padding-top: 8px; border-top: 1px solid rgba(168,85,247,0.1); font-size: 9px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; flex-shrink: 0; margin-top: 8px; }
+        @media (max-width: 1024px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 540px)  { .features-grid { grid-template-columns: repeat(2, 1fr); } .feat-card { height: 240px; } }
 
         /* ARCHITECTURE DIAGRAM */
         .arch-diagram {
@@ -188,14 +195,10 @@
         }
         .back-btn:hover { border-color: var(--border-hover); color: var(--purple); }
 
-        @media (max-width: 1024px) {
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
-        }
         @media (max-width: 768px) {
             nav { padding: 0 24px; }
             .container { padding: 0 24px; }
             .project-title { font-size: 38px; }
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
             .glasses-frame img { height: 240px; }
         }
 
@@ -249,17 +252,19 @@
             <p class="section-text reveal">Every feature is triggered by a button press on the glasses or a voice command — tap a card to flip it and see the full details.</p>
             <div class="features-grid">
 
+                <!-- Face Recognition -->
                 <div class="feat-card reveal" onclick="this.classList.toggle('open')">
                     <div class="feat-card-inner">
                         <div class="feat-front">
-                            <div class="feat-icon">&#128100;</div>
+                            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
                             <div class="feat-title">Face Recognition</div>
-                            <div class="feat-powered">InsightFace · On-Device</div>
+                            <div class="feat-powered-front">InsightFace &middot; On-Device</div>
                             <div class="feat-brief">Identify familiar people instantly to make interactions warmer.</div>
                             <div class="feat-tap">Tap for Details &#8250;</div>
                         </div>
                         <div class="feat-back">
                             <div class="feat-back-title">Face Recognition</div>
+                            <div class="feat-back-sub">InsightFace &middot; On-Device</div>
                             <ul class="feat-list">
                                 <li>Register the faces of people you know by taking or uploading their photo.</li>
                                 <li>Whenever Munir sees them, it announces their name aloud instantly.</li>
@@ -273,14 +278,15 @@
                 <div class="feat-card reveal" onclick="this.classList.toggle('open')">
                     <div class="feat-card-inner">
                         <div class="feat-front">
-                            <div class="feat-icon">&#128196;</div>
+                            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></div>
                             <div class="feat-title">Text Reading</div>
-                            <div class="feat-powered">Google Cloud Vision API</div>
+                            <div class="feat-powered-front">Google Cloud Vision API</div>
                             <div class="feat-brief">Read books, street signs, and product labels aloud.</div>
                             <div class="feat-tap">Tap for Details &#8250;</div>
                         </div>
                         <div class="feat-back">
                             <div class="feat-back-title">Text Reading</div>
+                            <div class="feat-back-sub">Google Cloud Vision API</div>
                             <ul class="feat-list">
                                 <li>Point the camera at anything with text and Munir reads it aloud.</li>
                                 <li>Books, street signs, menus, product labels, and handwritten notes.</li>
@@ -294,14 +300,15 @@
                 <div class="feat-card reveal" onclick="this.classList.toggle('open')">
                     <div class="feat-card-inner">
                         <div class="feat-front">
-                            <div class="feat-icon">&#128181;</div>
+                            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></div>
                             <div class="feat-title">Currency Recognition</div>
-                            <div class="feat-powered">YOLOv8 + MobileNetV2 + SVM · On-Device</div>
+                            <div class="feat-powered-front">YOLOv8 &middot; On-Device</div>
                             <div class="feat-brief">Recognize Saudi Riyal notes for confident transactions.</div>
                             <div class="feat-tap">Tap for Details &#8250;</div>
                         </div>
                         <div class="feat-back">
                             <div class="feat-back-title">Currency Recognition</div>
+                            <div class="feat-back-sub">YOLOv8 + MobileNetV2 + SVM &middot; On-Device</div>
                             <ul class="feat-list">
                                 <li>Hold any Saudi Riyal banknote in front of the camera and Munir tells you exactly what it is.</li>
                                 <li>Even partially visible or slightly crumpled notes are recognized.</li>
@@ -315,14 +322,15 @@
                 <div class="feat-card reveal" onclick="this.classList.toggle('open')">
                     <div class="feat-card-inner">
                         <div class="feat-front">
-                            <div class="feat-icon">&#128230;</div>
+                            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
                             <div class="feat-title">Object Detection</div>
-                            <div class="feat-powered">OpenAI GPT-4o Vision</div>
+                            <div class="feat-powered-front">GPT-4o Vision</div>
                             <div class="feat-brief">Identify exactly what is in front of you in real-time.</div>
                             <div class="feat-tap">Tap for Details &#8250;</div>
                         </div>
                         <div class="feat-back">
                             <div class="feat-back-title">Object Detection</div>
+                            <div class="feat-back-sub">OpenAI GPT-4o Vision</div>
                             <ul class="feat-list">
                                 <li>Point the camera at anything in front of you.</li>
                                 <li>Munir identifies the object and its color in one clear spoken sentence.</li>
@@ -336,14 +344,15 @@
                 <div class="feat-card reveal" onclick="this.classList.toggle('open')">
                     <div class="feat-card-inner">
                         <div class="feat-front">
-                            <div class="feat-icon">&#128065;</div>
+                            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
                             <div class="feat-title">Scene Description</div>
-                            <div class="feat-powered">OpenAI GPT-4o Vision</div>
+                            <div class="feat-powered-front">GPT-4o Vision</div>
                             <div class="feat-brief">Get a comprehensive spoken overview of your surroundings.</div>
                             <div class="feat-tap">Tap for Details &#8250;</div>
                         </div>
                         <div class="feat-back">
                             <div class="feat-back-title">Scene Description</div>
+                            <div class="feat-back-sub">OpenAI GPT-4o Vision</div>
                             <ul class="feat-list">
                                 <li>Instead of a single object, scene description gives you the full picture.</li>
                                 <li>Munir describes your surroundings spatially — what is to your left, right, nearby, and far away.</li>
@@ -356,14 +365,15 @@
                 <div class="feat-card reveal" onclick="this.classList.toggle('open')">
                     <div class="feat-card-inner">
                         <div class="feat-front">
-                            <div class="feat-icon">&#128276;</div>
+                            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
                             <div class="feat-title">Reminder Feature</div>
-                            <div class="feat-powered">Firebase Cloud Messaging</div>
+                            <div class="feat-powered-front">Firebase Cloud Messaging</div>
                             <div class="feat-brief">Set reminders for medications and daily tasks.</div>
                             <div class="feat-tap">Tap for Details &#8250;</div>
                         </div>
                         <div class="feat-back">
                             <div class="feat-back-title">Reminder Feature</div>
+                            <div class="feat-back-sub">Firebase Cloud Messaging</div>
                             <ul class="feat-list">
                                 <li>Create reminders by voice prompt or type them manually.</li>
                                 <li>When the time comes, Munir speaks the reminder aloud.</li>
@@ -377,14 +387,15 @@
                 <div class="feat-card reveal" onclick="this.classList.toggle('open')">
                     <div class="feat-card-inner">
                         <div class="feat-front">
-                            <div class="feat-icon">&#128737;</div>
+                            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
                             <div class="feat-title">Emergency Support</div>
-                            <div class="feat-powered">Google Maps API · SMS</div>
+                            <div class="feat-powered-front">Google Maps &middot; SMS</div>
                             <div class="feat-brief">Quick access to help, providing peace of mind to loved ones.</div>
                             <div class="feat-tap">Tap for Details &#8250;</div>
                         </div>
                         <div class="feat-back">
                             <div class="feat-back-title">Emergency Support</div>
+                            <div class="feat-back-sub">Google Maps API &middot; SMS</div>
                             <ul class="feat-list">
                                 <li>One tap on the SOS button sends an emergency SMS to every saved contact.</li>
                                 <li>Includes your live GPS location attached to the message.</li>
@@ -398,14 +409,15 @@
                 <div class="feat-card reveal" onclick="this.classList.toggle('open')">
                     <div class="feat-card-inner">
                         <div class="feat-front">
-                            <div class="feat-icon">&#129405;</div>
+                            <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="15" r="3"/><circle cx="18" cy="15" r="3"/><path d="M3 15c0 0 0-6 9-6s9 6 9 6M9 15h6"/></svg></div>
                             <div class="feat-title">Smart Glasses</div>
-                            <div class="feat-powered">Bluetooth LE · ESP32-S3</div>
+                            <div class="feat-powered-front">Bluetooth LE &middot; ESP32-S3</div>
                             <div class="feat-brief">Phone app and smart glasses working seamlessly together.</div>
                             <div class="feat-tap">Tap for Details &#8250;</div>
                         </div>
                         <div class="feat-back">
                             <div class="feat-back-title">Smart Glasses</div>
+                            <div class="feat-back-sub">Bluetooth LE &middot; ESP32-S3</div>
                             <ul class="feat-list">
                                 <li>Connect once via Bluetooth — process commands without touching the phone.</li>
                                 <li>Press the physical button on the glasses to trigger features instantly.</li>
