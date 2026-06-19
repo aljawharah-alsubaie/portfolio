@@ -224,7 +224,7 @@
         }
 
         /* ── Phone — iPhone-style ── */
-        .dev-phone { width: 118px; position: absolute; }
+        .dev-phone { width: 155px; position: absolute; }
         .dev-phone-shell {
             background: linear-gradient(145deg, #2c2c2c 0%, #0d0d0d 60%, #1c1c1c 100%);
             border-radius: 36px;
@@ -254,13 +254,13 @@
             background: rgba(255,255,255,0.3); border-radius: 2px;
             z-index: 5;
         }
-        .dev-phone-left   { z-index: 1; opacity: 0.7; width: 100px; animation: float-ph-l 3.6s ease-in-out infinite; }
+        .dev-phone-left   { z-index: 1; opacity: 0.7; width: 130px; animation: float-ph-l 3.6s ease-in-out infinite; }
         .dev-phone-center { z-index: 3;              animation: float-ph-c 3.6s ease-in-out infinite 0.45s; }
-        .dev-phone-right  { z-index: 1; opacity: 0.7; width: 100px; animation: float-ph-r 3.6s ease-in-out infinite 0.9s; }
+        .dev-phone-right  { z-index: 1; opacity: 0.7; width: 130px; animation: float-ph-r 3.6s ease-in-out infinite 0.9s; }
 
         /* ── Browser Window (2 per card) ── */
         .dev-browser {
-            width: 210px; position: absolute;
+            width: 270px; position: absolute;
             border-radius: 9px; overflow: hidden;
             border: 1.5px solid rgba(255,255,255,0.22);
             box-shadow: 0 24px 56px rgba(0,0,0,0.72);
@@ -353,8 +353,15 @@
         }
         .proj-devices-wrap {
             position: relative; z-index: 1;
-            height: 230px; flex-shrink: 0;
+            height: 280px; flex-shrink: 0;
         }
+        .proj-bg-blue    { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #1a3870 0%, #0e1f45 55%, #090f22 100%); }
+        .proj-bg-emerald { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #1a4038 0%, #0c2520 55%, #071814 100%); }
+        .proj-bg-amber   { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #4a3010 0%, #2a1c08 55%, #160e04 100%); }
+        .proj-bg-cyan    { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #103a50 0%, #082535 55%, #041418 100%); }
+        .proj-bg-indigo  { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #2a2660 0%, #1a1635 55%, #0d0b22 100%); }
+        .proj-bg-rose    { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #4a1824 0%, #2a0e14 55%, #180609 100%); }
+        .proj-bg-orange  { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, #4a2510 0%, #2a1508 55%, #180b04 100%); }
         .proj-devices-wrap .devices-scene { transform: translateY(-8px); }
         .proj-devices-wrap::after {
             content: ''; position: absolute;
@@ -381,7 +388,7 @@
         .proj-card:hover .proj-cta { background: rgba(168,85,247,0.32); border-color: rgba(168,85,247,0.6); }
         @media (max-width: 768px) {
             .proj-card { grid-column: 1 / -1; }
-            .proj-devices-wrap { height: 200px; }
+            .proj-devices-wrap { height: 240px; }
             .proj-content { padding: 14px 16px 18px; }
             .proj-title { font-size: 15px; }
         }
@@ -617,13 +624,13 @@
             footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
 
             /* Shrink device frames on mobile */
-            .dev-phone { width: 54px; }
-            .dev-phone-left, .dev-phone-right { width: 44px; }
+            .dev-phone { width: 80px; }
+            .dev-phone-left, .dev-phone-right { width: 65px; }
             .dev-phone-shell { border-radius: 17px; padding: 3px; }
             .dev-phone-inner { border-radius: 15px; }
             .dev-phone-notch { height: 11px; width: 38%; border-radius: 0 0 8px 8px; }
             .dev-phone-bar { bottom: 3px; height: 3px; width: 32%; }
-            .dev-browser { width: 100px; }
+            .dev-browser { width: 135px; }
             .dev-browser-chrome { padding: 5px 6px; gap: 4px; }
             .dev-browser-dot { width: 5px; height: 5px; }
             .dev-browser-bar { height: 9px; }
@@ -727,204 +734,121 @@
             </a>
 
             <!-- Face Recognition -->
-            <a href="face-recognition-model.html" class="project-card c-blue">
-                <div class="card-cover">
+            <a href="face-recognition-model.html" class="proj-card reveal">
+                <div class="proj-bg-blue"></div>
+                <div class="proj-devices-wrap">
                     <div class="devices-scene">
-                        <div class="dev-browser dev-browser-back">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/face-comparison.jpg" alt="Model Comparison Chart"></div>
-                        </div>
-                        <div class="dev-browser dev-browser-front">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/face-roc.jpg" alt="ROC Curve"></div>
-                        </div>
+                        <div class="dev-browser dev-browser-back"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/face-comparison.jpg" alt="Model Comparison"></div></div>
+                        <div class="dev-browser dev-browser-front"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/face-roc.jpg" alt="ROC Curve"></div></div>
                     </div>
                 </div>
-                <div class="card-bar">
-                    <span class="card-bar-name">Face Recognition Model</span>
-                </div>
-                <div class="card-hover">
-                    <h3 class="ch-title">Face Recognition Model</h3>
-                    <p class="ch-desc">Custom-trained model using ArcFace + SVM, achieving 97.98% accuracy on 32,400 images — built for real-world assistive use.</p>
-                    <div class="ch-tags">
-                        <span class="ch-tag">Deep Learning</span>
-                        <span class="ch-tag">ArcFace</span>
-                        <span class="ch-tag">Python</span>
-                    </div>
-                    <span class="ch-cta">View Project →</span>
+                <div class="proj-content">
+                    <h3 class="proj-title">Face Recognition Model</h3>
+                    <p class="proj-desc">Custom-trained model using ArcFace + SVM, achieving 97.98% accuracy on 32,400 images — built for real-world assistive use.</p>
+                    <div class="proj-tags"><span class="proj-tag">Deep Learning</span><span class="proj-tag">ArcFace</span><span class="proj-tag">Python</span></div>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
             <!-- Currency -->
-            <a href="currency-recognition-model.html" class="project-card c-emerald">
-                <div class="card-cover">
+            <a href="currency-recognition-model.html" class="proj-card reveal">
+                <div class="proj-bg-emerald"></div>
+                <div class="proj-devices-wrap">
                     <div class="devices-scene">
-                        <div class="dev-browser dev-browser-back">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/currency-confusion.jpg" alt="Confusion Matrix"></div>
-                        </div>
-                        <div class="dev-browser dev-browser-front">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/currency-paper.jpg" alt="Published Paper"></div>
-                        </div>
+                        <div class="dev-browser dev-browser-back"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/currency-confusion.jpg" alt="Confusion Matrix"></div></div>
+                        <div class="dev-browser dev-browser-front"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/currency-paper.jpg" alt="Published Paper"></div></div>
                     </div>
                 </div>
-                <div class="card-bar">
-                    <span class="card-bar-name">Saudi Currency Recognition</span>
-                </div>
-                <div class="card-hover">
-                    <h3 class="ch-title">Saudi Currency Recognition</h3>
-                    <p class="ch-desc">Published hybrid framework (YOLOv8 + MobileNetV2 + SVM-RBF) achieving 98.16% accuracy across all 7 Saudi Riyal denominations in 32.57ms.</p>
-                    <div class="ch-tags">
-                        <span class="ch-tag">Transfer Learning</span>
-                        <span class="ch-tag">MobileNetV2</span>
-                        <span class="ch-tag">Mobile ML</span>
-                    </div>
-                    <span class="ch-cta">View Project →</span>
+                <div class="proj-content">
+                    <h3 class="proj-title">Saudi Currency Recognition</h3>
+                    <p class="proj-desc">Published hybrid framework (YOLOv8 + MobileNetV2 + SVM-RBF) achieving 98.16% accuracy across all 7 Saudi Riyal denominations in 32.57ms.</p>
+                    <div class="proj-tags"><span class="proj-tag">Transfer Learning</span><span class="proj-tag">MobileNetV2</span><span class="proj-tag">Mobile ML</span></div>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
             <!-- Mehar -->
-            <a href="mehar.html" class="project-card c-amber">
-                <div class="card-cover">
+            <a href="mehar.html" class="proj-card reveal">
+                <div class="proj-bg-amber"></div>
+                <div class="proj-devices-wrap">
                     <div class="devices-scene">
-                        <div class="dev-browser dev-browser-back">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/mehar-search.jpg" alt="Mehar Search"></div>
-                        </div>
-                        <div class="dev-browser dev-browser-front">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/mehar-homepage.jpg" alt="Mehar Homepage"></div>
-                        </div>
+                        <div class="dev-browser dev-browser-back"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/mehar-search.jpg" alt="Mehar Search"></div></div>
+                        <div class="dev-browser dev-browser-front"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/mehar-homepage.jpg" alt="Mehar Homepage"></div></div>
                     </div>
                 </div>
-                <div class="card-bar">
-                    <span class="card-bar-name">Mehar Platform</span>
-                </div>
-                <div class="card-hover">
-                    <h3 class="ch-title">Mehar Platform</h3>
-                    <p class="ch-desc">Full-stack workshop booking platform with personalized recommendations, community features, and booking management for arts &amp; experiences.</p>
-                    <div class="ch-tags">
-                        <span class="ch-tag">Full-Stack</span>
-                        <span class="ch-tag">PHP / MySQL</span>
-                        <span class="ch-tag">E-Commerce</span>
-                    </div>
-                    <span class="ch-cta">View Project →</span>
+                <div class="proj-content">
+                    <h3 class="proj-title">Mehar Platform</h3>
+                    <p class="proj-desc">Full-stack workshop booking platform with personalized recommendations, community features, and booking management for arts &amp; experiences.</p>
+                    <div class="proj-tags"><span class="proj-tag">Full-Stack</span><span class="proj-tag">PHP / MySQL</span><span class="proj-tag">E-Commerce</span></div>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
             <!-- Game -->
-            <a href="game.html" class="project-card c-cyan">
-                <div class="card-cover">
+            <a href="game.html" class="proj-card reveal">
+                <div class="proj-bg-cyan"></div>
+                <div class="proj-devices-wrap">
                     <div class="devices-scene">
-                        <div class="dev-browser dev-browser-back">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/network2.png" alt="Game Screen 2"></div>
-                        </div>
-                        <div class="dev-browser dev-browser-front">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/network1.png" alt="Game Screen 1"></div>
-                        </div>
+                        <div class="dev-browser dev-browser-back"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/network2.png" alt="Game Screen 2"></div></div>
+                        <div class="dev-browser dev-browser-front"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/network1.png" alt="Game Screen 1"></div></div>
                     </div>
                 </div>
-                <div class="card-bar">
-                    <span class="card-bar-name">Find Differences Game</span>
-                </div>
-                <div class="card-hover">
-                    <h3 class="ch-title">Find Differences Game</h3>
-                    <p class="ch-desc">Real-time multiplayer networked game with Java sockets, waiting room system, and live scoring — up to 4 players simultaneously.</p>
-                    <div class="ch-tags">
-                        <span class="ch-tag">Java</span>
-                        <span class="ch-tag">Networking</span>
-                        <span class="ch-tag">Socket Programming</span>
-                    </div>
-                    <span class="ch-cta">View Project →</span>
+                <div class="proj-content">
+                    <h3 class="proj-title">Find Differences Game</h3>
+                    <p class="proj-desc">Real-time multiplayer networked game with Java sockets, waiting room system, and live scoring — up to 4 players simultaneously.</p>
+                    <div class="proj-tags"><span class="proj-tag">Java</span><span class="proj-tag">Networking</span><span class="proj-tag">Socket Programming</span></div>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
             <!-- Dreamverse -->
-            <a href="dreamverse.html" class="project-card c-indigo">
-                <div class="card-cover">
+            <a href="dreamverse.html" class="proj-card reveal">
+                <div class="proj-bg-indigo"></div>
+                <div class="proj-devices-wrap">
                     <div class="devices-scene">
-                        <div class="dev-browser dev-browser-back">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/dreamverse-gantt.jpg" alt="Dreamverse Gantt"></div>
-                        </div>
-                        <div class="dev-browser dev-browser-front">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/dreamverse-wbs.jpg" alt="Dreamverse WBS"></div>
-                        </div>
+                        <div class="dev-browser dev-browser-back"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/dreamverse-gantt.jpg" alt="Dreamverse Gantt"></div></div>
+                        <div class="dev-browser dev-browser-front"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/dreamverse-wbs.jpg" alt="Dreamverse WBS"></div></div>
                     </div>
                 </div>
-                <div class="card-bar">
-                    <span class="card-bar-name">Dreamverse</span>
-                </div>
-                <div class="card-hover">
-                    <h3 class="ch-title">Dreamverse</h3>
-                    <p class="ch-desc">IT Project Management plan for a conceptual AI-driven smart sleep capsule — full WBS, Gantt charts, network diagrams, and task scheduling.</p>
-                    <div class="ch-tags">
-                        <span class="ch-tag">Project Management</span>
-                        <span class="ch-tag">AI Concept</span>
-                    </div>
-                    <span class="ch-cta">View Project →</span>
+                <div class="proj-content">
+                    <h3 class="proj-title">Dreamverse</h3>
+                    <p class="proj-desc">IT Project Management plan for a conceptual AI-driven smart sleep capsule — full WBS, Gantt charts, network diagrams, and task scheduling.</p>
+                    <div class="proj-tags"><span class="proj-tag">Project Management</span><span class="proj-tag">AI Concept</span></div>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
             <!-- Diva Security -->
-            <a href="diva.html" class="project-card c-rose">
-                <div class="card-cover">
+            <a href="diva.html" class="proj-card reveal">
+                <div class="proj-bg-rose"></div>
+                <div class="proj-devices-wrap">
                     <div class="devices-scene">
-                        <div class="dev-browser dev-browser-back">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/diva-overview.jpg" alt="Diva Overview"></div>
-                        </div>
-                        <div class="dev-browser dev-browser-front">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/diva-insecure-storage.jpg" alt="Diva Storage"></div>
-                        </div>
+                        <div class="dev-browser dev-browser-back"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/diva-overview.jpg" alt="Diva Overview"></div></div>
+                        <div class="dev-browser dev-browser-front"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/diva-insecure-storage.jpg" alt="Diva Storage"></div></div>
                     </div>
                 </div>
-                <div class="card-bar">
-                    <span class="card-bar-name">Mobile App Security Assessment</span>
-                </div>
-                <div class="card-hover">
-                    <h3 class="ch-title">Mobile App Security Assessment</h3>
-                    <p class="ch-desc">Hands-on penetration test of the Diva Android app — reverse engineering, vulnerability analysis, and security reporting using JADX, MobSF, ADB, and Ghidra.</p>
-                    <div class="ch-tags">
-                        <span class="ch-tag">Cybersecurity</span>
-                        <span class="ch-tag">Penetration Testing</span>
-                        <span class="ch-tag">OWASP</span>
-                    </div>
-                    <span class="ch-cta">View Project →</span>
+                <div class="proj-content">
+                    <h3 class="proj-title">Mobile App Security Assessment</h3>
+                    <p class="proj-desc">Hands-on penetration test of the Diva Android app — reverse engineering, vulnerability analysis, and security reporting using JADX, MobSF, ADB, and Ghidra.</p>
+                    <div class="proj-tags"><span class="proj-tag">Cybersecurity</span><span class="proj-tag">Penetration Testing</span><span class="proj-tag">OWASP</span></div>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
             <!-- Heart Attack Risk Prediction -->
-            <a href="heart-attack.html" class="project-card c-orange">
-                <div class="card-cover">
+            <a href="heart-attack.html" class="proj-card reveal">
+                <div class="proj-bg-orange"></div>
+                <div class="proj-devices-wrap">
                     <div class="devices-scene">
-                        <div class="dev-browser dev-browser-back">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/heart-visualization.jpg" alt="Heart Visualization"></div>
-                        </div>
-                        <div class="dev-browser dev-browser-front">
-                            <div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div>
-                            <div class="dev-browser-screen"><img src="images/heart-clustering.jpg" alt="Heart Clustering"></div>
-                        </div>
+                        <div class="dev-browser dev-browser-back"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/heart-visualization.jpg" alt="Heart Visualization"></div></div>
+                        <div class="dev-browser dev-browser-front"><div class="dev-browser-chrome"><div class="dev-browser-dots"><div class="dev-browser-dot dot-r"></div><div class="dev-browser-dot dot-y"></div><div class="dev-browser-dot dot-g"></div></div><div class="dev-browser-bar"></div></div><div class="dev-browser-screen"><img src="images/heart-clustering.jpg" alt="Heart Clustering"></div></div>
                     </div>
                 </div>
-                <div class="card-bar">
-                    <span class="card-bar-name">Heart Attack Risk Prediction</span>
-                </div>
-                <div class="card-hover">
-                    <h3 class="ch-title">Heart Attack Risk Prediction</h3>
-                    <p class="ch-desc">Data mining project using K-means clustering and classification to predict heart attack risk from medical and lifestyle data.</p>
-                    <div class="ch-tags">
-                        <span class="ch-tag">Data Mining</span>
-                        <span class="ch-tag">K-means</span>
-                        <span class="ch-tag">Python</span>
-                    </div>
-                    <span class="ch-cta">View Project →</span>
+                <div class="proj-content">
+                    <h3 class="proj-title">Heart Attack Risk Prediction</h3>
+                    <p class="proj-desc">Data mining project using K-means clustering and classification to predict heart attack risk from medical and lifestyle data.</p>
+                    <div class="proj-tags"><span class="proj-tag">Data Mining</span><span class="proj-tag">K-means</span><span class="proj-tag">Python</span></div>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
