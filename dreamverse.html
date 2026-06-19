@@ -16,7 +16,7 @@
             --border:       rgba(168, 85, 247, 0.18);
             --border-hover: rgba(168, 85, 247, 0.55);
             --purple:       #a855f7;
-            --indigo:       #6366f1;
+            --pink:         #d97fa8;
             --text:         #ffffff;
             --text-mid:     rgba(255,255,255,0.72);
             --text-dim:     rgba(255,255,255,0.42);
@@ -37,7 +37,7 @@
             color: var(--text-dim); text-decoration: none;
             font-size: 14px; font-weight: 500; transition: color 0.2s;
         }
-        .back-link:hover { color: var(--indigo); }
+        .back-link:hover { color: var(--pink); }
 
         .container { max-width: 1080px; margin: 0 auto; padding: 0 60px; }
 
@@ -45,41 +45,41 @@
         .hero { text-align: center; padding: 80px 0 56px; position: relative; overflow: hidden; animation: fadeUp 0.7s ease; }
         .hero-glow {
             position: absolute; pointer-events: none; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(99,102,241,0.09) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(217,127,168,0.09) 0%, transparent 70%);
             top: -100px; left: 50%; transform: translateX(-50%);
         }
         .hero-badge {
             display: inline-block; padding: 6px 18px;
-            background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.22);
-            border-radius: 20px; font-size: 12px; font-weight: 600; color: #818cf8;
+            background: rgba(217,127,168,0.08); border: 1px solid rgba(217,127,168,0.22);
+            border-radius: 20px; font-size: 12px; font-weight: 600; color: #d97fa8;
             margin-bottom: 24px; letter-spacing: 1px; text-transform: uppercase;
         }
         .project-title { font-size: 54px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.08; margin-bottom: 18px; }
         .title-hi {
-            background: linear-gradient(135deg, #818cf8, #a78bfa);
+            background: linear-gradient(135deg, #d97fa8, #f0aeca);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
         .project-subtitle { font-size: 17px; color: var(--text-mid); max-width: 600px; margin: 0 auto 28px; line-height: 1.75; }
         .project-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
         .tag {
-            padding: 6px 16px; background: rgba(99,102,241,0.08);
-            border: 1px solid rgba(99,102,241,0.2); border-radius: 20px;
-            font-size: 12px; color: #818cf8; font-weight: 600;
+            padding: 6px 16px; background: rgba(217,127,168,0.08);
+            border: 1px solid rgba(217,127,168,0.2); border-radius: 20px;
+            font-size: 12px; color: #d97fa8; font-weight: 600;
         }
 
         /* SECTIONS */
         .section { padding: 52px 0; border-top: 1px solid rgba(168,85,247,0.08); }
-        .section-label { font-size: 11px; font-weight: 700; color: var(--indigo); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .section-label { font-size: 11px; font-weight: 700; color: var(--pink); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
         .section-title { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
         .section-text { font-size: 15px; color: var(--text-mid); line-height: 1.8; }
 
         /* ROLE BOX */
         .role-box {
-            border-left: 3px solid rgba(99,102,241,0.55);
+            border-left: 3px solid rgba(217,127,168,0.55);
             padding: 16px 20px; margin-top: 28px;
-            background: rgba(99,102,241,0.04); border-radius: 0 12px 12px 0;
+            background: rgba(217,127,168,0.04); border-radius: 0 12px 12px 0;
         }
-        .role-title { font-size: 11px; font-weight: 700; color: #818cf8; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+        .role-title { font-size: 11px; font-weight: 700; color: #d97fa8; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
         .role-text { font-size: 14px; color: var(--text-mid); line-height: 1.65; }
 
         /* DELIVERABLE CARDS — screenshot top, text below */
@@ -88,11 +88,11 @@
             background: var(--surface); border: 1px solid var(--border);
             border-radius: 16px; overflow: hidden; transition: all 0.3s;
         }
-        .del-card:hover { border-color: rgba(99,102,241,0.5); transform: translateY(-4px); box-shadow: 0 14px 36px rgba(99,102,241,0.12); }
+        .del-card:hover { border-color: rgba(217,127,168,0.5); transform: translateY(-4px); box-shadow: 0 14px 36px rgba(217,127,168,0.12); }
 
         .del-shot {
             aspect-ratio: 16/9;
-            background: linear-gradient(145deg, #14122a 0%, #0d0b1e 100%);
+            background: linear-gradient(145deg, #200d18 0%, #130810 100%);
             overflow: hidden; border-bottom: 1px solid var(--border);
             display: flex; align-items: center; justify-content: center; position: relative;
         }
@@ -111,13 +111,13 @@
         .lightbox-img { max-width: 90vw; max-height: 88vh; border-radius: 14px; box-shadow: 0 32px 80px rgba(0,0,0,0.7); animation: lb-in 0.22s ease; }
         @keyframes lb-in { from { opacity:0; transform:scale(0.93); } to { opacity:1; transform:scale(1); } }
         .del-card:hover .del-shot img { transform: scale(1.04); }
-        .del-shot-label { font-size: 11px; font-weight: 500; color: rgba(99,102,241,0.3); letter-spacing: 1px; text-transform: uppercase; }
+        .del-shot-label { font-size: 11px; font-weight: 500; color: rgba(217,127,168,0.3); letter-spacing: 1px; text-transform: uppercase; }
 
         .del-body { padding: 18px 20px 20px; }
         .del-badge {
             display: inline-block; padding: 3px 10px; margin-bottom: 10px;
-            background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.18);
-            border-radius: 20px; font-size: 11px; font-weight: 600; color: #818cf8;
+            background: rgba(217,127,168,0.08); border: 1px solid rgba(217,127,168,0.18);
+            border-radius: 20px; font-size: 11px; font-weight: 600; color: #d97fa8;
         }
         .del-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
         .del-desc { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
@@ -128,7 +128,7 @@
             padding: 8px 18px; background: var(--surface); border: 1px solid var(--border);
             border-radius: 24px; font-size: 13px; font-weight: 500; color: var(--text-mid); transition: all 0.2s;
         }
-        .skill-chip:hover { border-color: rgba(99,102,241,0.5); color: var(--text); background: rgba(99,102,241,0.07); }
+        .skill-chip:hover { border-color: rgba(217,127,168,0.5); color: var(--text); background: rgba(217,127,168,0.07); }
 
         .page-footer { text-align: center; padding: 60px 0 48px; border-top: 1px solid rgba(168,85,247,0.08); }
         .back-btn {
@@ -137,7 +137,7 @@
             border-radius: 24px; color: var(--text-mid); text-decoration: none;
             font-size: 14px; font-weight: 600; transition: all 0.2s;
         }
-        .back-btn:hover { border-color: rgba(99,102,241,0.5); color: var(--indigo); }
+        .back-btn:hover { border-color: rgba(217,127,168,0.5); color: var(--pink); }
 
         @media (max-width: 768px) {
             nav { padding: 0 24px; }
@@ -184,7 +184,7 @@
             <p class="section-label">About</p>
             <h2 class="section-title">What is Dreamverse?</h2>
             <p class="section-text">
-                Dreamverse is a conceptual AI-driven system that combines a mobile application with a smart sleep capsule. Users select the type of dream they want to experience — adventurous journeys, thrilling escapes, futuristic science-fiction worlds, or personal moments recreated from memory. This project focused entirely on the <strong style="color:#818cf8">planning phase</strong>: defining scope, gathering requirements, and producing structured project management artifacts across multiple phases.
+                Dreamverse is a conceptual AI-driven system that combines a mobile application with a smart sleep capsule. Users select the type of dream they want to experience — adventurous journeys, thrilling escapes, futuristic science-fiction worlds, or personal moments recreated from memory. This project focused entirely on the <strong style="color:#d97fa8">planning phase</strong>: defining scope, gathering requirements, and producing structured project management artifacts across multiple phases.
             </p>
             <div class="role-box">
                 <p class="role-title">My Role — Project Manager</p>
