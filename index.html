@@ -1379,7 +1379,7 @@
         }, { threshold: 0.12 });
 
         // Section headings
-        document.querySelectorAll('#projects .section-eyebrow, #projects .section-heading, #achievements .section-eyebrow, #achievements .section-heading, #certifications .section-eyebrow, #certifications .section-heading, #skills .section-eyebrow, #skills .section-heading').forEach(el => {
+        document.querySelectorAll('#projects .section-eyebrow, #projects .section-heading, #achievements .section-eyebrow, #achievements .section-heading, #certifications .section-eyebrow, #certifications .section-heading, #skills .section-eyebrow, #skills .section-heading, #contact .section-eyebrow, #contact .section-heading, #contact .contact-sub').forEach(el => {
             el.classList.add('reveal');
             revealObs.observe(el);
         });
@@ -1406,9 +1406,15 @@
         });
 
         // Skill chips — stagger
-        document.querySelectorAll('.skill-chip').forEach((el, i) => {
+        document.querySelectorAll('.sk-chip').forEach((el, i) => {
             el.classList.add('reveal');
-            el.style.transitionDelay = `${i * 40}ms`;
+            el.style.transitionDelay = `${i * 30}ms`;
+            revealObs.observe(el);
+        });
+
+        // Contact cards — stagger
+        document.querySelectorAll('.contact-card').forEach((el, i) => {
+            el.style.transitionDelay = `${i * 100}ms`;
             revealObs.observe(el);
         });
 
