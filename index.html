@@ -339,6 +339,49 @@
         }
         .ch-cta:hover { opacity: 0.85; }
 
+        /* ── NEW PROJECT CARD (full-width style) ── */
+        .proj-card {
+            grid-column: 1 / -1;
+            position: relative; display: block; text-decoration: none;
+            border-radius: 24px; overflow: hidden;
+            height: 440px;
+            border: 1px solid rgba(168,85,247,0.15);
+            transition: border-color 0.35s;
+        }
+        .proj-card:hover { border-color: rgba(168,85,247,0.45); }
+        .proj-bg-purple {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, #1a0f2e 0%, #0e0b1a 60%, #13111e 100%);
+        }
+        .proj-devices-wrap {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            padding-bottom: 160px;
+        }
+        .proj-content {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 28px 32px 26px;
+            background: linear-gradient(to top, rgba(10,7,20,1) 0%, rgba(10,7,20,0.92) 55%, transparent 100%);
+        }
+        .proj-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 5px; }
+        .proj-desc  { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 12px; }
+        .proj-tags  { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+        .proj-tag   { padding: 3px 11px; border-radius: 20px; font-size: 11px; font-weight: 600; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.25); color: #c084fc; }
+        .proj-cta   {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 13px; font-weight: 600; color: #fff;
+            padding: 8px 20px; border-radius: 20px;
+            background: rgba(168,85,247,0.18); border: 1px solid rgba(168,85,247,0.35);
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .proj-card:hover .proj-cta { background: rgba(168,85,247,0.32); border-color: rgba(168,85,247,0.6); }
+        @media (max-width: 768px) {
+            .proj-card { height: 360px; }
+            .proj-content { padding: 22px 20px 20px; }
+            .proj-title { font-size: 18px; }
+            .proj-devices-wrap { padding-bottom: 180px; }
+        }
+
         /* ── SKILLS ── */
         .skills {
             padding: 80px 60px;
@@ -657,27 +700,25 @@
         <div class="projects-grid">
 
             <!-- Munir -->
-            <a href="munir.html" class="project-card c-purple">
-                <div class="card-cover">
+            <a href="munir.html" class="proj-card reveal">
+                <div class="proj-bg-purple"></div>
+                <div class="proj-devices-wrap">
                     <div class="devices-scene">
                         <div class="dev-phone dev-phone-left"><div class="dev-phone-shell"><div class="dev-phone-inner"><div class="dev-phone-screen"><img src="images/munir-left.jpg" alt="Munir feature screen"></div><div class="dev-phone-notch"></div><div class="dev-phone-bar"></div></div></div></div>
                         <div class="dev-phone dev-phone-right"><div class="dev-phone-shell"><div class="dev-phone-inner"><div class="dev-phone-screen"><img src="images/munir-right.jpg" alt="Munir feature screen"></div><div class="dev-phone-notch"></div><div class="dev-phone-bar"></div></div></div></div>
                         <div class="dev-phone dev-phone-center"><div class="dev-phone-shell"><div class="dev-phone-inner"><div class="dev-phone-screen"><img src="images/munir-center.jpg" alt="Munir home screen"></div><div class="dev-phone-notch"></div><div class="dev-phone-bar"></div></div></div></div>
                     </div>
                 </div>
-                <div class="card-bar">
-                    <span class="card-bar-name">Munir APP</span>
-                </div>
-                <div class="card-hover">
-                    <h3 class="ch-title">Munir APP</h3>
-                    <p class="ch-desc">AI-powered assistive app for visually impaired users — recognizes faces, reads text, identifies currency, and speaks it all aloud.</p>
-                    <div class="ch-tags">
-                        <span class="ch-tag">AI/ML</span>
-                        <span class="ch-tag">Flutter</span>
-                        <span class="ch-tag">Firebase</span>
-                        <span class="ch-tag">Accessibility</span>
+                <div class="proj-content">
+                    <h3 class="proj-title">Munir APP</h3>
+                    <p class="proj-desc">AI-powered assistive app for visually impaired users — recognizes faces, reads text, identifies currency, and speaks it all aloud.</p>
+                    <div class="proj-tags">
+                        <span class="proj-tag">AI/ML</span>
+                        <span class="proj-tag">Flutter</span>
+                        <span class="proj-tag">Firebase</span>
+                        <span class="proj-tag">Accessibility</span>
                     </div>
-                    <span class="ch-cta">View Project →</span>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
