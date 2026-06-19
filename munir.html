@@ -108,11 +108,11 @@
         .feat-tap { padding-top: 8px; border-top: 1px solid rgba(168,85,247,0.1); font-size: 9px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; flex-shrink: 0; margin-top: 8px; }
         .feat-back-title { font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 8px; flex-shrink: 0; }
         .feat-back-sub { font-size: 9px; font-weight: 700; color: #c084fc; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; flex-shrink: 0; }
-        .feat-list { list-style: none; display: flex; flex-direction: column; gap: 6px; flex: 1; overflow-y: auto; min-height: 0; }
+        .feat-list { list-style: none; display: flex; flex-direction: column; gap: 6px; flex: 1; overflow-y: auto; min-height: 0; direction: rtl; }
         .feat-list::-webkit-scrollbar { width: 3px; }
         .feat-list::-webkit-scrollbar-track { background: transparent; }
         .feat-list::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 2px; }
-        .feat-list li { display: flex; gap: 7px; font-size: 11px; color: var(--text-mid); line-height: 1.5; }
+        .feat-list li { display: flex; gap: 7px; font-size: 11px; color: var(--text-mid); line-height: 1.5; direction: ltr; }
         .feat-list li::before { content: '·'; color: var(--purple); font-size: 14px; font-weight: 900; flex-shrink: 0; line-height: 1.35; }
         .feat-back-hint { padding-top: 8px; border-top: 1px solid rgba(168,85,247,0.1); font-size: 9px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; flex-shrink: 0; margin-top: 8px; }
         @media (max-width: 1024px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
