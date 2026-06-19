@@ -422,17 +422,36 @@
 
         /* ── SKILLS ── */
         .skills {
-            padding: 80px 60px;
+            padding: 64px 60px;
             border-top: 1px solid rgba(168,85,247,0.08);
         }
-        .skills-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-        .skill-chip {
-            padding: 9px 18px; background: var(--surface);
-            border: 1px solid var(--border); border-radius: 32px;
-            font-size: 13px; font-weight: 500; color: var(--text-mid);
-            transition: all 0.2s; cursor: default;
+        .sk-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 28px;
         }
-        .skill-chip:hover { border-color: var(--border-hover); color: var(--text); background: rgba(168,85,247,0.08); }
+        .sk-cat {
+            background: rgba(168,85,247,0.04);
+            border: 1px solid rgba(168,85,247,0.12);
+            border-radius: 14px;
+            padding: 14px 16px;
+        }
+        .sk-cat-name {
+            display: block;
+            font-size: 10px; font-weight: 700; color: #a855f7;
+            text-transform: uppercase; letter-spacing: 1.8px;
+            margin-bottom: 10px;
+        }
+        .sk-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+        .sk-chip {
+            padding: 3px 10px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            font-size: 11px; font-weight: 500;
+            color: rgba(255,255,255,0.7);
+        }
 
         /* ── CERTIFICATIONS ── */
         .certifications {
@@ -647,7 +666,8 @@
             .project-card { height: 240px; }
             .card-bar { opacity: 1 !important; }
             .card-hover { display: none !important; }
-            .skills { padding: 60px 24px; }
+            .skills { padding: 48px 24px; }
+            .sk-grid { grid-template-columns: 1fr; }
             footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
 
             /* Shrink device frames on mobile */
@@ -1061,49 +1081,82 @@
 
     <!-- SKILLS -->
     <section class="skills" id="skills">
-        <p class="section-eyebrow">Tech Stack</p>
-        <h2 class="section-heading">Skills</h2>
-        <div class="skills-chips">
-            <!-- Languages & Frameworks -->
-            <span class="skill-chip">Python</span>
-            <span class="skill-chip">Java</span>
-            <span class="skill-chip">PHP</span>
-            <span class="skill-chip">HTML / CSS / JS</span>
-            <span class="skill-chip">Flutter</span>
-            <span class="skill-chip">Java Swing</span>
-            <!-- AI & ML -->
-            <span class="skill-chip">Machine Learning</span>
-            <span class="skill-chip">Deep Learning</span>
-            <span class="skill-chip">Computer Vision</span>
-            <span class="skill-chip">TensorFlow / Keras</span>
-            <span class="skill-chip">Transfer Learning</span>
-            <span class="skill-chip">MobileNetV2</span>
-            <span class="skill-chip">Data Mining</span>
-            <span class="skill-chip">Generative AI</span>
-            <span class="skill-chip">Pandas</span>
-            <span class="skill-chip">NumPy</span>
-            <span class="skill-chip">Matplotlib</span>
-            <!-- Data & Backend -->
-            <span class="skill-chip">MySQL</span>
-            <span class="skill-chip">Firebase</span>
-            <span class="skill-chip">REST APIs</span>
-            <span class="skill-chip">Socket Programming</span>
-            <!-- Cybersecurity -->
-            <span class="skill-chip">Penetration Testing</span>
-            <span class="skill-chip">Reverse Engineering</span>
-            <span class="skill-chip">Android Security</span>
-            <span class="skill-chip">OWASP MSTG</span>
-            <span class="skill-chip">JADX / MobSF</span>
-            <!-- Design & PM -->
-            <span class="skill-chip">UI/UX Design</span>
-            <span class="skill-chip">Figma</span>
-            <span class="skill-chip">Project Management</span>
-            <span class="skill-chip">Agile / Scrum</span>
-            <span class="skill-chip">Jira</span>
-            <!-- Tools -->
-            <span class="skill-chip">Git</span>
-            <span class="skill-chip">Linux</span>
-            <span class="skill-chip">Google Colab</span>
+        <p class="section-eyebrow">Expertise</p>
+        <h2 class="section-heading">Technical Skills</h2>
+        <div class="sk-grid">
+
+            <div class="sk-cat">
+                <span class="sk-cat-name">AI / ML</span>
+                <div class="sk-chips">
+                    <span class="sk-chip">Machine Learning</span>
+                    <span class="sk-chip">Deep Learning</span>
+                    <span class="sk-chip">Computer Vision</span>
+                    <span class="sk-chip">TensorFlow / Keras</span>
+                    <span class="sk-chip">Transfer Learning</span>
+                    <span class="sk-chip">MobileNetV2</span>
+                    <span class="sk-chip">Data Mining</span>
+                    <span class="sk-chip">Generative AI</span>
+                    <span class="sk-chip">Pandas</span>
+                    <span class="sk-chip">NumPy</span>
+                    <span class="sk-chip">Matplotlib</span>
+                </div>
+            </div>
+
+            <div class="sk-cat">
+                <span class="sk-cat-name">Development</span>
+                <div class="sk-chips">
+                    <span class="sk-chip">Python</span>
+                    <span class="sk-chip">Java</span>
+                    <span class="sk-chip">PHP</span>
+                    <span class="sk-chip">HTML / CSS / JS</span>
+                    <span class="sk-chip">Flutter</span>
+                    <span class="sk-chip">Java Swing</span>
+                </div>
+            </div>
+
+            <div class="sk-cat">
+                <span class="sk-cat-name">Backend & Data</span>
+                <div class="sk-chips">
+                    <span class="sk-chip">MySQL</span>
+                    <span class="sk-chip">Firebase</span>
+                    <span class="sk-chip">REST APIs</span>
+                    <span class="sk-chip">Socket Programming</span>
+                </div>
+            </div>
+
+            <div class="sk-cat">
+                <span class="sk-cat-name">Cybersecurity</span>
+                <div class="sk-chips">
+                    <span class="sk-chip">Penetration Testing</span>
+                    <span class="sk-chip">Reverse Engineering</span>
+                    <span class="sk-chip">Android Security</span>
+                    <span class="sk-chip">OWASP MSTG</span>
+                    <span class="sk-chip">JADX / MobSF</span>
+                </div>
+            </div>
+
+            <div class="sk-cat">
+                <span class="sk-cat-name">Design & PM</span>
+                <div class="sk-chips">
+                    <span class="sk-chip">UI/UX Design</span>
+                    <span class="sk-chip">Figma</span>
+                    <span class="sk-chip">Project Management</span>
+                    <span class="sk-chip">Agile / Scrum</span>
+                    <span class="sk-chip">Jira</span>
+                </div>
+            </div>
+
+            <div class="sk-cat">
+                <span class="sk-cat-name">Tools</span>
+                <div class="sk-chips">
+                    <span class="sk-chip">Git</span>
+                    <span class="sk-chip">Linux</span>
+                    <span class="sk-chip">Google Colab</span>
+                    <span class="sk-chip">VS Code</span>
+                    <span class="sk-chip">Postman</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
