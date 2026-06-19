@@ -35,11 +35,20 @@
         /* ── NAV ── */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            display: flex; align-items: center; justify-content: flex-end;
+            display: flex; align-items: center; justify-content: space-between;
             padding: 0 60px; height: 66px;
             background: rgba(9,9,15,0.82);
             backdrop-filter: blur(18px);
             border-bottom: 1px solid rgba(168,85,247,0.08);
+        }
+        .nav-brand {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; flex-shrink: 0;
+        }
+        .nav-brand img { width: 32px; height: 32px; object-fit: contain; }
+        .nav-brand-name {
+            font-size: 15px; font-weight: 700; color: var(--text);
+            letter-spacing: -0.3px;
         }
 
         .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
@@ -537,8 +546,10 @@
             .projects-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
-            nav { padding: 0 24px; justify-content: center; }
+            nav { padding: 0 24px; justify-content: space-between; }
             .nav-links li:not(:last-child) { display: none; }
+            .nav-brand-name { font-size: 14px; }
+            .nav-brand img { width: 28px; height: 28px; }
             .hero {
                 grid-template-columns: 1fr; padding: 100px 24px 60px;
                 row-gap: 24px; text-align: center;
@@ -593,6 +604,10 @@
 
     <!-- NAV -->
     <nav>
+        <a href="#" class="nav-brand">
+            <img src="images/logo.png" alt="Logo">
+            <span class="nav-brand-name">Aljawharah</span>
+        </a>
         <ul class="nav-links">
             <li><a href="#projects">Projects</a></li>
             <li><a href="#achievements">Achievements</a></li>
