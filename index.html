@@ -343,10 +343,25 @@
         .proj-card {
             position: relative; display: flex; flex-direction: column;
             text-decoration: none; border-radius: 24px; overflow: hidden;
-            border: 1px solid rgba(168,85,247,0.15);
+            border: 1px solid rgba(255,255,255,0.08);
             transition: border-color 0.35s;
         }
-        .proj-card:hover { border-color: rgba(168,85,247,0.45); }
+        .proj-card:has(.proj-bg-purple)       { border-color: rgba(168,85,247,0.28); }
+        .proj-card:has(.proj-bg-purple):hover { border-color: rgba(168,85,247,0.65); }
+        .proj-card:has(.proj-bg-blue)         { border-color: rgba(96,165,250,0.28); }
+        .proj-card:has(.proj-bg-blue):hover   { border-color: rgba(96,165,250,0.65); }
+        .proj-card:has(.proj-bg-emerald)       { border-color: rgba(52,211,153,0.28); }
+        .proj-card:has(.proj-bg-emerald):hover { border-color: rgba(52,211,153,0.65); }
+        .proj-card:has(.proj-bg-amber)         { border-color: rgba(251,191,36,0.28); }
+        .proj-card:has(.proj-bg-amber):hover   { border-color: rgba(251,191,36,0.65); }
+        .proj-card:has(.proj-bg-cyan)          { border-color: rgba(34,211,238,0.28); }
+        .proj-card:has(.proj-bg-cyan):hover    { border-color: rgba(34,211,238,0.65); }
+        .proj-card:has(.proj-bg-indigo)        { border-color: rgba(129,140,248,0.28); }
+        .proj-card:has(.proj-bg-indigo):hover  { border-color: rgba(129,140,248,0.65); }
+        .proj-card:has(.proj-bg-rose)          { border-color: rgba(251,113,133,0.28); }
+        .proj-card:has(.proj-bg-rose):hover    { border-color: rgba(251,113,133,0.65); }
+        .proj-card:has(.proj-bg-orange)        { border-color: rgba(251,146,60,0.28); }
+        .proj-card:has(.proj-bg-orange):hover  { border-color: rgba(251,146,60,0.65); }
         .proj-bg-purple {
             position: absolute; inset: 0; z-index: 0;
             background: linear-gradient(160deg, #2d1054 0%, #1a0b38 55%, #0e0920 100%);
