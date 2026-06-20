@@ -210,9 +210,28 @@
         .gallery-tab:hover { border-color: var(--border-hover); color: var(--text); }
         .gallery-tab.active { background: rgba(168,85,247,0.15); border-color: var(--purple); color: var(--purple); }
 
-        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 4px; }
+        .gallery-wrap { position: relative; margin-top: 4px; }
+        .sn-btn {
+            position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+            background: rgba(9,9,15,0.92); border: 1px solid rgba(168,85,247,0.35);
+            color: #a855f7; width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s; font-size: 20px; line-height: 1;
+            backdrop-filter: blur(8px);
+        }
+        .sn-btn:hover { background: rgba(168,85,247,0.2); border-color: var(--purple); color: #fff; }
+        .sn-prev { left: -16px; }
+        .sn-next { right: -16px; }
+        .gallery-grid {
+            display: flex; gap: 10px;
+            overflow-x: auto; scroll-behavior: smooth;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+        }
+        .gallery-grid::-webkit-scrollbar { display: none; }
         .gallery-item {
-            position: relative; border-radius: 14px; overflow: hidden;
+            flex: 0 0 150px; min-width: 150px;
+            position: relative; border-radius: 12px; overflow: hidden;
             background: var(--surface); border: 1px solid var(--border);
             cursor: pointer; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
             aspect-ratio: 9 / 19.5;
@@ -272,9 +291,9 @@
         .lb-prev { left: 20px; }
         .lb-next { right: 20px; }
 
-        @media (max-width: 1024px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 640px) {
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item { flex: 0 0 110px; min-width: 110px; }
+            .sn-btn { display: none; }
             .lb-nav { display: none; }
             .lb-img-wrap img { max-width: calc(100vw - 32px); }
         }
@@ -515,7 +534,10 @@
                 <button class="gallery-tab" data-filter="account">Account</button>
             </div>
 
-            <div class="gallery-grid reveal" id="gallery-grid">
+            <div class="gallery-wrap reveal">
+                <button class="sn-btn sn-prev" id="sn-prev" aria-label="Scroll left">&#8249;</button>
+                <button class="sn-btn sn-next" id="sn-next" aria-label="Scroll right">&#8250;</button>
+            <div class="gallery-grid" id="gallery-grid">
                 <!-- AUTH -->
                 <div class="gallery-item" data-cat="auth" data-label="Welcome Screen"><img src="images/munir-s-welcome.jpg" alt="Welcome Screen" loading="lazy"></div>
                 <div class="gallery-item" data-cat="auth" data-label="Create Account"><img src="images/munir-s-create-account.jpg" alt="Create Account" loading="lazy"></div>
@@ -573,7 +595,8 @@
                 <div class="gallery-item" data-cat="account" data-label="Arabic Interface"><img src="images/munir-s-lang-arabic.jpg" alt="Arabic Interface" loading="lazy"></div>
                 <div class="gallery-item" data-cat="account" data-label="Privacy &amp; Security"><img src="images/munir-s-privacy.jpg" alt="Privacy" loading="lazy"></div>
                 <div class="gallery-item" data-cat="account" data-label="User Manual"><img src="images/munir-s-manual.jpg" alt="User Manual" loading="lazy"></div>
-            </div>
+            </div><!-- /gallery-grid -->
+            </div><!-- /gallery-wrap -->
         </section>
 
         <!-- ARCHITECTURE -->
@@ -772,6 +795,18 @@
                 if (e.key === 'ArrowLeft')   { current = (current - 1 + visible.length) % visible.length; show(); }
                 if (e.key === 'ArrowRight')  { current = (current + 1) % visible.length; show(); }
             });
+
+            var strip  = document.getElementById('gallery-grid');
+            var snPrev = document.getElementById('sn-prev');
+            var snNext = document.getElementById('sn-next');
+            if (strip && snPrev && snNext) {
+                snPrev.addEventListener('click', function() {
+                    strip.scrollBy({ left: -(strip.clientWidth * 0.75), behavior: 'smooth' });
+                });
+                snNext.addEventListener('click', function() {
+                    strip.scrollBy({ left:  strip.clientWidth * 0.75,  behavior: 'smooth' });
+                });
+            }
         })();
     </script>
 </body>
