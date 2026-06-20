@@ -228,23 +228,6 @@
         }
         .gallery-wrap.at-left::before { opacity: 1; }
         .gallery-wrap.at-end::after   { opacity: 0; }
-        .sn-btn {
-            position: absolute; top: calc(50% - 8px); transform: translateY(-50%); z-index: 10;
-            background: rgba(9,9,15,0.9); border: 1px solid rgba(168,85,247,0.4);
-            color: #a855f7; width: 36px; height: 36px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; font-size: 22px; line-height: 1;
-            backdrop-filter: blur(8px);
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.2s, background 0.2s, border-color 0.2s;
-        }
-        .sn-btn:hover { background: rgba(168,85,247,0.2); border-color: var(--purple); color: #fff; }
-        .sn-prev { left: 6px; }
-        .sn-next { right: 6px; }
-        .gallery-wrap:hover .sn-btn,
-        .gallery-wrap.arrows-on .sn-btn  { opacity: 1; pointer-events: auto; }
-        .gallery-wrap:not(.at-left) .sn-prev { opacity: 0 !important; pointer-events: none !important; }
-        .gallery-wrap.at-end .sn-next        { opacity: 0 !important; pointer-events: none !important; }
         .gallery-grid {
             display: flex; gap: 10px;
             overflow-x: auto; scroll-behavior: smooth;
@@ -306,20 +289,9 @@
             display: flex; align-items: center; justify-content: center; line-height: 1;
         }
         .lb-close:hover { background: rgba(168,85,247,0.25); border-color: var(--purple); color: #fff; }
-        .lb-nav {
-            position: fixed; top: 50%; transform: translateY(-50%);
-            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-            color: rgba(255,255,255,0.7); width: 52px; height: 52px; border-radius: 50%;
-            font-size: 28px; cursor: pointer; transition: all 0.2s;
-            display: flex; align-items: center; justify-content: center; z-index: 10000;
-        }
-        .lb-nav:hover { background: rgba(168,85,247,0.25); border-color: var(--purple); color: #fff; }
-        .lb-prev { left: 20px; }
-        .lb-next { right: 20px; }
 
         @media (max-width: 640px) {
             .gallery-item { flex: 0 0 110px; min-width: 110px; }
-            .lb-nav { display: none; }
             .lb-img-wrap img { max-width: calc(100vw - 32px); }
         }
     </style>
@@ -560,8 +532,6 @@
             </div>
 
             <div class="gallery-wrap reveal">
-                <button class="sn-btn sn-prev" id="sn-prev" aria-label="Scroll left">&#8249;</button>
-                <button class="sn-btn sn-next" id="sn-next" aria-label="Scroll right">&#8250;</button>
             <div class="gallery-grid" id="gallery-grid">
                 <!-- AUTH -->
                 <div class="gallery-item" data-cat="auth" data-label="Welcome Screen"><img src="images/munir-s-welcome.jpg" alt="Welcome Screen" loading="lazy"></div>
@@ -704,13 +674,11 @@
     <!-- LIGHTBOX -->
     <div class="lb-overlay" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
         <button class="lb-close" id="lb-close" aria-label="Close">&#x2715;</button>
-        <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous image">&#8249;</button>
         <div class="lb-img-wrap">
             <img id="lb-img" src="" alt="">
             <div class="lb-caption" id="lb-caption"></div>
             <div class="lb-counter" id="lb-counter"></div>
         </div>
-        <button class="lb-nav lb-next" id="lb-next" aria-label="Next image">&#8250;</button>
     </div>
 
     <script>
@@ -790,17 +758,6 @@
             document.getElementById('lb-close').addEventListener('click', close);
             lb.addEventListener('click', function(e) { if (e.target === lb) close(); });
 
-            document.getElementById('lb-prev').addEventListener('click', function(e) {
-                e.stopPropagation();
-                current = (current - 1 + visible.length) % visible.length;
-                show();
-            });
-            document.getElementById('lb-next').addEventListener('click', function(e) {
-                e.stopPropagation();
-                current = (current + 1) % visible.length;
-                show();
-            });
-
             // Touch swipe support
             var touchStartX = 0;
             lb.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
@@ -821,10 +778,8 @@
                 if (e.key === 'ArrowRight')  { current = (current + 1) % visible.length; show(); }
             });
 
-            var strip  = document.getElementById('gallery-grid');
-            var wrap   = strip ? strip.parentElement : null;
-            var snPrev = document.getElementById('sn-prev');
-            var snNext = document.getElementById('sn-next');
+            var strip = document.getElementById('gallery-grid');
+            var wrap  = strip ? strip.parentElement : null;
             if (strip && wrap) {
                 function updateFades() {
                     wrap.classList.toggle('at-left', strip.scrollLeft > 10);
@@ -832,20 +787,6 @@
                 }
                 strip.addEventListener('scroll', updateFades, { passive: true });
                 updateFades();
-
-                if (snPrev) snPrev.addEventListener('click', function() {
-                    strip.scrollBy({ left: -(strip.clientWidth * 0.75), behavior: 'smooth' });
-                });
-                if (snNext) snNext.addEventListener('click', function() {
-                    strip.scrollBy({ left:  strip.clientWidth * 0.75,  behavior: 'smooth' });
-                });
-
-                var arrowTimer;
-                strip.addEventListener('touchstart', function() {
-                    wrap.classList.add('arrows-on');
-                    clearTimeout(arrowTimer);
-                    arrowTimer = setTimeout(function() { wrap.classList.remove('arrows-on'); }, 2500);
-                }, { passive: true });
             }
         })();
     </script>
