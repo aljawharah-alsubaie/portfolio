@@ -211,17 +211,23 @@
         .gallery-tab.active { background: rgba(168,85,247,0.15); border-color: var(--purple); color: var(--purple); }
 
         .gallery-wrap { position: relative; margin-top: 4px; }
-        .sn-btn {
-            position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
-            background: rgba(9,9,15,0.92); border: 1px solid rgba(168,85,247,0.35);
-            color: #a855f7; width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: all 0.2s; font-size: 20px; line-height: 1;
-            backdrop-filter: blur(8px);
+        .gallery-wrap::after,
+        .gallery-wrap::before {
+            content: ''; position: absolute; top: 0; bottom: 8px;
+            width: 72px; pointer-events: none; z-index: 5;
+            transition: opacity 0.35s;
         }
-        .sn-btn:hover { background: rgba(168,85,247,0.2); border-color: var(--purple); color: #fff; }
-        .sn-prev { left: -16px; }
-        .sn-next { right: -16px; }
+        .gallery-wrap::after {
+            right: 0;
+            background: linear-gradient(to right, transparent, var(--bg));
+        }
+        .gallery-wrap::before {
+            left: 0;
+            background: linear-gradient(to left, transparent, var(--bg));
+            opacity: 0;
+        }
+        .gallery-wrap.at-left::before { opacity: 1; }
+        .gallery-wrap.at-end::after   { opacity: 0; }
         .gallery-grid {
             display: flex; gap: 10px;
             overflow-x: auto; scroll-behavior: smooth;
@@ -293,9 +299,16 @@
 
         @media (max-width: 640px) {
             .gallery-item { flex: 0 0 110px; min-width: 110px; }
-            .sn-btn { display: none; }
             .lb-nav { display: none; }
             .lb-img-wrap img { max-width: calc(100vw - 32px); }
+            .gallery-grid {
+                scrollbar-width: thin;
+                scrollbar-color: rgba(168,85,247,0.35) transparent;
+                padding-bottom: 10px;
+            }
+            .gallery-grid::-webkit-scrollbar { display: block; height: 3px; }
+            .gallery-grid::-webkit-scrollbar-track { background: transparent; }
+            .gallery-grid::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.35); border-radius: 2px; }
         }
     </style>
 </head>
@@ -535,8 +548,6 @@
             </div>
 
             <div class="gallery-wrap reveal">
-                <button class="sn-btn sn-prev" id="sn-prev" aria-label="Scroll left">&#8249;</button>
-                <button class="sn-btn sn-next" id="sn-next" aria-label="Scroll right">&#8250;</button>
             <div class="gallery-grid" id="gallery-grid">
                 <!-- AUTH -->
                 <div class="gallery-item" data-cat="auth" data-label="Welcome Screen"><img src="images/munir-s-welcome.jpg" alt="Welcome Screen" loading="lazy"></div>
@@ -796,16 +807,15 @@
                 if (e.key === 'ArrowRight')  { current = (current + 1) % visible.length; show(); }
             });
 
-            var strip  = document.getElementById('gallery-grid');
-            var snPrev = document.getElementById('sn-prev');
-            var snNext = document.getElementById('sn-next');
-            if (strip && snPrev && snNext) {
-                snPrev.addEventListener('click', function() {
-                    strip.scrollBy({ left: -(strip.clientWidth * 0.75), behavior: 'smooth' });
-                });
-                snNext.addEventListener('click', function() {
-                    strip.scrollBy({ left:  strip.clientWidth * 0.75,  behavior: 'smooth' });
-                });
+            var strip = document.getElementById('gallery-grid');
+            var wrap  = strip ? strip.parentElement : null;
+            if (strip && wrap) {
+                function updateFades() {
+                    wrap.classList.toggle('at-left', strip.scrollLeft > 10);
+                    wrap.classList.toggle('at-end',  strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 10);
+                }
+                strip.addEventListener('scroll', updateFades, { passive: true });
+                updateFades();
             }
         })();
     </script>
