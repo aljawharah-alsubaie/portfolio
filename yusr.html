@@ -128,14 +128,30 @@
         }
         .tech-chip:hover { border-color: var(--border-hover); color: var(--text); background: rgba(200,162,114,0.08); }
 
+        /* CONTEXT NOTE */
+        .context-note {
+            display: flex; align-items: flex-start; gap: 14px;
+            padding: 18px 22px; margin-top: 28px;
+            background: rgba(200,162,114,0.06);
+            border: 1px solid rgba(200,162,114,0.2);
+            border-left: 3px solid var(--brown);
+            border-radius: 0 14px 14px 0;
+        }
+        .context-note-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+        .context-note-text { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; }
+        .context-note-text strong { color: var(--brown); font-weight: 700; }
+
         /* WRISTBAND COMPONENTS */
         .device-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 28px; align-items: center; }
         .device-img-wrap {
-            border-radius: 20px; overflow: hidden; border: 1px solid var(--border);
-            background: linear-gradient(145deg, #2a1e0e 0%, #150f06 100%);
+            border-radius: 20px; overflow: hidden; border: 1px solid rgba(200,162,114,0.25);
+            background: #f0e6d6;
             aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; position: relative;
         }
-        .device-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 16px; }
+        .device-img-wrap img {
+            width: 100%; height: 100%; object-fit: contain; display: block; padding: 12px;
+            mix-blend-mode: multiply;
+        }
         .device-img-placeholder {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             gap: 10px; color: rgba(200,162,114,0.35); font-size: 12px; font-weight: 600;
@@ -257,6 +273,13 @@
             <p class="section-text">
                 Pilgrims performing Hajj and Umrah face real challenges: losing count of Tawaf and Sa&rsquo;i circuits, getting separated from family, and health risks in extreme heat. Yusr solves all of this with a single smart wristband that automatically counts rituals using AI motion sensors, tracks the pilgrim&rsquo;s real-time location via GPS and beacon technology, monitors vital signs, and provides instant SOS emergency connectivity. A companion mobile app in Arabic, English, and Urdu ties everything together.
             </p>
+            <div class="context-note">
+                <span class="context-note-icon">&#128161;</span>
+                <p class="context-note-text">
+                    <strong>About this project &mdash;</strong>
+                    Yusr was developed as a complete entrepreneurship case study for IT427 &mdash; IT Entrepreneurship &amp; Innovation at King Saud University. Our work covered the full business side: market research, competitive analysis, business model, 3-year financial projections, and a live marketing campaign that validated real demand. The wristband design and app interfaces shown here are <strong>concept visuals</strong> that illustrate the product vision &mdash; bringing the idea to life as a credible, investable startup.
+                </p>
+            </div>
         </section>
 
         <!-- WRISTBAND COMPONENTS -->
@@ -370,7 +393,7 @@
 
                 <div class="feature-card">
                     <div class="fc-shot">
-                        <img src="images/yusr-ritual-count.jpg" alt="Ritual Counting">
+                        <img src="images/yusr-app-right.jpg" alt="Ritual Counting">
                     </div>
                     <div class="fc-body">
                         <h3 class="fc-title">Automatic Ritual Counting</h3>
@@ -403,7 +426,7 @@
                         <img src="images/yusr-sos.jpg" alt="Ritual Guide">
                     </div>
                     <div class="fc-body">
-                        <h3 class="fc-title">Ritual Guide &mdash; دليل المناسك</h3>
+                        <h3 class="fc-title">Ritual Guide</h3>
                         <p class="fc-desc">Step-by-step Tawaf and Sa&rsquo;i guide with prayers for each round &mdash; so pilgrims never lose their place through all 7 circuits.</p>
                     </div>
                 </div>
