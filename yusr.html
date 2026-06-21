@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yusr â€” Aljawharah Alsubaie</title>
+    <title>Yusr &mdash; Aljawharah Alsubaie</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -17,7 +17,6 @@
             --border-hover: rgba(200, 162, 114, 0.5);
             --brown:        #c8a272;
             --brown-dark:   #8b5c32;
-
             --text:         #ffffff;
             --text-mid:     rgba(255,255,255,0.72);
             --text-dim:     rgba(255,255,255,0.42);
@@ -49,12 +48,6 @@
             background: radial-gradient(circle, rgba(200,162,114,0.07) 0%, transparent 70%);
             top: -100px; left: 50%; transform: translateX(-50%);
         }
-        .hero-badge {
-            display: inline-block; padding: 6px 18px;
-            background: rgba(200,162,114,0.08); border: 1px solid rgba(200,162,114,0.2);
-            border-radius: 20px; font-size: 12px; font-weight: 600; color: var(--brown);
-            margin-bottom: 24px; letter-spacing: 1px; text-transform: uppercase;
-        }
         .project-title { font-size: 54px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.08; margin-bottom: 18px; }
         .title-hi {
             background: linear-gradient(135deg, #c8a272, #e8c49a);
@@ -73,15 +66,6 @@
         .section-label { font-size: 11px; font-weight: 700; color: var(--brown); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
         .section-title { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
         .section-text { font-size: 15px; color: var(--text-mid); line-height: 1.8; }
-
-        /* ROLE BOX */
-        .role-box {
-            border-left: 3px solid rgba(200,162,114,0.6);
-            padding: 16px 20px; margin-top: 28px;
-            background: rgba(200,162,114,0.04); border-radius: 0 12px 12px 0;
-        }
-        .role-title { font-size: 11px; font-weight: 700; color: var(--brown); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
-        .role-text { font-size: 14px; color: var(--text-mid); line-height: 1.65; }
 
         /* FEATURE CARDS */
         .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
@@ -106,29 +90,17 @@
             position: absolute; bottom: 9px; right: 9px; z-index: 2;
             width: 28px; height: 28px; border-radius: 7px;
             background: rgba(0,0,0,0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M3 3h7v2H5v5H3V3zm11 0h7v7h-2V5h-5V3zM3 14h2v5h5v2H3v-7zm16 5h-5v2h7v-7h-2v5z'/%3E%3C/svg%3E") center/14px 14px no-repeat;
-            backdrop-filter: blur(4px);
-            opacity: 1; pointer-events: none;
+            backdrop-filter: blur(4px); pointer-events: none;
         }
-        .fc-placeholder {
-            width: 100%; height: 100%; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 8px;
-            color: rgba(200,162,114,0.3); font-size: 12px; font-weight: 600;
-            letter-spacing: 1px; text-transform: uppercase; text-align: center; padding: 16px;
-        }
-        .fc-placeholder svg { width: 32px; height: 32px; opacity: 0.4; }
+        .fc-body { padding: 18px 20px 20px; }
+        .fc-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .fc-desc { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
 
         /* Lightbox */
         .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); backdrop-filter: blur(10px); align-items: center; justify-content: center; cursor: zoom-out; }
         .lightbox.open { display: flex; }
         .lightbox-img { max-width: 90vw; max-height: 88vh; border-radius: 14px; box-shadow: 0 32px 80px rgba(0,0,0,0.7); animation: lb-in 0.22s ease; }
         @keyframes lb-in { from { opacity:0; transform:scale(0.93); } to { opacity:1; transform:scale(1); } }
-        .fc-shot-label {
-            font-size: 11px; font-weight: 500; color: rgba(200,162,114,0.3);
-            letter-spacing: 1px; text-transform: uppercase;
-        }
-        .fc-body { padding: 18px 20px 20px; }
-        .fc-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-        .fc-desc { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
 
         /* STATS GRID */
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
@@ -156,21 +128,80 @@
         }
         .tech-chip:hover { border-color: var(--border-hover); color: var(--text); background: rgba(200,162,114,0.08); }
 
-        /* LINKS */
-        .links-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
-        .ext-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 10px 22px; border-radius: 24px;
-            font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s;
+        /* WRISTBAND COMPONENTS */
+        .device-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 28px; align-items: center; }
+        .device-img-wrap {
+            border-radius: 20px; overflow: hidden; border: 1px solid var(--border);
+            background: linear-gradient(145deg, #2a1e0e 0%, #150f06 100%);
+            aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; position: relative;
         }
-        .ext-link-primary {
-            background: var(--brown); color: #09090f;
+        .device-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 16px; }
+        .device-img-placeholder {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 10px; color: rgba(200,162,114,0.35); font-size: 12px; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase; text-align: center;
+            width: 100%; height: 100%; position: absolute; inset: 0;
         }
-        .ext-link-primary:hover { opacity: 0.85; }
-        .ext-link-secondary {
-            background: var(--surface); border: 1px solid var(--border); color: var(--text-mid);
+        .device-img-placeholder svg { width: 48px; height: 48px; opacity: 0.4; }
+        .components-list { display: flex; flex-direction: column; gap: 10px; }
+        .comp-item {
+            display: flex; align-items: flex-start; gap: 14px;
+            padding: 14px 16px; border-radius: 12px;
+            background: var(--surface); border: 1px solid var(--border); transition: border-color 0.2s;
         }
-        .ext-link-secondary:hover { border-color: var(--border-hover); color: var(--brown); }
+        .comp-item:hover { border-color: var(--border-hover); }
+        .comp-num {
+            flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+            background: rgba(200,162,114,0.12); border: 1px solid rgba(200,162,114,0.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 800; color: var(--brown);
+        }
+        .comp-text { flex: 1; }
+        .comp-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+        .comp-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+
+        /* MVP: VIDEO + SITE */
+        .mvp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; align-items: start; }
+        .video-wrap {
+            position: relative; width: 100%; border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--border); background: #000; aspect-ratio: 16/9;
+        }
+        .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: block; }
+        .site-card {
+            border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+            background: var(--surface); display: flex; flex-direction: column;
+        }
+        .site-card-bar {
+            display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+            padding: 10px 14px; background: rgba(255,255,255,0.04);
+            border-bottom: 1px solid var(--border);
+        }
+        .sp-dots { display: flex; gap: 5px; }
+        .sp-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .sp-dot-r { background: rgba(255,95,87,0.6); }
+        .sp-dot-y { background: rgba(255,189,46,0.6); }
+        .sp-dot-g { background: rgba(40,202,65,0.6); }
+        .sp-url {
+            flex: 1; background: rgba(255,255,255,0.06); border-radius: 5px;
+            padding: 4px 10px; font-size: 11px; color: var(--text-dim); font-family: monospace;
+        }
+        .site-card-body { position: relative; overflow: hidden; flex: 1; aspect-ratio: 16/9; }
+        .site-card-body iframe {
+            width: 200%; height: 200%;
+            transform: scale(0.5); transform-origin: top left;
+            border: none; display: block;
+        }
+        .site-card-footer {
+            padding: 12px 14px; border-top: 1px solid var(--border);
+            display: flex; justify-content: flex-end;
+        }
+        .site-open-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 7px 16px; border-radius: 20px; text-decoration: none;
+            background: rgba(200,162,114,0.12); border: 1px solid rgba(200,162,114,0.3);
+            font-size: 12px; font-weight: 600; color: var(--brown); transition: all 0.2s;
+        }
+        .site-open-link:hover { background: rgba(200,162,114,0.22); border-color: rgba(200,162,114,0.55); }
 
         .page-footer { text-align: center; padding: 60px 0 48px; border-top: 1px solid rgba(200,162,114,0.08); }
         .back-btn {
@@ -185,111 +216,13 @@
             nav { padding: 0 24px; }
             .container { padding: 0 24px; }
             .project-title { font-size: 38px; }
-            .features-grid { grid-template-columns: 1fr; }
+            .features-grid, .device-layout, .mvp-grid, .info-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .info-grid { grid-template-columns: 1fr; }
         }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
         .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* WRISTBAND COMPONENTS */
-        .device-layout {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-            margin-top: 28px; align-items: center;
-        }
-        .device-img-wrap {
-            border-radius: 20px; overflow: hidden;
-            border: 1px solid var(--border);
-            background: linear-gradient(145deg, #2a1e0e 0%, #150f06 100%);
-            aspect-ratio: 4/3;
-            display: flex; align-items: center; justify-content: center;
-            position: relative;
-        }
-        .device-img-wrap img {
-            width: 100%; height: 100%; object-fit: contain; display: block; padding: 16px;
-        }
-        .device-img-placeholder {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 10px; color: rgba(200,162,114,0.35); font-size: 12px; font-weight: 600;
-            letter-spacing: 1px; text-transform: uppercase; text-align: center;
-        }
-        .device-img-placeholder svg { width: 48px; height: 48px; opacity: 0.4; }
-        .components-list { display: flex; flex-direction: column; gap: 10px; }
-        .comp-item {
-            display: flex; align-items: flex-start; gap: 14px;
-            padding: 14px 16px; border-radius: 12px;
-            background: var(--surface); border: 1px solid var(--border);
-            transition: border-color 0.2s;
-        }
-        .comp-item:hover { border-color: var(--border-hover); }
-        .comp-num {
-            flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
-            background: rgba(200,162,114,0.12); border: 1px solid rgba(200,162,114,0.3);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 11px; font-weight: 800; color: var(--brown);
-        }
-        .comp-text { flex: 1; }
-        .comp-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
-        .comp-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
-        @media (max-width: 768px) { .device-layout { grid-template-columns: 1fr; } }
-
-        /* VIDEO + SITE PREVIEW */
-        .mvp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; align-items: start; }
-        .video-wrap {
-            position: relative; width: 100%; border-radius: 16px; overflow: hidden;
-            border: 1px solid var(--border); background: #000;
-            aspect-ratio: 16/9;
-        }
-        .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: block; }
-        .site-preview {
-            border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
-            background: var(--surface); transition: border-color 0.3s;
-            text-decoration: none; display: block;
-        }
-        .site-preview:hover { border-color: var(--border-hover); }
-        .site-preview-bar {
-            display: flex; align-items: center; gap: 8px;
-            padding: 10px 14px; background: rgba(255,255,255,0.04);
-            border-bottom: 1px solid var(--border);
-        }
-        .sp-dots { display: flex; gap: 5px; }
-        .sp-dot { width: 8px; height: 8px; border-radius: 50%; }
-        .sp-dot-r { background: rgba(255,95,87,0.6); }
-        .sp-dot-y { background: rgba(255,189,46,0.6); }
-        .sp-dot-g { background: rgba(40,202,65,0.6); }
-        .sp-url {
-            flex: 1; background: rgba(255,255,255,0.06); border-radius: 5px;
-            padding: 4px 10px; font-size: 11px; color: var(--text-dim); font-family: monospace;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-        }
-        .site-preview-body {
-            aspect-ratio: 16/9; overflow: hidden; position: relative;
-        }
-        .site-preview-body iframe {
-            width: 200%; height: 200%; transform: scale(0.5); transform-origin: top left;
-            border: none; pointer-events: none;
-        }
-        .site-preview-overlay {
-            position: absolute; inset: 0;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 10px;
-            background: linear-gradient(160deg, #2a1e0e 0%, #150f06 100%);
-        }
-        .sp-icon { font-size: 36px; opacity: 0.7; }
-        .sp-label { font-size: 13px; color: var(--brown); font-weight: 600; }
-        .sp-url-big { font-size: 12px; color: var(--text-dim); }
-        .sp-arrow {
-            margin-top: 4px; display: inline-flex; align-items: center; gap: 6px;
-            padding: 7px 16px; border-radius: 20px;
-            background: rgba(200,162,114,0.12); border: 1px solid rgba(200,162,114,0.3);
-            font-size: 12px; font-weight: 600; color: var(--brown);
-        }
-        @media (max-width: 768px) { .mvp-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -302,12 +235,11 @@
 
         <header class="hero">
             <div class="hero-glow"></div>
-            <div class="hero-badge">IT Entrepreneurship &mdash; IT427</div>
             <h1 class="project-title">
                 Yusr<br><span class="title-hi">&#x064A;&#x064F;&#x633;&#x640;&#x631;</span>
             </h1>
             <p class="project-subtitle">
-                A smart wristband for Hajj &amp; Umrah pilgrims â€” combining IoT sensors, AI motion tracking, real-time GPS, health monitoring, and an emergency SOS system into one device.
+                A smart wristband for Hajj &amp; Umrah pilgrims &mdash; automatic ritual counting, real-time GPS, health monitoring, and SOS emergency system in one device.
             </p>
             <div class="project-tags">
                 <span class="tag">Startup</span>
@@ -315,7 +247,6 @@
                 <span class="tag">AI / Motion Sensing</span>
                 <span class="tag">Mobile App</span>
                 <span class="tag">Entrepreneurship</span>
-                <span class="tag">King Saud University</span>
             </div>
         </header>
 
@@ -324,24 +255,24 @@
             <p class="section-label">About</p>
             <h2 class="section-title">What is Yusr?</h2>
             <p class="section-text">
-                Performing Hajj and Umrah is a deeply personal spiritual experience â€” but pilgrims face real challenges: losing count of Tawaf and Sa&rsquo;i circuits, getting separated from family, and health risks in extreme heat. Yusr solves all of this with a single smart wristband that automatically counts rituals using AI motion sensors, tracks the pilgrim&rsquo;s real-time location via GPS and beacon technology, monitors vital signs, and provides instant SOS emergency connectivity. A companion mobile app (Arabic, English, Urdu) ties everything together.
+                Pilgrims performing Hajj and Umrah face real challenges: losing count of Tawaf and Sa&rsquo;i circuits, getting separated from family, and health risks in extreme heat. Yusr solves all of this with a single smart wristband that automatically counts rituals using AI motion sensors, tracks the pilgrim&rsquo;s real-time location via GPS and beacon technology, monitors vital signs, and provides instant SOS emergency connectivity. A companion mobile app in Arabic, English, and Urdu ties everything together.
             </p>
-            <div class="role-box">
-                <p class="role-title">My Role</p>
-                <p class="role-text">Co-founder &amp; team member â€” contributed to product concept, business plan, financial modeling (TAM/SAM/SOM, 3-year projections, break-even analysis), MVP development (landing page), and a 6-day digital marketing campaign that exceeded all KPIs.</p>
-            </div>
         </section>
 
-        <!-- WRISTBAND -->
+        <!-- WRISTBAND COMPONENTS -->
         <section class="section">
             <p class="section-label">Hardware</p>
             <h2 class="section-title">The Wristband &amp; Its Components</h2>
             <div class="device-layout">
 
                 <div class="device-img-wrap">
-                    <img src="images/yusr-wristband.jpg" alt="Yusr Smart Wristband" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <div class="device-img-placeholder" style="display:none; width:100%; height:100%; position:absolute; inset:0;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="2" width="10" height="20" rx="3"/><path d="M7 7h10M7 17h10"/><circle cx="12" cy="12" r="1.5"/></svg>
+                    <img src="images/yusr-wristband.jpg" alt="Yusr Smart Wristband"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="device-img-placeholder" style="display:none;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="7" y="2" width="10" height="20" rx="3"/>
+                            <path d="M7 7h10M7 17h10"/><circle cx="12" cy="12" r="1.5"/>
+                        </svg>
                         <span>Add yusr-wristband.jpg</span>
                     </div>
                 </div>
@@ -351,42 +282,42 @@
                         <div class="comp-num">1</div>
                         <div class="comp-text">
                             <p class="comp-name">AI Motion Sensor</p>
-                            <p class="comp-desc">Automatically detects and counts Tawaf &amp; Sa&rsquo;i circuits using machine learning — no manual input needed.</p>
+                            <p class="comp-desc">Automatically detects and counts Tawaf &amp; Sa&rsquo;i circuits &mdash; no manual input needed.</p>
                         </div>
                     </div>
                     <div class="comp-item">
                         <div class="comp-num">2</div>
                         <div class="comp-text">
                             <p class="comp-name">GPS Module</p>
-                            <p class="comp-desc">Real-time outdoor positioning — tracks pilgrim location and shares it live with family via the companion app.</p>
+                            <p class="comp-desc">Real-time outdoor positioning &mdash; tracks pilgrim location and shares it live with family via the companion app.</p>
                         </div>
                     </div>
                     <div class="comp-item">
                         <div class="comp-num">3</div>
                         <div class="comp-text">
                             <p class="comp-name">Bluetooth Beacon Receiver</p>
-                            <p class="comp-desc">Indoor navigation inside the Grand Mosque using BLE beacons — seamless handoff between GPS and beacon tracking.</p>
+                            <p class="comp-desc">Indoor navigation inside the Grand Mosque using BLE beacons, with seamless handoff from GPS.</p>
                         </div>
                     </div>
                     <div class="comp-item">
                         <div class="comp-num">4</div>
                         <div class="comp-text">
                             <p class="comp-name">Health Sensors (HR / SpO2 / Temp)</p>
-                            <p class="comp-desc">Continuous heart rate, blood oxygen, and body temperature monitoring with alerts when vitals leave safe ranges.</p>
+                            <p class="comp-desc">Continuous heart rate, blood oxygen, and body temperature monitoring with alerts for abnormal readings.</p>
                         </div>
                     </div>
                     <div class="comp-item">
                         <div class="comp-num">5</div>
                         <div class="comp-text">
                             <p class="comp-name">SOS Button</p>
-                            <p class="comp-desc">One-press emergency alert — instantly notifies family and shares exact location. Works even without phone connectivity.</p>
+                            <p class="comp-desc">One-press emergency alert &mdash; instantly notifies family and shares exact location.</p>
                         </div>
                     </div>
                     <div class="comp-item">
                         <div class="comp-num">6</div>
                         <div class="comp-text">
                             <p class="comp-name">Display Screen &amp; Speaker</p>
-                            <p class="comp-desc">Shows ritual count, step counter, and health data. Built-in speaker enables two-way voice communication.</p>
+                            <p class="comp-desc">Shows ritual count and health data. Built-in speaker enables two-way voice communication.</p>
                         </div>
                     </div>
                 </div>
@@ -400,7 +331,6 @@
             <h2 class="section-title">Explainer Video &amp; Landing Page</h2>
             <div class="mvp-grid">
 
-                <!-- YouTube embed -->
                 <div class="video-wrap">
                     <iframe
                         src="https://www.youtube.com/embed/r3xUVeEphLI"
@@ -410,9 +340,8 @@
                     </iframe>
                 </div>
 
-                <!-- Landing page card -->
-                <a class="site-preview" href="https://yusr.base44.app/" target="_blank" rel="noopener">
-                    <div class="site-preview-bar">
+                <div class="site-card">
+                    <div class="site-card-bar">
                         <div class="sp-dots">
                             <div class="sp-dot sp-dot-r"></div>
                             <div class="sp-dot sp-dot-y"></div>
@@ -420,37 +349,16 @@
                         </div>
                         <div class="sp-url">yusr.base44.app</div>
                     </div>
-                    <div class="site-preview-body">
-                        <div class="site-preview-overlay">
-                            <div class="sp-icon">&#127760;</div>
-                            <div class="sp-label">yusr.base44.app</div>
-                            <div class="sp-url-big">Live Landing Page</div>
-                            <div class="sp-arrow">Open Site &#8599;</div>
-                        </div>
+                    <div class="site-card-body">
+                        <iframe src="https://yusr.base44.app/" title="Yusr Landing Page" scrolling="no"></iframe>
                     </div>
-                </a>
-
-            </div>
-        </section>
-
-        <!-- TEAM -->
-        <section class="section">
-            <p class="section-label">Team</p>
-            <h2 class="section-title">Project Team</h2>
-            <div class="info-grid">
-                <div class="info-box">
-                    <p class="info-label">Team Members</p>
-                    <p class="info-value">
-                        Fajer Alamro &bull; Rama Alomair &bull; Aljawharah Alsubaie<br>
-                        Rima Alsonbul &bull; Remas Alsubaie &bull; Walaa Saifalislam
-                    </p>
+                    <div class="site-card-footer">
+                        <a class="site-open-link" href="https://yusr.base44.app/" target="_blank" rel="noopener">
+                            Open Full Site &#8599;
+                        </a>
+                    </div>
                 </div>
-                <div class="info-box">
-                    <p class="info-label">Supervisor</p>
-                    <p class="info-value">Dr. Nora Alhammad</p>
-                    <p class="info-label" style="margin-top:12px;">Course</p>
-                    <p class="info-value">IT427 &mdash; IT Entrepreneurship &amp; Innovation, KSU</p>
-                </div>
+
             </div>
         </section>
 
@@ -463,87 +371,78 @@
                 <div class="feature-card">
                     <div class="fc-shot">
                         <img src="images/yusr-ritual-count.jpg" alt="Ritual Counting">
-                        <span class="fc-shot-label">Feature</span>
                     </div>
                     <div class="fc-body">
                         <h3 class="fc-title">Automatic Ritual Counting</h3>
-                        <p class="fc-desc">AI-powered motion sensors automatically count Tawaf and Sa&rsquo;i circuits â€” no manual tapping required. Eliminates the most common pilgrim stress.</p>
+                        <p class="fc-desc">AI motion sensors count Tawaf and Sa&rsquo;i circuits automatically &mdash; no manual tapping required.</p>
                     </div>
                 </div>
 
                 <div class="feature-card">
                     <div class="fc-shot">
                         <img src="images/yusr-gps.jpg" alt="GPS Tracking">
-                        <span class="fc-shot-label">Feature</span>
                     </div>
                     <div class="fc-body">
                         <h3 class="fc-title">Real-Time GPS &amp; Beacon Location</h3>
-                        <p class="fc-desc">Dual-layer location tracking (GPS outdoors + Bluetooth beacons indoors) keeps pilgrims and their families connected at all times. Gate map navigation included.</p>
+                        <p class="fc-desc">Dual-layer tracking (GPS outdoors + BLE beacons indoors) keeps pilgrims and families connected with gate map navigation.</p>
                     </div>
                 </div>
 
                 <div class="feature-card">
                     <div class="fc-shot">
                         <img src="images/yusr-health.jpg" alt="Health Monitoring">
-                        <span class="fc-shot-label">Feature</span>
                     </div>
                     <div class="fc-body">
                         <h3 class="fc-title">Health Monitoring</h3>
-                        <p class="fc-desc">Continuous heart rate, body temperature, and oxygen saturation monitoring â€” critical in Makkah&rsquo;s extreme heat. Alerts trigger if vitals go outside safe ranges.</p>
+                        <p class="fc-desc">Continuous heart rate, temperature, and SpO2 monitoring &mdash; critical in Makkah&rsquo;s extreme heat. Alerts trigger if vitals are abnormal.</p>
                     </div>
                 </div>
 
                 <div class="feature-card">
                     <div class="fc-shot">
                         <img src="images/yusr-sos.jpg" alt="SOS Emergency">
-                        <span class="fc-shot-label">Feature</span>
                     </div>
                     <div class="fc-body">
                         <h3 class="fc-title">SOS Emergency Button</h3>
-                        <p class="fc-desc">One-press SOS button immediately alerts emergency contacts and shares real-time location. Voice communication channel built into the wristband.</p>
+                        <p class="fc-desc">One press alerts emergency contacts with real-time location. Voice communication channel built directly into the wristband.</p>
                     </div>
                 </div>
 
                 <div class="feature-card">
                     <div class="fc-shot">
                         <img src="images/yusr-app.jpg" alt="Companion App">
-                        <span class="fc-shot-label">Feature</span>
                     </div>
                     <div class="fc-body">
                         <h3 class="fc-title">Companion Mobile App</h3>
-                        <p class="fc-desc">Full-featured app in Arabic, English, and Urdu â€” displays ritual progress, live location map, health dashboard, and emergency controls.</p>
+                        <p class="fc-desc">Available in Arabic, English, and Urdu &mdash; shows ritual progress, live map, health dashboard, and emergency controls.</p>
                     </div>
                 </div>
 
                 <div class="feature-card">
                     <div class="fc-shot">
                         <img src="images/yusr-landing.jpg" alt="Landing Page">
-                        <span class="fc-shot-label">MVP</span>
                     </div>
                     <div class="fc-body">
                         <h3 class="fc-title">Landing Page MVP</h3>
-                        <p class="fc-desc">Built and launched a full product landing page at yusr.base44.app as the MVP â€” used to validate demand and collect pre-registrations during a 6-day campaign.</p>
+                        <p class="fc-desc">Launched yusr.base44.app to validate demand and collect pre-registrations during a 6-day digital marketing campaign.</p>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- MARKET & BUSINESS -->
+        <!-- MARKET -->
         <section class="section">
             <p class="section-label">Market</p>
             <h2 class="section-title">Market Opportunity</h2>
-            <p class="section-text">
-                With over 2.5 million Hajj pilgrims and millions more Umrah visitors annually, Makkah&rsquo;s pilgrimage sector is a massive underserved market. Yusr targets international pilgrims aged 35&ndash;65 who prioritize safety and peace of mind.
-            </p>
-            <div class="stats-grid" style="margin-top: 24px;">
+            <div class="stats-grid">
                 <div class="stat-box">
                     <div class="stat-value">5.17B</div>
-                    <div class="stat-label">SAR â€” Total Addressable Market (TAM)</div>
+                    <div class="stat-label">SAR Total Addressable Market</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-value">599M</div>
-                    <div class="stat-label">SAR â€” Serviceable Obtainable Market (SOM)</div>
+                    <div class="stat-label">SAR Serviceable Obtainable Market</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-value">267 SAR</div>
@@ -563,33 +462,36 @@
                 </div>
                 <div class="stat-box">
                     <div class="stat-value">Y2</div>
-                    <div class="stat-label">Break-even year â€” +1.88M SAR net profit</div>
+                    <div class="stat-label">Break-even &mdash; +1.88M SAR net profit</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-value">8.48M</div>
                     <div class="stat-label">SAR seed funding ask for 28.3% equity</div>
                 </div>
             </div>
-            <div class="info-grid" style="margin-top: 16px;">
+            <div class="info-grid" style="margin-top:16px;">
                 <div class="info-box">
                     <p class="info-label">Revenue Streams</p>
-                    <p class="info-value">Device sales &bull; Daily/seasonal rentals &bull; B2B licensing to pilgrimage agencies &bull; SaaS data dashboard for operators</p>
+                    <p class="info-value">Device sales &bull; Daily rentals &bull; B2B licensing &bull; SaaS operator dashboard</p>
                 </div>
                 <div class="info-box">
                     <p class="info-label">Distribution</p>
-                    <p class="info-value">Direct online sales &bull; Pilgrimage tour operators &bull; Retail in Makkah &amp; Madinah &bull; Government partnerships</p>
+                    <p class="info-value">Direct online &bull; Pilgrimage tour operators &bull; Retail in Makkah &bull; Government partnerships</p>
                 </div>
             </div>
         </section>
 
-        <!-- MARKETING CAMPAIGN -->
+        <!-- MARKETING -->
         <section class="section">
             <p class="section-label">Marketing</p>
-            <h2 class="section-title">6-Day Launch Campaign â€” April 3&ndash;8, 2026</h2>
+            <h2 class="section-title">6-Day Launch Campaign &mdash; April 2026</h2>
             <p class="section-text">
-                Launched a multi-channel digital campaign across WhatsApp, Instagram (<a href="https://www.instagram.com/yusrwristband" target="_blank" style="color:var(--brown);text-decoration:none;">@yusrwristband</a>), and X (<a href="https://x.com/yusrwristband" target="_blank" style="color:var(--brown);text-decoration:none;">@yusrwristband</a>) â€” exceeded every KPI set before launch.
+                Multi-channel campaign across WhatsApp, Instagram
+                (<a href="https://www.instagram.com/yusrwristband" target="_blank" style="color:var(--brown);text-decoration:none;">@yusrwristband</a>),
+                and X (<a href="https://x.com/yusrwristband" target="_blank" style="color:var(--brown);text-decoration:none;">@yusrwristband</a>)
+                &mdash; exceeded every KPI.
             </p>
-            <div class="stats-grid" style="margin-top: 24px;">
+            <div class="stats-grid" style="margin-top:24px;">
                 <div class="stat-box">
                     <div class="stat-value">335</div>
                     <div class="stat-label">Unique landing page visitors</div>
@@ -608,11 +510,11 @@
                 </div>
                 <div class="stat-box">
                     <div class="stat-value">137</div>
-                    <div class="stat-label">X (Twitter) followers gained</div>
+                    <div class="stat-label">X followers gained</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-value">6 days</div>
-                    <div class="stat-label">Campaign duration â€” all KPIs exceeded</div>
+                    <div class="stat-label">All KPIs exceeded</div>
                 </div>
             </div>
         </section>
@@ -625,12 +527,9 @@
                 <span class="tech-chip">IoT Sensors</span>
                 <span class="tech-chip">AI Motion Recognition</span>
                 <span class="tech-chip">GPS + BLE Beacons</span>
-                <span class="tech-chip">Mobile App (Android/iOS)</span>
-                <span class="tech-chip">Base44 (Landing Page)</span>
+                <span class="tech-chip">Mobile App</span>
+                <span class="tech-chip">Base44</span>
                 <span class="tech-chip">Business Plan</span>
-                <span class="tech-chip">Financial Modeling</span>
-                <span class="tech-chip">Digital Marketing</span>
-                <span class="tech-chip">Lean Canvas</span>
                 <span class="tech-chip">Canva</span>
             </div>
         </section>
@@ -658,17 +557,14 @@
                     if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
                 });
             }, { threshold: 0.1 });
-
             document.querySelectorAll('.section-label, .section-title').forEach(function(el) {
                 el.classList.add('reveal'); obs.observe(el);
             });
-
-            document.querySelectorAll('.feature-card, .stat-box, .info-box, .role-box').forEach(function(el, i) {
+            document.querySelectorAll('.feature-card, .stat-box, .info-box, .comp-item').forEach(function(el, i) {
                 el.classList.add('reveal');
                 el.style.transitionDelay = (i % 3) * 85 + 'ms';
                 obs.observe(el);
             });
-
             document.querySelectorAll('.tech-chip').forEach(function(el, i) {
                 el.classList.add('reveal');
                 el.style.transitionDelay = i * 38 + 'ms';
@@ -678,4 +574,3 @@
     </script>
 </body>
 </html>
-
