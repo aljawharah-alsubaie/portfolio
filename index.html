@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aljawharah Alsubaie â€” Portfolio</title>
+    <title>Aljawharah Alsubaie — Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -32,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* â”€â”€ NAV â”€â”€ */
+        /* ── NAV ── */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             display: flex; align-items: center; justify-content: space-between;
@@ -67,14 +67,14 @@
         }
         .nav-cta:hover { opacity: 0.87 !important; transform: translateY(-1px) !important; }
 
-        /* â”€â”€ PARTICLES â”€â”€ */
+        /* ── PARTICLES ── */
         #particles {
             position: absolute;
             inset: 0; z-index: 0;
             pointer-events: none;
         }
 
-        /* â”€â”€ HERO â”€â”€ */
+        /* ── HERO ── */
         .hero {
             min-height: 100vh;
             display: grid; grid-template-columns: 1fr 1fr;
@@ -158,7 +158,7 @@
         }
         .avatar-inner img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* â”€â”€ PROJECTS â”€â”€ */
+        /* ── PROJECTS ── */
         .projects { padding: 100px 60px; }
 
         .section-eyebrow {
@@ -171,7 +171,7 @@
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
         }
 
-        /* â”€â”€ PROJECT CARD: image outside, details on hover â”€â”€ */
+        /* ── PROJECT CARD: image outside, details on hover ── */
         .project-card {
             position: relative; border-radius: 20px; overflow: hidden;
             border: 1px solid var(--border); display: block;
@@ -195,7 +195,7 @@
         .card-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .card-empty { width: 100%; height: 100%; }
 
-        /* â”€â”€ DEVICE FRAMES â”€â”€ */
+        /* ── DEVICE FRAMES ── */
         @keyframes float-ph-l {
             0%,100% { transform: translateX(-115px) rotate(-20deg) translateY(0px); }
             50%      { transform: translateX(-115px) rotate(-20deg) translateY(-9px); }
@@ -223,7 +223,7 @@
             transform: translateY(-18px);
         }
 
-        /* â”€â”€ Phone â€” iPhone-style â”€â”€ */
+        /* ── Phone — iPhone-style ── */
         .dev-phone { width: 155px; position: absolute; }
         .dev-phone-shell {
             background: linear-gradient(145deg, #2c2c2c 0%, #0d0d0d 60%, #1c1c1c 100%);
@@ -258,7 +258,7 @@
         .dev-phone-center { z-index: 3;              animation: float-ph-c 3.6s ease-in-out infinite 0.45s; }
         .dev-phone-right  { z-index: 1; opacity: 0.7; width: 130px; animation: float-ph-r 3.6s ease-in-out infinite 0.9s; }
 
-        /* â”€â”€ Browser Window (2 per card) â”€â”€ */
+        /* ── Browser Window (2 per card) ── */
         .dev-browser {
             width: 270px; position: absolute;
             border-radius: 9px; overflow: hidden;
@@ -295,7 +295,7 @@
         .c-rose    .card-cover { background: linear-gradient(145deg, #2a0e14 0%, #180609 100%); }
         .c-orange  .card-cover { background: linear-gradient(145deg, #2a1508 0%, #180b04 100%); }
 
-        /* Name bar â€“ always visible, hidden on hover */
+        /* Name bar – always visible, hidden on hover */
         .card-bar {
             position: absolute; bottom: 0; left: 0; right: 0;
             padding: 44px 20px 18px;
@@ -339,7 +339,7 @@
         }
         .ch-cta:hover { opacity: 0.85; }
 
-        /* â”€â”€ NEW PROJECT CARD â”€â”€ */
+        /* ── NEW PROJECT CARD ── */
         .proj-card {
             position: relative; display: flex; flex-direction: column;
             text-decoration: none; border-radius: 24px; overflow: hidden;
@@ -421,7 +421,7 @@
             .proj-card .dev-browser      { width: 148px; }
         }
 
-        /* â”€â”€ SKILLS â”€â”€ */
+        /* ── SKILLS ── */
         .skills {
             padding: 64px 60px;
             border-top: 1px solid rgba(168,85,247,0.08);
@@ -454,7 +454,7 @@
             color: rgba(255,255,255,0.7);
         }
 
-        /* â”€â”€ CERTIFICATIONS â”€â”€ */
+        /* ── CERTIFICATIONS ── */
         .certifications {
             padding: 80px 60px;
             border-top: 1px solid rgba(168,85,247,0.08);
@@ -508,7 +508,7 @@
             pointer-events: none;
         }
 
-        /* â”€â”€ ACHIEVEMENTS â”€â”€ */
+        /* ── ACHIEVEMENTS ── */
         .achievements {
             padding: 80px 60px;
             border-top: 1px solid rgba(168,85,247,0.08);
@@ -595,13 +595,13 @@
             .ach-grid   { grid-template-columns: 1fr; }
         }
 
-        /* â”€â”€ ACH LIGHTBOX â”€â”€ */
+        /* ── ACH LIGHTBOX ── */
         .ach-lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); backdrop-filter: blur(10px); align-items: center; justify-content: center; cursor: zoom-out; }
         .ach-lightbox.open { display: flex; }
         .ach-lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 14px; box-shadow: 0 32px 80px rgba(0,0,0,0.7); animation: ach-lb-in 0.22s ease; }
         @keyframes ach-lb-in { from { opacity:0; transform:scale(0.93); } to { opacity:1; transform:scale(1); } }
 
-        /* â”€â”€ SCROLL REVEAL â”€â”€ */
+        /* ── SCROLL REVEAL ── */
         .reveal {
             opacity: 0;
             transform: translateY(36px);
@@ -618,7 +618,7 @@
         }
         .reveal-left.visible { opacity: 1; transform: translateX(0); }
 
-        /* â”€â”€ CONTACT â”€â”€ */
+        /* ── CONTACT ── */
         .contact {
             padding: 80px 60px;
             border-top: 1px solid rgba(168,85,247,0.08);
@@ -666,7 +666,7 @@
             .contact-cards { grid-template-columns: 1fr; }
         }
 
-        /* â”€â”€ FOOTER â”€â”€ */
+        /* ── FOOTER ── */
         footer {
             padding: 48px 60px;
             border-top: 1px solid rgba(168,85,247,0.08);
@@ -684,13 +684,13 @@
         }
         .social-link:hover { border-color: var(--border-hover); background: rgba(168,85,247,0.1); transform: translateY(-3px); }
 
-        /* â”€â”€ ANIMATIONS â”€â”€ */
+        /* ── ANIMATIONS ── */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(28px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* â”€â”€ RESPONSIVE â”€â”€ */
+        /* ── RESPONSIVE ── */
         @media (max-width: 1100px) {
             .projects-grid { grid-template-columns: repeat(2, 1fr); }
         }
@@ -781,10 +781,10 @@
             </h1>
             <p class="hero-tagline">AI Developer &amp; IT Graduate</p>
             <p class="hero-bio">
-                IT graduate with experience across AI/ML, computer vision, full-stack development, and cybersecurity â€” building secure, user-centered digital solutions with Flutter, Firebase, and Python.
+                IT graduate with experience across AI/ML, computer vision, full-stack development, and cybersecurity — building secure, user-centered digital solutions with Flutter, Firebase, and Python.
             </p>
             <div class="hero-actions">
-                <a href="#projects" class="btn-primary">View My Work â†’</a>
+                <a href="#projects" class="btn-primary">View My Work →</a>
                 <a href="Aljawharah_Alsubaie_CV.pdf" download class="btn-secondary">Download CV</a>
             </div>
         </div>
@@ -793,7 +793,7 @@
             <div class="avatar-ring">
                 <div class="avatar-inner">
                     <!-- Replace emoji with: <img src="your-photo.jpg" alt="Aljawharah"> -->
-                    ðŸ‘©â€ðŸ’»
+                    👩‍💻
                 </div>
             </div>
         </div>
@@ -818,14 +818,14 @@
                 </div>
                 <div class="proj-content">
                     <h3 class="proj-title">Munir APP</h3>
-                    <p class="proj-desc">AI-powered assistive app for visually impaired users â€” recognizes faces, reads text, identifies currency, and speaks it all aloud.</p>
+                    <p class="proj-desc">AI-powered assistive app for visually impaired users — recognizes faces, reads text, identifies currency, and speaks it all aloud.</p>
                     <div class="proj-tags">
                         <span class="proj-tag">AI/ML</span>
                         <span class="proj-tag">Flutter</span>
                         <span class="proj-tag">Firebase</span>
                         <span class="proj-tag">Accessibility</span>
                     </div>
-                    <span class="proj-cta">View Project â†—</span>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
@@ -840,9 +840,9 @@
                 </div>
                 <div class="proj-content">
                     <h3 class="proj-title">Face Recognition Model</h3>
-                    <p class="proj-desc">Custom-trained model using ArcFace + SVM, achieving 97.98% accuracy on 32,400 images â€” built for real-world assistive use.</p>
+                    <p class="proj-desc">Custom-trained model using ArcFace + SVM, achieving 97.98% accuracy on 32,400 images — built for real-world assistive use.</p>
                     <div class="proj-tags"><span class="proj-tag">Deep Learning</span><span class="proj-tag">ArcFace</span><span class="proj-tag">Python</span></div>
-                    <span class="proj-cta">View Project â†—</span>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
@@ -859,7 +859,7 @@
                     <h3 class="proj-title">Saudi Currency Recognition</h3>
                     <p class="proj-desc">Published hybrid framework (YOLOv8 + MobileNetV2 + SVM-RBF) achieving 98.16% accuracy across all 7 Saudi Riyal denominations in 32.57ms.</p>
                     <div class="proj-tags"><span class="proj-tag">Transfer Learning</span><span class="proj-tag">MobileNetV2</span><span class="proj-tag">Mobile ML</span></div>
-                    <span class="proj-cta">View Project â†—</span>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
@@ -875,7 +875,7 @@
                 </div>
                 <div class="proj-content">
                     <h3 class="proj-title">Yusr &#x2014; &#x064A;&#x064F;&#x633;&#x640;&#x631;</h3>
-                    <p class="proj-desc">Smart wristband for Hajj &amp; Umrah pilgrims — automatic ritual counting, health monitoring, real-time GPS, and SOS emergency system.</p>
+                    <p class="proj-desc">Smart wristband for Hajj &amp; Umrah pilgrims � automatic ritual counting, health monitoring, real-time GPS, and SOS emergency system.</p>
                     <div class="proj-tags">
                         <span class="proj-tag">Startup</span>
                         <span class="proj-tag">IoT / AI</span>
@@ -899,7 +899,7 @@
                     <h3 class="proj-title">Mehar Platform</h3>
                     <p class="proj-desc">Full-stack workshop booking platform with personalized recommendations, community features, and booking management for arts &amp; experiences.</p>
                     <div class="proj-tags"><span class="proj-tag">Full-Stack</span><span class="proj-tag">PHP / MySQL</span><span class="proj-tag">E-Commerce</span></div>
-                    <span class="proj-cta">View Project â†—</span>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
@@ -914,9 +914,9 @@
                 </div>
                 <div class="proj-content">
                     <h3 class="proj-title">Find Differences Game</h3>
-                    <p class="proj-desc">Real-time multiplayer networked game with Java sockets, waiting room system, and live scoring â€” up to 4 players simultaneously.</p>
+                    <p class="proj-desc">Real-time multiplayer networked game with Java sockets, waiting room system, and live scoring — up to 4 players simultaneously.</p>
                     <div class="proj-tags"><span class="proj-tag">Java</span><span class="proj-tag">Networking</span><span class="proj-tag">Socket Programming</span></div>
-                    <span class="proj-cta">View Project â†—</span>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
@@ -931,9 +931,9 @@
                 </div>
                 <div class="proj-content">
                     <h3 class="proj-title">Dreamverse</h3>
-                    <p class="proj-desc">IT Project Management plan for a conceptual AI-driven smart sleep capsule â€” full WBS, Gantt charts, network diagrams, and task scheduling.</p>
+                    <p class="proj-desc">IT Project Management plan for a conceptual AI-driven smart sleep capsule — full WBS, Gantt charts, network diagrams, and task scheduling.</p>
                     <div class="proj-tags"><span class="proj-tag">Project Management</span><span class="proj-tag">AI Concept</span></div>
-                    <span class="proj-cta">View Project â†—</span>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
@@ -948,9 +948,9 @@
                 </div>
                 <div class="proj-content">
                     <h3 class="proj-title">Mobile App Security Assessment</h3>
-                    <p class="proj-desc">Hands-on penetration test of the Diva Android app â€” reverse engineering, vulnerability analysis, and security reporting using JADX, MobSF, ADB, and Ghidra.</p>
+                    <p class="proj-desc">Hands-on penetration test of the Diva Android app — reverse engineering, vulnerability analysis, and security reporting using JADX, MobSF, ADB, and Ghidra.</p>
                     <div class="proj-tags"><span class="proj-tag">Cybersecurity</span><span class="proj-tag">Penetration Testing</span><span class="proj-tag">OWASP</span></div>
-                    <span class="proj-cta">View Project â†—</span>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
@@ -967,7 +967,7 @@
                     <h3 class="proj-title">Heart Attack Risk Prediction</h3>
                     <p class="proj-desc">Data mining project using K-means clustering and classification to predict heart attack risk from medical and lifestyle data.</p>
                     <div class="proj-tags"><span class="proj-tag">Data Mining</span><span class="proj-tag">K-means</span><span class="proj-tag">Python</span></div>
-                    <span class="proj-cta">View Project â†—</span>
+                    <span class="proj-cta">View Project ↗</span>
                 </div>
             </a>
 
@@ -980,7 +980,7 @@
         <h2 class="section-heading">Achievements &amp; Publications</h2>
         <div class="ach-grid">
 
-            <!-- â”€â”€ ROW 1: No images (Publications + Grant) â”€â”€ -->
+            <!-- ── ROW 1: No images (Publications + Grant) ── -->
 
             <!-- Publication 1 -->
             <div class="ach-card">
@@ -1026,13 +1026,13 @@
                     </div>
                     <span class="ach-type type-grant">Grant</span>
                 </div>
-                <p class="ach-title">Institutional Funding â€” AI Fundamentals Course Development</p>
+                <p class="ach-title">Institutional Funding — AI Fundamentals Course Development</p>
                 <div class="ach-meta">
                     <span>IT 426</span><span class="ach-meta-dot"></span><span>King Saud University</span>
                 </div>
             </div>
 
-            <!-- â”€â”€ ROW 2: With images (Conference, Exhibition, Award) â”€â”€ -->
+            <!-- ── ROW 2: With images (Conference, Exhibition, Award) ── -->
 
             <!-- Conference -->
             <div class="ach-card">
@@ -1042,7 +1042,7 @@
                     </div>
                     <span class="ach-type type-conf">Conference</span>
                 </div>
-                <p class="ach-title">ICAN Conference â€” Munir Project Showcase</p>
+                <p class="ach-title">ICAN Conference — Munir Project Showcase</p>
                 <div class="ach-meta">
                     <span>In collaboration with IBM</span><span class="ach-meta-dot"></span><span>January 2026</span>
                 </div>
@@ -1057,14 +1057,14 @@
                     </div>
                     <span class="ach-type type-exhib">Exhibition</span>
                 </div>
-                <p class="ach-title">Tamkeen Exhibition â€” Munir Project Showcase</p>
+                <p class="ach-title">Tamkeen Exhibition — Munir Project Showcase</p>
                 <div class="ach-meta">
                     <span>In collaboration with IBM</span><span class="ach-meta-dot"></span><span>January 2026</span>
                 </div>
                 <div class="ach-img"><img src="images/tamkeen-exhibition.jpg" alt="Tamkeen Exhibition"></div>
             </div>
 
-            <!-- Award â€” Outstanding Competition -->
+            <!-- Award — Outstanding Competition -->
             <div class="ach-card">
                 <div class="ach-card-top">
                     <div class="ach-icon" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.22);">
@@ -1072,16 +1072,16 @@
                     </div>
                     <span class="ach-type type-award">Award</span>
                 </div>
-                <p class="ach-title">Winner â€” Outstanding Academic Projects Competition (5th Edition)</p>
+                <p class="ach-title">Winner — Outstanding Academic Projects Competition (5th Edition)</p>
                 <div class="ach-meta">
                     <span>Mehar Project</span><span class="ach-meta-dot"></span><span>King Saud University</span>
                 </div>
                 <div class="ach-img"><img src="images/outstanding-award.jpg" alt="Outstanding Projects Award"></div>
             </div>
 
-            <!-- â”€â”€ ROW 3: With images (KSU Awards) â”€â”€ -->
+            <!-- ── ROW 3: With images (KSU Awards) ── -->
 
-            <!-- Award â€” IT Fair 2024 -->
+            <!-- Award — IT Fair 2024 -->
             <div class="ach-card">
                 <div class="ach-card-top">
                     <div class="ach-icon" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.22);">
@@ -1089,14 +1089,14 @@
                     </div>
                     <span class="ach-type type-award">Award</span>
                 </div>
-                <p class="ach-title">Winner â€” Web Applications Engineering Course</p>
+                <p class="ach-title">Winner — Web Applications Engineering Course</p>
                 <div class="ach-meta">
                     <span>IT Fair 2024</span><span class="ach-meta-dot"></span><span>King Saud University</span>
                 </div>
                 <div class="ach-img"><img src="images/itfair-2024.jpg" alt="IT Fair 2024 Award"></div>
             </div>
 
-            <!-- Award â€” First ITers Day 2024 -->
+            <!-- Award — First ITers Day 2024 -->
             <div class="ach-card">
                 <div class="ach-card-top">
                     <div class="ach-icon" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.22);">
@@ -1104,7 +1104,7 @@
                     </div>
                     <span class="ach-type type-award">Award</span>
                 </div>
-                <p class="ach-title">Winner â€” User Experience Design Course</p>
+                <p class="ach-title">Winner — User Experience Design Course</p>
                 <div class="ach-meta">
                     <span>ITers Day 2024</span><span class="ach-meta-dot"></span><span>King Saud University</span>
                 </div>
@@ -1142,7 +1142,7 @@
 
             <!-- SDAIA -->
             <div class="cert-card">
-                <div class="cert-issuer">SDAIA â€” Saudi Data & AI Authority</div>
+                <div class="cert-issuer">SDAIA — Saudi Data & AI Authority</div>
                 <p class="cert-name">Exploring Generative AI Use Cases</p>
                 <p class="cert-date">Issued January 2026</p>
                 <div class="cert-img"><img src="images/cert-sdaia.jpg" alt="SDAIA Certificate"></div>
@@ -1288,7 +1288,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <p class="footer-copy">Â© 2026 Aljawharah Alsubaie</p>
+        <p class="footer-copy">© 2026 Aljawharah Alsubaie</p>
     </footer>
 
     <script>
@@ -1392,7 +1392,7 @@
         init();
         animate();
 
-        /* â”€â”€ SCROLL REVEAL â”€â”€ */
+        /* ── SCROLL REVEAL ── */
         const revealObs = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1408,35 +1408,35 @@
             revealObs.observe(el);
         });
 
-        // Project cards â€” stagger
+        // Project cards — stagger
         document.querySelectorAll('.project-card, .proj-card').forEach((el, i) => {
             el.classList.add('reveal');
             el.style.transitionDelay = `${(i % 4) * 80}ms`;
             revealObs.observe(el);
         });
 
-        // Achievement cards â€” stagger
+        // Achievement cards — stagger
         document.querySelectorAll('.ach-card').forEach((el, i) => {
             el.classList.add('reveal');
             el.style.transitionDelay = `${(i % 2) * 90}ms`;
             revealObs.observe(el);
         });
 
-        // Cert cards â€” stagger
+        // Cert cards — stagger
         document.querySelectorAll('.cert-card').forEach((el, i) => {
             el.classList.add('reveal');
             el.style.transitionDelay = `${i * 80}ms`;
             revealObs.observe(el);
         });
 
-        // Skill chips â€” stagger
+        // Skill chips — stagger
         document.querySelectorAll('.sk-chip').forEach((el, i) => {
             el.classList.add('reveal');
             el.style.transitionDelay = `${i * 30}ms`;
             revealObs.observe(el);
         });
 
-        // Contact cards â€” stagger
+        // Contact cards — stagger
         document.querySelectorAll('.contact-card').forEach((el, i) => {
             el.style.transitionDelay = `${i * 100}ms`;
             revealObs.observe(el);
